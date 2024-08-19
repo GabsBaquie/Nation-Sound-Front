@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"npm run dev:cms\" \"npm run dev:next\"",
-    "dev:cms": "cd ../strapi-CMS && npm run develop && cd ../prisma && npx prisma db pull && npx prisma generate",
+    "dev": "npm run dev:next",
     "dev:next": "next dev",
     "build": "next build",
     "start": "next start",
