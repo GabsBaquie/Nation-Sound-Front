@@ -7,7 +7,7 @@ export const getLandingPageData: GetStaticProps = async () => {
 
   try {
     const res = await axios.get(
-      `${apiUrl}/api/landing-pages?populate%5Bblocks%5D%5Bpopulate%5D=image,BtnLink,section.image`
+      `${apiUrl}/api/landing-pages?populate[metaData][populate]=metaImage&populate[blocks][populate]=image,BtnLink,section.image`
     );
     const landingPage = res.data.data[0];
 
@@ -15,14 +15,19 @@ export const getLandingPageData: GetStaticProps = async () => {
       throw new DataNotFoundError("Landing page data not found");
     }
 
-    // validation supplémentaire des données
+    // Validation supplémentaire des données
     if (!landingPage.blocks) {
+      throw new DataValidationError("Landing page data is invalid");
+    }
+
+    if (!landingPage.metaData) {
       throw new DataValidationError("Landing page data is invalid");
     }
 
     return {
       props: {
         blocks: landingPage.blocks,
+        metaData: landingPage.metaData,
       },
     };
   } catch (error) {
@@ -35,6 +40,7 @@ export const getLandingPageData: GetStaticProps = async () => {
       return {
         props: {
           blocks: [],
+          metadata: {},
           error: error.message,
         },
       };
@@ -44,6 +50,7 @@ export const getLandingPageData: GetStaticProps = async () => {
     return {
       props: {
         blocks: [],
+        metadata: {},
         error: "An unexpected error occurred",
       },
     };
