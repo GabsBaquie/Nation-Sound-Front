@@ -3,6 +3,8 @@ import { MetadataProps } from "@/models/MetaDataModel";
 import Image from "next/image";
 
 const MetaData = (props: MetadataProps) => {
+  console.log("MetaData props:", props); // Ajoutez cette ligne pour journaliser les propriétés
+
   const controller = new MetaDataController(props);
   const metaData = controller.getModel();
 
@@ -12,10 +14,10 @@ const MetaData = (props: MetadataProps) => {
       <p>{metaData?.metaDescription}</p>
       {metaData?.metaImage && (
         <Image
-          src={metaData?.metaImage.url}
-          alt={metaData?.metaImage.alternativeText || "Meta Image"}
-          width={500}
-          height={500}
+          src={metaData.metaImage.url}
+          alt={metaData.metaImage.alternativeText ?? ""}
+          width={200}
+          height={200}
         />
       )}
     </div>

@@ -7,7 +7,7 @@ export const getLandingPageData: GetStaticProps = async () => {
 
   try {
     const res = await axios.get(
-      `${apiUrl}/api/landing-pages?populate[metaData][populate]=metaImage&populate[blocks][populate]=image,BtnLink,section.image`
+      `${apiUrl}/api/landing-pages?populate[metaData][populate]=metaImage&populate[blocks][populate]=image,BtnLink,section.image,section.button`
     );
     const landingPage = res.data.data[0];
 

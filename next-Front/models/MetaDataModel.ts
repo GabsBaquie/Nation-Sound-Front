@@ -2,7 +2,7 @@ export type MetadataProps = {
   id: number;
   metaTitle: string;
   metaDescription: string | null;
-  metaImage: {
+  metaImage?: {
     url: string;
     alternativeText: string | null;
   };
@@ -12,7 +12,7 @@ export class MetaDataModel {
   id: number;
   metaTitle: string;
   metaDescription: string | null;
-  metaImage: {
+  metaImage?: {
     url: string;
     alternativeText: string | null;
   };

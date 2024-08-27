@@ -1,5 +1,5 @@
-import HeroBlock from "@/components/HeroBlock";
-import NavBar from "@/components/navBar";
+import LandingBlocks from "@/components/landingBlocks";
+import NavBar from "@/components/NavBar/navBar";
 import { getLandingPageData } from "@/controller/LandingPageController";
 import { MetaDataController } from "@/controller/MetaDataController";
 import { LandingPageModel } from "@/models/LandingPageModel";
@@ -14,6 +14,7 @@ const Home = ({
 }: LandingPageModel & { error?: string }) => {
   const metaDataController = new MetaDataController(metaData);
   const MetaData = metaDataController.getModel();
+  const metaImage = MetaData?.metaImage?.url || "";
 
   return (
     <div>
@@ -24,13 +25,9 @@ const Home = ({
           content={MetaData?.metaDescription || "Default Description"}
         />
       </Head>
-      <NavBar />
+      <NavBar metaImage={metaImage || ""} />
       {error && <p style={{ color: "red" }}>{error}</p>}
-      {blocks.map((block, index) => (
-        <div key={index}>
-          {block.__component === "blocks.hero" && <HeroBlock {...block} />}
-        </div>
-      ))}
+      <LandingBlocks blocks={blocks} />
     </div>
   );
 };

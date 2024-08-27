@@ -1,51 +1,44 @@
-import { HeroBlockModel, HeroBlockProps } from "../models/HeroBlockModel";
-import { SectionModel } from "../models/HeroSectionModel";
+import { HeroBlock } from "../models/blocks";
+
+class HeroBlockModel {
+  constructor(public props: HeroBlock) {}
+}
 
 export class HeroBlockController {
   private model: HeroBlockModel | null = null;
   private error: string | null = null;
 
-  constructor(props: HeroBlockProps) {
+  constructor(props: HeroBlock) {
     try {
-      const baseURL =
-        process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337";
-
-      // Gestion de l'image du Hero
-      const image = props.image
-        ? {
-            url: `${baseURL}${props.image.url}`,
-            alternativeText: props.image.alternativeText,
-          }
-        : undefined;
-
-      // Gestion de la section
-      let section: SectionModel | undefined;
-      if (props.section) {
-        // Gestion de l'image de la section
-        const sectionImage = props.section.image
-          ? {
-              url: `${baseURL}${props.section.image.url}`,
-              alternativeText: props.section.image.alternativeText,
-            }
-          : undefined;
-
-        section = new SectionModel({
-          ...props.section,
-          image: sectionImage,
-        });
-      }
-
       this.model = new HeroBlockModel({
         ...props,
-        image,
-        section,
+        image: this.constructImageURL(props.image),
+        section: props.section
+          ? {
+              ...props.section,
+              image: this.constructImageURL(props.section.image),
+            }
+          : undefined,
       });
     } catch (err) {
-      this.error = `Failed to initialize HeroBlockModel: ${
-        err instanceof Error ? err.message : String(err)
-      }`;
-      console.error(this.error);
+      this.handleError(err);
     }
+  }
+
+  private constructImageURL(image?: { url: string; alternativeText: string }) {
+    if (!image) return undefined;
+    const baseURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337";
+    return {
+      url: `${baseURL}${image.url}`,
+      alternativeText: image.alternativeText,
+    };
+  }
+
+  private handleError(err: unknown) {
+    this.error = `Failed to initialize HeroBlockModel: ${
+      err instanceof Error ? err.message : String(err)
+    }`;
+    console.error(this.error);
   }
 
   getModel() {
