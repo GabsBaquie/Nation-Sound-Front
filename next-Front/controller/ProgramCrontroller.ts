@@ -3,19 +3,29 @@ import { BaseController } from "./BaseController";
 
 export class ProgramController extends BaseController<Programmation> {
   constructor(props: Programmation) {
+    console.log("Original image:", props.image);
+    console.log("Original image2:", props.image2);
+
     super({
       ...props,
-      image: props.image
-        ? props.image
-            .filter((img) => img?.url && img.alternativeText) // Filtrer les images valides
-            .map((img) => ({
-              url: img ? BaseController.constructImageURL(img)?.url || "" : "",
-              alternativeText: img?.alternativeText || "",
-            }))
-        : [], // Si pas d'image, retourne un tableau vide
+      image:
+        props.image && props.image.url
+          ? {
+              url: BaseController.constructImageURL(props.image)?.url || "",
+              alternativeText: props.image.alternativeText || "",
+            }
+          : null, // Si pas d'image, retourne null
+      image2:
+        props.image2 && props.image2.url
+          ? {
+              url: BaseController.constructImageURL(props.image2)?.url || "",
+              alternativeText: props.image2.alternativeText || "",
+            }
+          : null, // Si pas d'image, retourne null
     });
 
     // Vérification supplémentaire pour s'assurer que les images sont bien traitées
-    console.log("Processed images:", this.model?.image);
+    console.log("Processed image:", this.model?.image);
+    console.log("Processed image2:", this.model?.image2);
   }
 }

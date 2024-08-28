@@ -1,15 +1,18 @@
 import { HeroBlockController } from "@/controller/HeroBlockController";
+import { PrincingController } from "@/controller/PrincingController";
 import { ProgramController } from "@/controller/ProgramCrontroller";
 import axios from "axios";
-import { GetStaticProps } from "next";
+import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 import { DataNotFoundError, DataValidationError } from "../lib/DataError";
 
-export const getLandingPageData: GetStaticProps = async () => {
+export const getLandingPageData = async (
+  context: GetStaticPropsContext
+): Promise<GetStaticPropsResult<{ [key: string]: any }>> => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   try {
     const res = await axios.get(
-      `${apiUrl}/api/landing-pages?populate[blocks][populate]=image,BtnLink,section.image,section.button,card,card.image`
+      `${apiUrl}/api/landing-pages?populate[blocks][populate]=image,BtnLink,section.image,section.button,card,card.image,plan,plan.services,plan.link`
     );
 
     const landingPage = res.data.data[0];
@@ -22,7 +25,6 @@ export const getLandingPageData: GetStaticProps = async () => {
       throw new DataValidationError("Landing page data is invalid");
     }
 
-    // Utilisation des contrôleurs appropriés en fonction du type de bloc
     const blocks = landingPage.blocks
       .map((block: any) => {
         if (block.__component === "blocks.hero") {
@@ -33,12 +35,15 @@ export const getLandingPageData: GetStaticProps = async () => {
           const controller = new ProgramController(block);
           return controller.getModel();
         }
+        if (block.__component === "blocks.princing") {
+          const controller = new PrincingController(block);
+          return controller.getModel();
+        }
 
-        // Ajoutez ici des conditions pour d'autres types de blocs si nécessaire
-        return null; // ou block sans transformation si nécessaire
+        return null;
       })
-      .filter(Boolean); // Filtrez les valeurs null
-    console.log("Fetched blocks:", blocks);
+      .filter(Boolean);
+
     return {
       props: {
         blocks,

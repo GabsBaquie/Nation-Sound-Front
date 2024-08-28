@@ -1,5 +1,4 @@
 import Button from "@/components/ui/button";
-import { HeroBlockController } from "@/controller/HeroBlockController";
 import { HeroBlock as HeroBlockType } from "@/models/blocks";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,18 +8,10 @@ interface HeroBlockProps {
 }
 
 const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
-  const controller = new HeroBlockController(block);
-  const model = controller.getModel();
-
-  if (!model) {
-    console.error("Failed to load HeroBlock model");
-    return null; // Vous pouvez aussi rendre un fallback UI ici
-  }
-
   // Accédez directement aux propriétés du modèle
-  const { title, text, image, BtnLink, section } = model;
+  const { title, text, image, BtnLink, section } = block;
   return (
-    <section className="flex flex-col w-full h-full px-12 mb-12 ml-4 text-center md:ml-8 md:px-24 ">
+    <section className="flex flex-col w-full h-full ">
       <div className="flex flex-wrap lg:flex-nowrap ">
         {/* Contenu principal */}
         <div className="flex flex-col w-screen max-w-md gap-4 mx-auto mt-5 text-center md:mt-12 align-center">
@@ -66,9 +57,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
       {/* Section */}
       <div className="relative md:flex md:mt-24">
         {/* Titre de la section en mobile */}
-        <div className="mb-6 text-2xl font-bold md:hidden">
-          {section?.title}
-        </div>
+        <h2 className="mb-6 text-xl font-bold md:hidden">{section?.title}</h2>
         {/* Image de la section Hero */}
         {section?.image && (
           <div
@@ -88,9 +77,9 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
         )}
         {/* Texte qui entoure l'image */}
         <div className="text-justify md:w-2/3">
-          <h1 className="hidden mb-4 md:block lg:mb-4 md:text-3xl">
+          <h2 className="hidden mb-4 md:block lg:mb-4 md:text-2xl">
             {section?.title}
-          </h1>
+          </h2>
           <p className="text-sm md:mb-4">{section?.text}</p>
           {/* Bouton de la section */}
           <Button size="sm" btnType={section?.button?.type}>

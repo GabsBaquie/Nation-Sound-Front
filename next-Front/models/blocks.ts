@@ -45,7 +45,27 @@ export type Programmation = {
     text: string;
     image: Image;
   }>;
-  image: Image[];
+  image: Image;
+  image2: Image;
 };
 
-export type Block = HeroBlock | Programmation;
+export type Princing = {
+  id: number;
+  __component: "blocks.princing";
+  title: string;
+  text: string;
+  plan: PrincingCard[];
+};
+
+export type PrincingCard = {
+  planType: string;
+  planPrice: string;
+  isFeatured: boolean;
+  services: Array<{ id: number; title: string }>;
+  link?: {
+    text: string;
+    url: string;
+  };
+};
+
+export type Block = HeroBlock | Programmation | Princing;
