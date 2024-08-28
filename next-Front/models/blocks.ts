@@ -1,7 +1,7 @@
 export type Image = {
   url: string;
   alternativeText: string;
-};
+} | null;
 
 export type HeroBlock = {
   id: number;
@@ -20,25 +20,31 @@ export type HeroBlock = {
 };
 
 export type SectionProps = {
-  title: string;
-  description: string;
-  image?: {
+  image: {
     url: string;
     alternativeText: string;
-  };
+  } | null;
+  title: string;
+  text: string;
   button?: {
     link: string;
     title: string;
     isExternal: boolean;
     type?: string;
   };
-};
+} | null;
 
 export type Programmation = {
   id: number;
   __component: "blocks.programmation";
   title: string;
-  description: string;
+  text: string;
+  card: Array<{
+    id: number;
+    title: string;
+    text: string;
+    image: Image;
+  }>;
   image: Image[];
 };
 

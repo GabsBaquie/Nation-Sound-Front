@@ -3,19 +3,13 @@ import Link from "next/link";
 import React from "react";
 import GaucheNav from "./gaucheNav";
 
-interface NavBarProps {
-  metaImage: string;
-}
-
-const NavBar: React.FC<NavBarProps> = ({ metaImage }) => {
+const NavBar: React.FC = () => {
   return (
     <>
       <nav className="relative flex items-center w-full gap-10 text-sm border-b-2 md:text-base border-border">
         <div className="border-r-2 md:py-4 px-7 border-border">
           <Link href="/">
-            {metaImage && (
-              <Image src={metaImage} alt="" width={35} height={35} />
-            )}
+            <Image src="/favicon.ico" alt="" width={35} height={35} />
           </Link>
         </div>
         <ul className="flex gap-5 p-3 md:p-5">

@@ -12,9 +12,13 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
   const controller = new HeroBlockController(block);
   const model = controller.getModel();
 
-  console.log("HeroBlock model:", model);
+  if (!model) {
+    console.error("Failed to load HeroBlock model");
+    return null; // Vous pouvez aussi rendre un fallback UI ici
+  }
 
-  const { title, text, image, BtnLink, section } = model?.props || {};
+  // Accédez directement aux propriétés du modèle
+  const { title, text, image, BtnLink, section } = model;
   return (
     <section className="flex flex-col w-full h-full px-12 mb-12 ml-4 text-center md:ml-8 md:px-24 ">
       <div className="flex flex-wrap lg:flex-nowrap ">
@@ -87,7 +91,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
           <h1 className="hidden mb-4 md:block lg:mb-4 md:text-3xl">
             {section?.title}
           </h1>
-          <p className="text-sm md:mb-4">{section?.description}</p>
+          <p className="text-sm md:mb-4">{section?.text}</p>
           {/* Bouton de la section */}
           <Button size="sm" btnType={section?.button?.type}>
             <Link

@@ -1,3 +1,5 @@
+import { HeroBlockController } from "@/controller/HeroBlockController";
+import { ProgramController } from "@/controller/ProgramCrontroller";
 import axios from "axios";
 import { GetStaticProps } from "next";
 import { DataNotFoundError, DataValidationError } from "../lib/DataError";
@@ -7,27 +9,39 @@ export const getLandingPageData: GetStaticProps = async () => {
 
   try {
     const res = await axios.get(
-      `${apiUrl}/api/landing-pages?populate[metaData][populate]=metaImage&populate[blocks][populate]=image,BtnLink,section.image,section.button`
+      `${apiUrl}/api/landing-pages?populate[blocks][populate]=image,BtnLink,section.image,section.button,card,card.image`
     );
+
     const landingPage = res.data.data[0];
 
     if (!landingPage) {
       throw new DataNotFoundError("Landing page data not found");
     }
 
-    // Validation supplémentaire des données
     if (!landingPage.blocks) {
       throw new DataValidationError("Landing page data is invalid");
     }
 
-    if (!landingPage.metaData) {
-      throw new DataValidationError("Landing page data is invalid");
-    }
+    // Utilisation des contrôleurs appropriés en fonction du type de bloc
+    const blocks = landingPage.blocks
+      .map((block: any) => {
+        if (block.__component === "blocks.hero") {
+          const controller = new HeroBlockController(block);
+          return controller.getModel();
+        }
+        if (block.__component === "blocks.programmation") {
+          const controller = new ProgramController(block);
+          return controller.getModel();
+        }
 
+        // Ajoutez ici des conditions pour d'autres types de blocs si nécessaire
+        return null; // ou block sans transformation si nécessaire
+      })
+      .filter(Boolean); // Filtrez les valeurs null
+    console.log("Fetched blocks:", blocks);
     return {
       props: {
-        blocks: landingPage.blocks,
-        metaData: landingPage.metaData,
+        blocks,
       },
     };
   } catch (error) {
@@ -40,17 +54,14 @@ export const getLandingPageData: GetStaticProps = async () => {
       return {
         props: {
           blocks: [],
-          metadata: {},
           error: error.message,
         },
       };
     }
 
-    // Gérer d'autres types d'erreurs
     return {
       props: {
         blocks: [],
-        metadata: {},
         error: "An unexpected error occurred",
       },
     };

@@ -1,5 +1,4 @@
 export type MetadataProps = {
-  id: number;
   metaTitle: string;
   metaDescription: string | null;
   metaImage?: {
@@ -9,7 +8,6 @@ export type MetadataProps = {
 };
 
 export class MetaDataModel {
-  id: number;
   metaTitle: string;
   metaDescription: string | null;
   metaImage?: {
@@ -18,7 +16,6 @@ export class MetaDataModel {
   };
 
   constructor(props: MetadataProps) {
-    this.id = props.id;
     this.metaTitle = props.metaTitle;
     this.metaDescription = props.metaDescription;
     this.metaImage = props.metaImage;
