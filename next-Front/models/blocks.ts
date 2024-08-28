@@ -65,7 +65,7 @@ export type PrincingCard = {
   link?: {
     text: string;
     url: string;
-  };
+  } | null; // Ajoutez null ici pour que ce type soit assignable
 };
 
 export type Block = HeroBlock | Programmation | Princing;
