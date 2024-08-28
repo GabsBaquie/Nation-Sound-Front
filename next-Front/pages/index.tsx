@@ -11,7 +11,7 @@ const Home = ({
 }: LandingPageModel & { error?: string }) => {
   console.log(blocks);
   return (
-    <div>
+    <div className="container border-2 border-border">
       <NavBar />
       {error && <p style={{ color: "red" }}>{error}</p>}
       <LandingBlocks blocks={blocks} />
