@@ -8,7 +8,7 @@ export class PrincingController extends BaseController<Princing> {
       plan: props.plan.map((card) => ({
         ...card,
         services: card.services || [], // Assurer que services est un tableau
-        link: card.link || null, // Assigner null si le lien est absent
+        button: card.button || null, // Assigner null si le lien est absent
       })),
     });
 

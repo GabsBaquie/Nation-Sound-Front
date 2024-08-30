@@ -11,10 +11,10 @@ const ProgrammationBlock: React.FC<ProgrammationProps> = ({ block }) => {
   const { title, text, image, image2, card } = block;
 
   return (
-    <section className="flex flex-col items-center gap-8 mt-24">
+    <section className="flex flex-col items-center gap-8 mt-16">
       <div className="text-left">
-        <h2 className="text-xl">{title}</h2>
-        <p className="text-sm md:mb-4">{text}</p>
+        <h1 className="mb-2 text-xl md:text-2xl">{title}</h1>
+        <p className="text-sm md:text-lg md:mb-4">{text}</p>
       </div>
 
       <div className="absolute hidden">
@@ -45,7 +45,7 @@ const ProgrammationBlock: React.FC<ProgrammationProps> = ({ block }) => {
         )}
       </div>
 
-      <div className="flex gap-12">
+      <div className="flex flex-col gap-12 md:flex-row">
         {card && card.length > 0 ? (
           card.map((card) => (
             <Card key={card.id}>
@@ -58,7 +58,7 @@ const ProgrammationBlock: React.FC<ProgrammationProps> = ({ block }) => {
                     height={50}
                   />
                 ) : (
-                  <p>No image for this card</p>
+                  <p className="pt-24">No image for this card</p>
                 )}
               </CardContent>
               <CardHeader className="bg-primary">
