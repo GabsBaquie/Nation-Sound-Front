@@ -9,9 +9,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-primary border-2 border-border dark:border-darkBorder shadow-light dark:shadow-dark hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none",
+          "bg-primary border-2 border-border shadow-light  hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none",
         secondary:
-          "bg-secondary border-2 border-border dark:border-darkBorder shadow-light dark:shadow-dark hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none",
+          "bg-secondary border-2 border-border shadow-light  hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none",
       },
       size: {
         default: "h-12 px-4 py-2",

@@ -45,10 +45,10 @@ const ProgrammationBlock: React.FC<ProgrammationProps> = ({ block }) => {
         )}
       </div>
 
-      <div className="flex flex-col gap-12 md:flex-row">
+      <div className="flex flex-col gap-12 md:flex-row ">
         {card && card.length > 0 ? (
           card.map((card) => (
-            <Card key={card.id}>
+            <Card key={card.id} className="cardhover">
               <CardContent className="h-52">
                 {card.image && card.image.url ? (
                   <Image

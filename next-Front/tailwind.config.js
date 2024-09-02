@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require("tailwindcss/plugin");
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -8,8 +10,8 @@ module.exports = {
     extend: {
       colors: {
         main: "#88aaee",
-        mainAccent: "#4d80e6", // Pas nécessaire pour les composants shadcn
-        overlay: "rgba(0,0,0,0.8)", // Couleur de fond superposée pour les boîtes de dialogue d'alerte, les modales, etc.
+        mainAccent: "#4d80e6",
+        overlay: "rgba(0,0,0,0.8)",
 
         // Mode clair
         bg: "#dfe5f2",
@@ -62,5 +64,16 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      const newUtilities = {
+        ".cardhover:hover": {
+          transform: "translateX(4px) translateY(4px)",
+          boxShadow: "none",
+        },
+      };
+
+      addUtilities(newUtilities, ["responsive", "hover"]);
+    }),
+  ],
 };
