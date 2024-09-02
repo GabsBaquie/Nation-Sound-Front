@@ -1,9 +1,104 @@
-import { HeroBlockController } from "@/controller/HeroBlockController";
-import { PrincingController } from "@/controller/PrincingController";
-import { ProgramController } from "@/controller/ProgramCrontroller";
+import {
+  FAQ,
+  HeroBlock,
+  Map,
+  POI,
+  Princing,
+  Programmation,
+} from "@/models/blocks";
 import axios from "axios";
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 import { DataNotFoundError, DataValidationError } from "../lib/DataError";
+import { BaseController } from "./BaseController";
+
+class HeroBlockController extends BaseController<HeroBlock> {
+  constructor(props: HeroBlock) {
+    super({
+      ...props,
+      image: props.image
+        ? {
+            url: BaseController.constructImageURL(props.image)?.url || "",
+            alternativeText: props.image.alternativeText || "",
+          }
+        : null, // Remplacer undefined par null
+      section: props.section
+        ? {
+            ...props.section,
+            image: props.section.image
+              ? {
+                  url:
+                    BaseController.constructImageURL(props.section.image)
+                      ?.url || "",
+                  alternativeText: props.section.image.alternativeText || "",
+                }
+              : null, // Remplacer undefined par null
+          }
+        : null, // Remplacer undefined par null
+    });
+  }
+}
+
+class ProgramController extends BaseController<Programmation> {
+  constructor(props: Programmation) {
+    super({
+      ...props,
+      image:
+        props.image && props.image.url
+          ? {
+              url: BaseController.constructImageURL(props.image)?.url || "",
+              alternativeText: props.image.alternativeText || "",
+            }
+          : null, // Si pas d'image, retourne null
+      image2:
+        props.image2 && props.image2.url
+          ? {
+              url: BaseController.constructImageURL(props.image2)?.url || "",
+              alternativeText: props.image2.alternativeText || "",
+            }
+          : null, // Si pas d'image, retourne null
+    });
+  }
+}
+
+class PrincingController extends BaseController<Princing> {
+  constructor(props: Princing) {
+    super({
+      ...props,
+      plan: props.plan.map((card) => ({
+        ...card,
+        services: card.services || [], // Assurer que services est un tableau
+        button: card.button || null, // Assigner null si le lien est absent
+      })),
+    });
+  }
+}
+
+class MapController extends BaseController<Map> {
+  constructor(props: Map) {
+    super({
+      ...props,
+      POI:
+        props.POI?.map((poi: POI) => ({
+          ...poi,
+          Type: Array.isArray(poi.Type) ? poi.Type.join(", ") : poi.Type, // Normaliser en string
+          Latitude: poi.Latitude ?? 48.8566,
+          Longitude: poi.Longitude ?? 2.3522,
+          Description: poi.Description ?? "",
+        })) ?? [], // S'assurer que POI est toujours un tableau
+    });
+  }
+}
+
+class FAQController extends BaseController<FAQ> {
+  constructor(props: FAQ) {
+    super({
+      ...props,
+      questions: props.questions.map((question) => ({
+        ...question,
+      })),
+    });
+  }
+}
 
 export const getLandingPageData = async (
   context: GetStaticPropsContext
@@ -12,7 +107,7 @@ export const getLandingPageData = async (
 
   try {
     const res = await axios.get(
-      `${apiUrl}/api/landing-pages?populate[blocks][populate]=image,BtnLink,section.image,section.button,card,card.image,plan,plan.services,plan.button`
+      `${apiUrl}/api/landing-pages?populate[blocks][populate]=image,BtnLink,section.image,section.button,card,card.image,plan,plan.services,plan.button,POI,questions`
     );
 
     const landingPage = res.data.data[0];
@@ -37,6 +132,14 @@ export const getLandingPageData = async (
         }
         if (block.__component === "blocks.princing") {
           const controller = new PrincingController(block);
+          return controller.getModel();
+        }
+        if (block.__component === "blocks.map") {
+          const controller = new MapController(block);
+          return controller.getModel();
+        }
+        if (block.__component === "blocks.faq") {
+          const controller = new FAQController(block);
           return controller.getModel();
         }
 

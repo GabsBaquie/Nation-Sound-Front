@@ -13,7 +13,7 @@ const ProgrammationBlock: React.FC<ProgrammationProps> = ({ block }) => {
   return (
     <section className="flex flex-col items-center gap-8 mt-16">
       <div className="text-left">
-        <h1 className="mb-2 text-xl md:text-2xl">{title}</h1>
+        <h1 className="mb-4 text-xl md:text-2xl">{title}</h1>
         <p className="text-sm md:text-lg md:mb-4">{text}</p>
       </div>
 

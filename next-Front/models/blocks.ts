@@ -17,10 +17,10 @@ export type HeroBlock = {
   text: string;
   image?: Image;
   BtnLink?: Button[];
-  section?: SectionProps;
+  section?: Section;
 };
 
-export type SectionProps = {
+export type Section = {
   image: {
     url: string;
     alternativeText: string;
@@ -61,4 +61,32 @@ export type PrincingCard = {
   button: Button;
 };
 
-export type Block = HeroBlock | Programmation | Princing;
+export type POI = {
+  id: number;
+  Name: string;
+  Type: string;
+  Latitude: number;
+  Longitude: number;
+  Description: string;
+};
+
+export type Map = {
+  id: number;
+  __component: "blocks.map";
+  title: string;
+  text: string;
+  POI?: POI[];
+};
+
+export type FAQ = {
+  id: number;
+  __component: "blocks.faq";
+  title: string;
+  questions: Array<{
+    id: number;
+    title: string;
+    text: string;
+  }>;
+};
+
+export type Block = HeroBlock | Programmation | Princing | Map | FAQ;
