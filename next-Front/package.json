@@ -22,7 +22,6 @@
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
     "framer-motion": "^11.3.30",
-    "html-react-parser": "^5.1.12",
     "lucide-react": "^0.438.0",
     "marked": "^13.0.3",
     "next": "^14.2.5",

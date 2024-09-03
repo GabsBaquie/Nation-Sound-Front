@@ -5,16 +5,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import React from "react";
+import { FAQ as FAQType } from "../../models/blocks";
 
 interface FAQProps {
-  block: {
-    title: string;
-    questions: Array<{
-      id: number;
-      title: string;
-      text: string;
-    }>;
-  };
+  block: FAQType;
 }
 
 const FAQ: React.FC<FAQProps> = ({ block }) => {

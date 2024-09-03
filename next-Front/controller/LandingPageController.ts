@@ -1,6 +1,14 @@
 import {
+  getCarrouselUrl,
+  getFAQUrl,
+  getHeroBlockUrl,
+  getMapUrl,
+  getPrincingUrl,
+} from "@/lib/urlUtils";
+import {
   FAQ,
   HeroBlock,
+  Info,
   Map,
   POI,
   Princing,
@@ -100,15 +108,40 @@ class FAQController extends BaseController<FAQ> {
   }
 }
 
+class InfosController extends BaseController<Info> {
+  constructor(props: Info) {
+    super({
+      ...props,
+      carrousel: props.carrousel.map((card) => ({
+        ...card,
+        image: card.image
+          ? {
+              url: BaseController.constructImageURL(card.image)?.url || "",
+              alternativeText: card.image.alternativeText || "",
+            }
+          : null,
+      })),
+    });
+  }
+}
+
 export const getLandingPageData = async (
   context: GetStaticPropsContext
 ): Promise<GetStaticPropsResult<{ [key: string]: any }>> => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
+  const urlParts = [
+    getHeroBlockUrl(),
+    getPrincingUrl(),
+    getMapUrl(),
+    getFAQUrl(),
+    getCarrouselUrl(),
+  ];
+
+  const fullUrl = `${apiUrl}/api/landing-pages?populate[blocks][populate]=${urlParts.join(",")}`;
+
   try {
-    const res = await axios.get(
-      `${apiUrl}/api/landing-pages?populate[blocks][populate]=image,BtnLink,section.image,section.button,card,card.image,plan,plan.services,plan.button,POI,questions`
-    );
+    const res = await axios.get(fullUrl);
 
     const landingPage = res.data.data[0];
 
@@ -140,6 +173,10 @@ export const getLandingPageData = async (
         }
         if (block.__component === "blocks.faq") {
           const controller = new FAQController(block);
+          return controller.getModel();
+        }
+        if (block.__component === "blocks.infos") {
+          const controller = new InfosController(block);
           return controller.getModel();
         }
 

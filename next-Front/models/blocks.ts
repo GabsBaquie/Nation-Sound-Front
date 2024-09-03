@@ -89,4 +89,18 @@ export type FAQ = {
   }>;
 };
 
-export type Block = HeroBlock | Programmation | Princing | Map | FAQ;
+export type Info = {
+  id: number;
+  __component: "blocks.infos";
+  title: string;
+  text: string;
+  carrousel: Array<{
+    id: number;
+    title: string;
+    description: string;
+    text: string;
+    image: Image;
+  }>;
+};
+
+export type Block = HeroBlock | Programmation | Princing | Map | FAQ | Info;

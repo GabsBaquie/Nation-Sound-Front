@@ -1,20 +1,10 @@
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import React from "react";
+import { Map as MapType } from "../../models/blocks";
 import { Card } from "../ui/card";
 
 interface MapProps {
-  block: {
-    title: string;
-    text: string;
-    POI?: Array<{
-      id: number;
-      Name: string;
-      Type: string;
-      Latitude: number;
-      Longitude: number;
-      Description: string;
-    }>;
-  };
+  block: MapType;
 }
 
 const Map: React.FC<MapProps> = ({ block }) => {

@@ -4,6 +4,7 @@ import PrincingBlock from "../components/blocks/Princing";
 import ProgrammationBlock from "../components/blocks/Programmation";
 import { Block } from "../models/blocks";
 import FAQ from "./blocks/FAQ";
+import Info from "./blocks/Info";
 import Map from "./blocks/Map";
 
 interface LandingBlocksProps {
@@ -28,6 +29,8 @@ const LandingBlocks: React.FC<LandingBlocksProps> = ({ blocks }) => {
             return <Map key={key} block={block} />;
           case "blocks.faq":
             return <FAQ key={key} block={block} />;
+          case "blocks.infos":
+            return <Info key={key} block={block} />;
           default:
             console.log("block", block);
             return null;
