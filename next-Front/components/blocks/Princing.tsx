@@ -18,7 +18,7 @@ const PrincingBlock: React.FC<PrincingProps> = ({ block }) => {
   const { title, text, plan } = block;
 
   return (
-    <section className="my-16">
+    <section className="my-16" id="princing">
       <div className="mb-10 text-left md:text-justify">
         <h1 className="mb-4 text-xl md:text-2xl">{title}</h1>
         <p className="text-sm md:text-lg">{text}</p>
