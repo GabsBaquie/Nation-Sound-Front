@@ -13,7 +13,7 @@ const Home = ({
   return (
     <div className="container">
       <NavBar />
-      <div className="">
+      <div>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <LandingBlocks blocks={blocks} />
       </div>
