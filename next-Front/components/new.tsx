@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import {
   Card,
   CardContent,
@@ -10,7 +13,7 @@ import {
 } from "../components/ui/card";
 
 interface NewProps {
-  card: {
+  cards: {
     id: number;
     title: string;
     text: string;
@@ -19,11 +22,11 @@ interface NewProps {
       url: string;
       alternativeText: string;
     };
-  } | null;
+  }[];
   error?: string;
 }
 
-const NewCard: React.FC<NewProps> = ({ card, error }) => {
+const NewCard: React.FC<NewProps> = ({ cards, error }) => {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -34,31 +37,47 @@ const NewCard: React.FC<NewProps> = ({ card, error }) => {
     return <div>Error: {error}</div>;
   }
 
-  if (!card) {
-    return <div>Card not found</div>;
+  if (!cards || cards.length === 0) {
+    return <div>No cards found</div>;
   }
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
+
   return (
-    <Card className="mx-auto my-40 text-center max-w-7xl">
-      <CardHeader>
-        {card.image && (
-          <Image
-            className="mx-auto"
-            src={card.image?.url}
-            alt={card.image?.alternativeText}
-            width={250}
-            height={250}
-          />
-        )}
-      </CardHeader>
-      <CardTitle className="my-8">{card.title}</CardTitle>
-      <CardDescription className="mb-4 text-lg">
-        {card.description}
-      </CardDescription>
-      <CardContent className="markdown-content">
-        <ReactMarkdown>{card.text}</ReactMarkdown>
-      </CardContent>
-    </Card>
+    <Slider {...settings}>
+      {cards.map((card) => (
+        <div key={card.id}>
+          <Card>
+            <CardHeader>
+              {card.image && (
+                <Image
+                  className="mx-auto"
+                  src={card.image?.url}
+                  alt={card.image?.alternativeText}
+                  width={250}
+                  height={250}
+                />
+              )}
+            </CardHeader>
+            <CardTitle className="my-8">{card.title}</CardTitle>
+            <CardDescription className="mb-4 text-lg">
+              {card.description}
+            </CardDescription>
+            <CardContent className="markdown-content">
+              <ReactMarkdown>{card.text}</ReactMarkdown>
+            </CardContent>
+          </Card>
+        </div>
+      ))}
+    </Slider>
   );
 };
 

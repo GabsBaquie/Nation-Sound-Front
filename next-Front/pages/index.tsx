@@ -11,10 +11,12 @@ const Home = ({
 }: LandingPageModel & { error?: string }) => {
   console.log(blocks);
   return (
-    <div className="container border-2 border-border">
+    <div className="container">
       <NavBar />
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <LandingBlocks blocks={blocks} />
+      <div className="">
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <LandingBlocks blocks={blocks} />
+      </div>
     </div>
   );
 };
