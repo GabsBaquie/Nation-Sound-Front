@@ -49,26 +49,31 @@ const ProgrammationBlock: React.FC<ProgrammationProps> = ({ block }) => {
 
       <div className="flex flex-col gap-12 md:flex-row ">
         {card && card.length > 0 ? (
-          card.map((card) => (
-            <Card key={card.id} className="cardhover">
-              <CardContent className="h-52">
-                {card.image && card.image.url ? (
-                  <Image
-                    src={card.image.url}
-                    alt={card.image.alternativeText || ""}
-                    width={50}
-                    height={50}
-                  />
-                ) : (
-                  <p className="pt-24">No image for this card</p>
-                )}
-              </CardContent>
-              <CardHeader className="bg-primary">
-                <h3>{card.title}</h3>
-                <p>{card.text}</p>
-              </CardHeader>
-            </Card>
-          ))
+          card.map(
+            (card) => (
+              console.log(card),
+              (
+                <Card key={card.id} className="cardhover">
+                  <CardContent className="pt-6 h-52">
+                    {card.image && card.image.url ? (
+                      <Image
+                        src={card.image.url}
+                        alt={card.image.alternativeText || ""}
+                        width={150}
+                        height={150}
+                      />
+                    ) : (
+                      <p className="pt-24">No image for this card</p>
+                    )}
+                  </CardContent>
+                  <CardHeader className="bg-primary">
+                    <h3>{card.title}</h3>
+                    <p>{card.text}</p>
+                  </CardHeader>
+                </Card>
+              )
+            )
+          )
         ) : (
           <p>No cards available</p>
         )}

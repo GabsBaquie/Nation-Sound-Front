@@ -70,6 +70,7 @@ module.exports = {
         ".cardhover:hover": {
           transform: "translateX(4px) translateY(4px)",
           boxShadow: "none",
+          cursor: "pointer",
         },
       };
 

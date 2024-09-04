@@ -50,6 +50,15 @@ class ProgramController extends BaseController<Programmation> {
   constructor(props: Programmation) {
     super({
       ...props,
+      card: props.card.map((card) => ({
+        ...card,
+        image: card.image
+          ? {
+              url: BaseController.constructImageURL(card.image)?.url || "",
+              alternativeText: card.image.alternativeText || "",
+            }
+          : null, // Si pas d'image, retourne null
+      })), // Correction de la parenthèse fermante ici
       image:
         props.image && props.image.url
           ? {
