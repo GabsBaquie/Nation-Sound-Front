@@ -20,7 +20,7 @@ const NavBar: React.FC = () => {
             <Link href="/about">About</Link>
           </li>
           <li>
-            <Link href="/contact">Contact</Link>
+            <Link href="/billetterie">Billetterie</Link>
           </li>
         </ul>
         <GaucheNav className="absolute" />

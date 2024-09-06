@@ -6,11 +6,11 @@ import { Info as InfoType } from "../../models/blocks";
 import Button from "../ui/button";
 import { Card, CardDescription, CardFooter, CardHeader } from "../ui/card";
 
-interface InfoProps {
+interface NewsProps {
   block: InfoType;
 }
 
-const InfoBlock: React.FC<InfoProps> = ({ block }) => {
+const News: React.FC<NewsProps> = ({ block }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -55,4 +55,4 @@ const InfoBlock: React.FC<InfoProps> = ({ block }) => {
   );
 };
 
-export default InfoBlock;
+export default News;

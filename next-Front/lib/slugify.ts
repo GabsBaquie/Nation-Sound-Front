@@ -1,7 +1,11 @@
-// next-Front/lib/slug.ts
-export function slugify(title: string): string {
-  return title
+export const slugify = (text: string) => {
+  return text
+    .toString()
     .toLowerCase()
-    .replace(/ /g, "-")
-    .replace(/[^\w-]+/g, ""); // Supprime les caractères non alphanumériques
-}
+    .trim()
+    .replace(/\s+/g, "-") // Remplace les espaces par des tirets
+    .replace(/[^\w\-]+/g, "") // Supprime les caractères non-alphanumériques
+    .replace(/\-\-+/g, "-") // Remplace plusieurs tirets par un seul
+    .replace(/^-+/, "") // Supprime les tirets au début
+    .replace(/-+$/, ""); // Supprime les tirets à la fin
+};

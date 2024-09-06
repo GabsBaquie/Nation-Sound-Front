@@ -16,7 +16,7 @@
   padding-left: 10px; /* Alignement propre sur la gauche */
 }
 
-/* Exemple de styles Markdown */
+/*  Styles Markdown */
 .markdown-content h1,
 .markdown-content h2,
 .markdown-content h3,
@@ -39,6 +39,12 @@
 
 .markdown-content li {
   margin: 0.5rem 0;
+}
+
+.markdown-content img {
+  display: block;
+  margin: 1rem auto;
+  max-width: 250px;
 }
 
 @tailwind base;
@@ -84,7 +90,7 @@ body {
 }
 
 [id] {
-  scroll-margin-top: 50px;
+  scroll-margin-top: 250px;
 }
 
 .container {

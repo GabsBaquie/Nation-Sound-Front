@@ -1,6 +1,6 @@
 import LandingBlocks from "@/components/landingBlocks";
 import NavBar from "@/components/NavBar/navBar";
-import { getLandingPageData } from "@/controller/LandingPageController";
+import { getLandingPageData } from "@/controller/pages/LandingPageController";
 import { LandingPageModel } from "@/models/LandingPageModel";
 import { GetStaticProps } from "next";
 import "../app/globals.css";
