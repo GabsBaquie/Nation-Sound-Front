@@ -21,6 +21,7 @@ const Home = ({
   );
 };
 
+// Récupération des données côté serveur
 export const getStaticProps: GetStaticProps = getLandingPageData;
 
 export default Home;

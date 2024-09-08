@@ -35,16 +35,7 @@ const CardPage: React.FC<CardPageProps> = ({ news, error }) => {
 };
 
 // Récupération des données côté serveur
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const controller = new CardController();
-  const data = await controller.getCardData(params?.slug as string);
-
-  return {
-    props: {
-      news: data.card, // Renommer "card" en "news" pour correspondre au composant
-      error: data.error || null,
-    },
-  };
-};
+export const getServerSideProps: GetServerSideProps =
+  CardController.getServerSideProps;
 
 export default CardPage;

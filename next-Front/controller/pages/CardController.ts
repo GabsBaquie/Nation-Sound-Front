@@ -1,6 +1,7 @@
 import { slugify } from "@/lib/slugify";
 import { Image } from "@/models/blocks"; // Assure-toi que le type Image est bien importé
 import axios from "axios";
+import { GetServerSideProps } from "next";
 import { BaseController } from "../BaseController";
 
 interface CarrouselItem {
@@ -74,4 +75,17 @@ export class CardController extends BaseController<{
       return { card: null, error: "Failed to fetch card data" };
     }
   }
+
+  // Récupération des données côté serveur
+  static getServerSideProps: GetServerSideProps = async ({ params }) => {
+    const controller = new CardController();
+    const data = await controller.getCardData(params?.slug as string);
+
+    return {
+      props: {
+        news: data.card, // Renommer "card" en "news" pour correspondre au composant
+        error: data.error || null,
+      },
+    };
+  };
 }

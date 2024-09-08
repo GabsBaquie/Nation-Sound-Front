@@ -2,6 +2,7 @@ import { slugify } from "@/lib/slugify";
 import { getProgramUrl } from "@/lib/urlUtils";
 import axios from "axios";
 import { BaseController } from "../BaseController";
+import { GetServerSideProps } from "next";
 
 export class ProgramController extends BaseController<{ program: any }> {
   private apiUrl: string = process.env.NEXT_PUBLIC_API_URL || "";
@@ -66,4 +67,22 @@ export class ProgramController extends BaseController<{ program: any }> {
       return { program: null, error: "Failed to fetch program data" };
     }
   }
+
+  // Récupération des données côté serveur
+  static getServerSideProps: GetServerSideProps = async ({ params }) => {
+    const controller = new ProgramController();
+    const data = await controller.getProgramData(params?.slug as string);
+
+    if (!data.program) {
+      return {
+        props: {
+          error: "Failed to fetch program data",
+        },
+      };
+    }
+
+    return {
+      props: data,
+    };
+  };
 }

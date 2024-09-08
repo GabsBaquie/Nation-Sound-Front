@@ -77,23 +77,8 @@ const BilletteriePage: React.FC<BilletteriePageProps> = ({
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const controller = new BilletterieController();
-  const billetterie = await controller.getBilletterieData();
-
-  if (!billetterie) {
-    return {
-      props: {
-        error: "Failed to fetch billetterie data",
-      },
-    };
-  }
-
-  return {
-    props: {
-      billetterie,
-    },
-  };
-};
+// Récupération des données côté serveur
+export const getServerSideProps: GetServerSideProps =
+  BilletterieController.getServerSideProps;
 
 export default BilletteriePage;

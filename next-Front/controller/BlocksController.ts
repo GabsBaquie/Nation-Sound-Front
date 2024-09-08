@@ -74,8 +74,8 @@ export class MapController extends BaseController<Map> {
         props.POI?.map((poi: POI) => ({
           ...poi,
           Type: Array.isArray(poi.Type) ? poi.Type.join(", ") : poi.Type,
-          Latitude: poi.Latitude ?? 48.8566,
-          Longitude: poi.Longitude ?? 2.3522,
+          Latitude: poi.POI?.coordinates?.lat ?? 48.8566,
+          Longitude: poi.POI?.coordinates?.lng ?? 2.3522,
           Description: poi.Description ?? "",
         })) ?? [],
     });

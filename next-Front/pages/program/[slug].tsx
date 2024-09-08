@@ -32,22 +32,8 @@ const ProgramPage: React.FC<ProgramPageProps> = ({ program, error }) => {
   );
 };
 
-export default ProgramPage;
-
 // Récupération des données côté serveur
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const controller = new ProgramController();
-  const data = await controller.getProgramData(params?.slug as string);
+export const getServerSideProps: GetServerSideProps =
+  ProgramController.getServerSideProps;
 
-  if (!data.program) {
-    return {
-      props: {
-        error: "Failed to fetch program data",
-      },
-    };
-  }
-
-  return {
-    props: data,
-  };
-};
+export default ProgramPage;

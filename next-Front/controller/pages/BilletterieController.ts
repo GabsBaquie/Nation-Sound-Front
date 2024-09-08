@@ -1,5 +1,6 @@
 import { Billetterie } from "@/models/BilletterieModel"; // On importe le type Billetterie
 import axios from "axios";
+import { GetServerSideProps } from "next";
 import { BaseController } from "../BaseController";
 
 export class BilletterieController extends BaseController<Billetterie> {
@@ -27,4 +28,24 @@ export class BilletterieController extends BaseController<Billetterie> {
       return null;
     }
   }
+
+  // Récupération des données côté serveur
+  static getServerSideProps: GetServerSideProps = async () => {
+    const controller = new BilletterieController();
+    const billetterie = await controller.getBilletterieData();
+
+    if (!billetterie) {
+      return {
+        props: {
+          error: "Failed to fetch billetterie data",
+        },
+      };
+    }
+
+    return {
+      props: {
+        billetterie,
+      },
+    };
+  };
 }
