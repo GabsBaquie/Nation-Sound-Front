@@ -5,4 +5,5 @@ export const getPrincingUrl = () =>
 export const getMapUrl = () => "POI";
 export const getFAQUrl = () => "questions";
 export const getCarrouselUrl = () => "carrousel,carrousel.image";
-export const getProgramUrl = () => "card,card.image";
+export const getProgramUrl = () =>
+  "card,card.image,card.days,card.days.concert";

@@ -4,7 +4,7 @@ import PrincingBlock from "../components/blocks/Princing";
 import ProgrammationBlock from "../components/blocks/Programmation";
 import { Block } from "../models/blocks";
 import FAQ from "./blocks/FAQ";
-import Info from "./blocks/News";
+import Info from "./blocks/Info";
 import Map from "./blocks/Map";
 
 interface LandingBlocksProps {

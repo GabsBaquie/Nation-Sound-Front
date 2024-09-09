@@ -6,11 +6,11 @@ import { Info as InfoType } from "../../models/blocks";
 import Button from "../ui/button";
 import { Card, CardDescription, CardFooter, CardHeader } from "../ui/card";
 
-interface NewsProps {
+interface InfoProps {
   block: InfoType;
 }
 
-const News: React.FC<NewsProps> = ({ block }) => {
+const Info: React.FC<InfoProps> = ({ block }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -22,13 +22,27 @@ const News: React.FC<NewsProps> = ({ block }) => {
     arrows: false,
   };
 
+  const importanceOrder = [
+    "Très important",
+    "Important",
+    "Modéré",
+    "Peu important",
+  ];
+
+  // Trier les éléments du carrousel par importance
+  const sortedCarrousel = [...block.carrousel].sort(
+    (a, b) =>
+      importanceOrder.indexOf(a.importance ?? "Peu important") -
+      importanceOrder.indexOf(b.importance ?? "Peu important")
+  );
+
   return (
     <div className="mt-16">
       <h1 className="mb-4 text-xl md:text-2xl">{block.title}</h1>
       <p className="text-sm md:text-lg md:mb-4">{block.text}</p>
       <div>
         <Slider {...settings}>
-          {block.carrousel.map((card) => (
+          {sortedCarrousel.map((card) => (
             <Card key={card.id}>
               <CardHeader>
                 <Image
@@ -55,4 +69,4 @@ const News: React.FC<NewsProps> = ({ block }) => {
   );
 };
 
-export default News;
+export default Info;

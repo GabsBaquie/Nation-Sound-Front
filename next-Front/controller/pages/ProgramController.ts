@@ -1,8 +1,8 @@
 import { slugify } from "@/lib/slugify";
 import { getProgramUrl } from "@/lib/urlUtils";
 import axios from "axios";
-import { BaseController } from "../BaseController";
 import { GetServerSideProps } from "next";
+import { BaseController } from "../BaseController";
 
 export class ProgramController extends BaseController<{ program: any }> {
   private apiUrl: string = process.env.NEXT_PUBLIC_API_URL || "";
@@ -31,6 +31,7 @@ export class ProgramController extends BaseController<{ program: any }> {
     }
   }
 
+  // récupération des chemins
   async getPaths() {
     try {
       const programmation = await this.fetchLandingPageData();
@@ -43,6 +44,7 @@ export class ProgramController extends BaseController<{ program: any }> {
     }
   }
 
+  // Récupération des données du programme
   async getProgramData(slug: string) {
     try {
       const programmation = await this.fetchLandingPageData();
@@ -60,6 +62,25 @@ export class ProgramController extends BaseController<{ program: any }> {
                 alternativeText: card.image.alternativeText || "",
               }
             : null,
+          // Ajout des jours et concerts associés
+          days: card.days.map((day: any) => ({
+            title: day.title,
+            date: day.date,
+            concert: day.concert.map((concert: any) => ({
+              title: concert.title,
+              description: concert.description,
+              heure: concert.heure,
+              lieu: concert.lieu,
+              image: concert.image
+                ? {
+                    url:
+                      BaseController.constructImageURL(concert.image)?.url ||
+                      "",
+                    alternativeText: concert.image.alternativeText || "",
+                  }
+                : null,
+            })),
+          })),
         },
       };
     } catch (error) {
