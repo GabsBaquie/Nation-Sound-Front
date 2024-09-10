@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Programmation as ProgrammationType } from "../../models/blocks";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader } from "../ui/card";
 
 interface ProgrammationProps {
   block: ProgrammationType;
@@ -47,25 +47,22 @@ const Programmation: React.FC<ProgrammationProps> = ({ block }) => {
         )}
       </div>
 
-      <div className="flex flex-col gap-12 md:flex-row ">
+      <div className="flex flex-col gap-20 lg:gap-12 lg:flex-row ">
         {block.card && block.card.length > 0 ? (
           block.card.map((card) => (
             <Card key={card.id} className="cardhover">
               <Link href={`/program/${slugify(card.title)}`}>
-                <CardContent className="pt-6 h-52">
+                <CardContent className="h-40 p-0 sm:h-52 ">
                   {card.image && card.image.url && (
                     <Image
                       src={card.image.url}
                       alt={card.image.alternativeText || ""}
-                      width={150}
-                      height={150}
+                      width={350}
+                      height={350}
                     />
                   )}
-                  <CardTitle className="mt-4">{card.title}</CardTitle>
                 </CardContent>
-                <CardHeader className="bg-primary min-h-20">
-                  {card.description || ""}
-                </CardHeader>
+                <CardHeader className="bg-primary min-h-20"></CardHeader>
               </Link>
             </Card>
           ))

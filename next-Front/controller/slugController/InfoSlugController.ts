@@ -9,7 +9,7 @@ interface CarrouselItem {
   image?: Image;
 }
 
-export class CardController extends BaseController<{
+export class InfoSlugController extends BaseController<{
   carrousel: CarrouselItem[];
 }> {
   private apiUrl: string =
@@ -78,7 +78,7 @@ export class CardController extends BaseController<{
 
   // Récupération des données côté serveur
   static getServerSideProps: GetServerSideProps = async ({ params }) => {
-    const controller = new CardController();
+    const controller = new InfoSlugController();
     const data = await controller.getCardData(params?.slug as string);
 
     return {

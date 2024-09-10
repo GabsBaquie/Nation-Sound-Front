@@ -55,13 +55,13 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
       </div>
 
       {/* Section */}
-      <div className="relative md:flex md:mt-24">
+      <div className="relative lg:flex lg:mt-24">
         {/* Titre de la section en mobile */}
         <h2 className="mb-6 text-xl font-bold md:hidden">{section?.title}</h2>
         {/* Image de la section Hero */}
         {section?.image && (
           <div
-            className="float-left w-1/3 mr-12 md:float-none md:w-[20%] md:mx-12"
+            className="float-left w-1/3 mr-12 lg:float-none md:w-[20%] lg:mx-12"
             style={{
               shapeOutside: "circle()",
             }}>
@@ -76,8 +76,8 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
           </div>
         )}
         {/* Texte qui entoure l'image */}
-        <div className="text-justify md:w-2/3">
-          <h2 className="hidden mb-4 md:block lg:mb-4 md:text-2xl">
+        <div className="text-center lg:text-justify lg:w-2/3">
+          <h2 className="hidden mb-4 lg:block lg:mb-4 md:text-2xl">
             {section?.title}
           </h2>
           <p className="text-sm md:text-lg md:mb-4">{section?.text}</p>

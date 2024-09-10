@@ -1,7 +1,7 @@
 import NavBar from "@/components/NavBar/navBar";
 import Button from "@/components/ui/button";
 import GenericCard from "@/components/ui/GenericCard";
-import { BilletterieController } from "@/controller/pages/BilletterieController";
+import { BilletterieController } from "@/controller/pagesController/BilletterieController";
 import { Billetterie } from "@/models/BilletterieModel";
 import { GetServerSideProps } from "next";
 import Link from "next/link";

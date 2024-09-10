@@ -70,6 +70,7 @@ export type Day = {
 export type Concert = {
   title: string;
   description: string;
+  text: string;
   heure: string;
   lieu: string;
   image?: Image | null;

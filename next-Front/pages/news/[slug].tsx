@@ -1,7 +1,7 @@
 import "@/app/globals.css";
 import NavBar from "@/components/NavBar/navBar";
 import GenericCard from "@/components/ui/GenericCard"; // Importer GenericCard
-import { CardController } from "@/controller/pages/CardController";
+import { InfoSlugController } from "@/controller/slugController/InfoSlugController";
 import { Card as InfoCard } from "@/models/blocks"; // Utiliser InfoCard depuis models/blocks
 import { GetServerSideProps } from "next";
 
@@ -36,6 +36,6 @@ const CardPage: React.FC<CardPageProps> = ({ news, error }) => {
 
 // Récupération des données côté serveur
 export const getServerSideProps: GetServerSideProps =
-  CardController.getServerSideProps;
+  InfoSlugController.getServerSideProps;
 
 export default CardPage;

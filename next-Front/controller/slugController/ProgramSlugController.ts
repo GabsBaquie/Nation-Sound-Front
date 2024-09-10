@@ -4,7 +4,7 @@ import axios from "axios";
 import { GetServerSideProps } from "next";
 import { BaseController } from "../BaseController";
 
-export class ProgramController extends BaseController<{ program: any }> {
+export class ProgramSlugController extends BaseController<{ program: any }> {
   private apiUrl: string = process.env.NEXT_PUBLIC_API_URL || "";
 
   constructor() {
@@ -69,6 +69,7 @@ export class ProgramController extends BaseController<{ program: any }> {
             concert: day.concert.map((concert: any) => ({
               title: concert.title,
               description: concert.description,
+              text: concert.text,
               heure: concert.heure,
               lieu: concert.lieu,
               image: concert.image
@@ -91,7 +92,7 @@ export class ProgramController extends BaseController<{ program: any }> {
 
   // Récupération des données côté serveur
   static getServerSideProps: GetServerSideProps = async ({ params }) => {
-    const controller = new ProgramController();
+    const controller = new ProgramSlugController();
     const data = await controller.getProgramData(params?.slug as string);
 
     if (!data.program) {

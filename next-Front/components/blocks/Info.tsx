@@ -20,6 +20,33 @@ const Info: React.FC<InfoProps> = ({ block }) => {
     autoplay: true,
     autoplaySpeed: 2000,
     arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024, // Taille d'écran maximale pour ce paramètre
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600, // Taille d'écran maximale pour ce paramètre
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 480, // Taille d'écran maximale pour ce paramètre
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const importanceOrder = [

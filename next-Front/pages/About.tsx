@@ -3,7 +3,7 @@ import GenericCard from "@/components/ui/GenericCard";
 import { About as AboutModel } from "@/models/AboutModel";
 import { GetServerSideProps } from "next";
 import React from "react";
-import { AboutController } from "../controller/pages/AboutController";
+import { AboutController } from "../controller/pagesController/AboutController";
 
 export interface AboutProps {
   about: AboutModel | null;
@@ -20,7 +20,7 @@ const AboutPage: React.FC<AboutProps> = ({ about, error }) => {
   }
 
   return (
-    <div>
+    <div className="container">
       <NavBar />
       <GenericCard
         className="bg-primary"
