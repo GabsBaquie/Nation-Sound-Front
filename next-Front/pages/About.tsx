@@ -22,12 +22,14 @@ const AboutPage: React.FC<AboutProps> = ({ about, error }) => {
   return (
     <div className="container">
       <NavBar />
-      <GenericCard
-        className="bg-primary"
-        title={about.title}
-        description={about.description}
-        text={about.text}
-      />
+      <div className="md:ml-20 lg:ml-auto">
+        <GenericCard
+          className="max-w-full p-4 pt-16 bg-transparent md:bg-primary md:pt-0 md:mx-auto"
+          title={about.title}
+          description={about.description}
+          text={about.text}
+        />
+      </div>
     </div>
   );
 };

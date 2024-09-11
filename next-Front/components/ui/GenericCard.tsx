@@ -32,7 +32,7 @@ const GenericCard: React.FC<GenericCardProps> = ({
 }) => {
   return (
     <Card
-      className={`mx-auto my-10 text-center card md:max-w-3xl xl:max-w-4xl" ${className}`}>
+      className={`mx-auto text-center max-w-80 md:my-10 md:max-w-2xl lg:max-w-4xl " ${className}`}>
       <CardHeader>
         {image && (
           <Image
@@ -43,7 +43,7 @@ const GenericCard: React.FC<GenericCardProps> = ({
             height={150}
           />
         )}
-        <CardTitle>{title}</CardTitle>
+        <CardTitle className="pt-4">{title}</CardTitle>
         {description && <CardDescription>{description}</CardDescription>}
       </CardHeader>
       <CardContent className="text-center markdown-content">

@@ -64,9 +64,9 @@ const Info: React.FC<InfoProps> = ({ block }) => {
   );
 
   return (
-    <div className="mt-16">
+    <div className="mt-12 md:mt-24 lg:mt-16">
       <h1 className="mb-4 text-xl md:text-2xl">{block.title}</h1>
-      <p className="text-sm md:text-lg md:mb-4">{block.text}</p>
+      <p className="mb-4 text-sm md:text-lg">{block.text}</p>
       <div>
         <Slider {...settings}>
           {sortedCarrousel.map((card) => (

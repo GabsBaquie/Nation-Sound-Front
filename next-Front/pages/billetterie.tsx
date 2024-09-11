@@ -32,15 +32,15 @@ const BilletteriePage: React.FC<BilletteriePageProps> = ({
   return (
     <div className="container">
       <NavBar />
-      <div className="px-12 mb-10 ml-4 text-center md:ml-14 md:px-24">
-        <div className="my-12">
-          <h1 className="text-2xl">{billetterie.title}</h1>
-          <p className="text-lg">{billetterie.description}</p>
+      <div className="px-12 mx-auto mb-10 text-center md:pr-8 md:ml-20 lg:px-24">
+        <div className="pt-20 mb-4 md:pt-0 md:my-6">
+          <h1 className="mb-2 text-xl">{billetterie.title}</h1>
+          <p className="md:text-lg">{billetterie.description}</p>
         </div>
 
         {princingBlock && (
           <section>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               {princingBlock.plan.map((plan: any) => (
                 <GenericCard
                   className="bg-primary"
@@ -51,7 +51,7 @@ const BilletteriePage: React.FC<BilletteriePageProps> = ({
                     <ul>
                       {plan.services.map((service: any) => (
                         <li key={service.id} className="list-none">
-                          {service.name} - {service.description}
+                          <p>{service.description}</p>
                         </li>
                       ))}
                     </ul>

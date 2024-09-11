@@ -19,35 +19,7 @@ const Programmation: React.FC<ProgrammationProps> = ({ block }) => {
         <p className="text-sm md:text-lg md:mb-4">{block.text}</p>
       </div>
 
-      <div className="absolute hidden">
-        <h3>Image 1:</h3>
-        {block.image ? (
-          <Image
-            src={block.image.url}
-            alt={block.image.alternativeText || ""}
-            width={24}
-            height={25}
-          />
-        ) : (
-          <p>No image available</p>
-        )}
-      </div>
-
-      <div className="absolute hidden">
-        <h3>Image 2:</h3>
-        {block.image2 ? (
-          <Image
-            src={block.image2.url}
-            alt={block.image2.alternativeText || ""}
-            width={24}
-            height={25}
-          />
-        ) : (
-          <p>No image available</p>
-        )}
-      </div>
-
-      <div className="flex flex-col gap-20 lg:gap-12 lg:flex-row ">
+      <div className="flex flex-col gap-12 max-w-60 md:gap-20 md:max-w-none lg:flex-row lg:gap-12 ">
         {block.card && block.card.length > 0 ? (
           block.card.map((card) => (
             <Card key={card.id} className="cardhover">

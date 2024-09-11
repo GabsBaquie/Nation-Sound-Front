@@ -14,7 +14,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
     <section className="flex flex-col w-full h-full ml-2">
       <div className="flex flex-wrap lg:flex-nowrap ">
         {/* Contenu principal */}
-        <div className="flex flex-col w-screen max-w-md gap-4 mx-auto mt-5 text-center md:mt-12 align-center">
+        <div className="flex flex-col w-screen max-w-md gap-4 mx-auto mt-16 text-center md:mt-12 align-center">
           <div>
             <h1 className="p-2 text-lg font-bold lg:mb-4 md:text-4xl">
               {title}

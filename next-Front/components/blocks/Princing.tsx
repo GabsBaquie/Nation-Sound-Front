@@ -26,7 +26,7 @@ const PrincingBlock: React.FC<PrincingProps> = ({ block }) => {
 
       <div className="flex flex-col justify-center gap-8 md:flex-row">
         {plan.map((card, index) => (
-          <Card key={index} className="bg-primary">
+          <Card key={index} className="md:min-w-72 bg-primary">
             <CardHeader>
               <CardTitle>{card.planType}</CardTitle>
               <p>{card.planPrice}</p>
@@ -40,7 +40,7 @@ const PrincingBlock: React.FC<PrincingProps> = ({ block }) => {
             </CardContent>
             <CardFooter>
               {card.button && (
-                <Link href={card.button?.link || "#"} passHref>
+                <Link href={card.button?.link || "/Programmation"} passHref>
                   <Button btnType={card.button?.type} size={"sm"}>
                     {card.button?.title}
                   </Button>
