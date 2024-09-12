@@ -11,6 +11,7 @@ Ce projet est une application web basée sur **Next.js**, développée selon l'a
 - [Démarrage](#démarrage)
 - [Structure du Projet](#structure-du-projet)
 - [Architecture MVC](#architecture-mvc)
+- [Explication du Code](#explication-du-code)
 - [Déploiement](#déploiement)
 - [Ressources](#ressources)
 
@@ -103,6 +104,41 @@ Les vues, principalement situées dans le dossier `components`, sont responsable
 
 Les contrôleurs gèrent les interactions entre les modèles et les vues. Ils sont définis dans le dossier `controller`. Par exemple, `HeroBlockController` contient la logique qui relie le modèle `HeroBlockModel` à la vue `HeroBlock`.
 
+## Explication du Code
+
+1. **Entrée Utilisateur** : L’utilisateur interagit avec l’application via le navigateur en naviguant et en cliquant sur des éléments.
+
+2. **Composants Vue (components/)** :
+
+   - Les composants situés dans le dossier `components/` affichent les données et gèrent l’interface utilisateur. Ils comprennent :
+     - **NavBar** : Barre de navigation.
+     - **LandingBlocks** : Composant principal pour afficher différents blocs de contenu.
+     - **Map** : Composant pour afficher une carte.
+     - **GenericCard** : Composant pour afficher des cartes génériques.
+
+3. **Pages (pages/)** :
+
+   - Les pages de l’application, situées dans le dossier `pages/`, utilisent les composants de vue pour afficher les différentes sections de l’application (ex. Billetterie, About, Programmation).
+
+4. **Contrôleurs (controller/)** :
+
+   - Les contrôleurs situés dans le dossier `controller/` gèrent les interactions entre les modèles et les vues. Ils récupèrent les données des modèles et les envoient aux composants pour l’affichage :
+     - **BilletterieController** : Gère les données de billetterie.
+     - **AboutController** : Gère les données de la page “About”.
+     - **ProgrammationController** : Gère les données de la programmation.
+
+5. **Modèles (models/)** :
+
+   - Les modèles situés dans le dossier `models/` définissent la structure des données de l’application :
+     - **BilletterieModel** : Modèle pour les données de billetterie.
+     - **AboutModel** : Modèle pour les données de la page “About”.
+     - **ProgrammationModel** : Modèle pour les données de la programmation.
+
+6. **Base de données / API backend** :
+   - Les modèles récupèrent les données à partir de la base de données ou d’une API backend (par exemple, via une API REST).
+
+![Diagramme du Projet](next-Front/public/Front-UML.png)
+
 ## Déploiement
 
 Le déploiement de l'application peut se faire facilement sur la plateforme **Vercel** :
@@ -119,3 +155,7 @@ Pour plus de détails, consultez la [documentation de Next.js sur le déploiemen
 - [Tutoriel interactif Next.js](https://nextjs.org/learn)
 - [Dépôt GitHub Next.js](https://github.com/vercel/next.js)
 - [Dépôt GitHub Nation-Sound-Front](https://github.com/GabsBaquie/Nation-Sound-Front)
+
+```
+
+```
