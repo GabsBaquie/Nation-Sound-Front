@@ -22,14 +22,15 @@ const CardPage: React.FC<CardPageProps> = ({ news, error }) => {
   return (
     <div className="container">
       <NavBar />
-
-      {/* Utilisation de GenericCard pour afficher les informations */}
-      <GenericCard
-        title={news.title}
-        description={news.description}
-        text={news.text}
-        image={news.image}
-      />
+      <div className="pt-20 md:ml-20 md:pt-0">
+        {/* Utilisation de GenericCard pour afficher les informations */}
+        <GenericCard
+          title={news.title}
+          description={news.description}
+          text={news.text}
+          image={news.image}
+        />
+      </div>
     </div>
   );
 };

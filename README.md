@@ -2,7 +2,7 @@
 
 ## Mon Projet Web - Frontend
 
-Ce projet est une application web composée d'un frontend développé avec Next.js, suivant l'architecture MVC (Model-View-Controller).
+Ce projet est une application web basée sur **Next.js**, développée selon l'architecture **MVC (Model-View-Controller)**. Il permet la gestion de différents blocs de contenu et l'interaction avec des API backend.
 
 ## Table des matières
 
@@ -16,15 +16,15 @@ Ce projet est une application web composée d'un frontend développé avec Next.
 
 ## Prérequis
 
-- Node.js (version >= 18.0.0 <= 20.x.x)
-- npm (version >= 6.0.0)
+- **Node.js** : version >= 18.0.0 <= 20.x.x
+- **npm** : version >= 6.0.0
 
 ## Installation
 
 1. Clonez le dépôt du frontend :
 
    ```bash
-   git clone <url-du-repo-frontend> next-app
+   git clone https://github.com/GabsBaquie/Nation-Sound-Front next-app
    cd next-app
    ```
 
@@ -34,7 +34,9 @@ Ce projet est une application web composée d'un frontend développé avec Next.
    npm install
    ```
 
-3. Configurez les variables d'environnement en créant un fichier `.env` et en ajoutant les valeurs nécessaires, par exemple :
+3. Configurez les variables d'environnement :
+
+   Créez un fichier `.env` à la racine du projet et ajoutez les valeurs suivantes (ou celles qui conviennent à votre environnement) :
 
    ```env
    NEXT_PUBLIC_API_URL=http://localhost:1337
@@ -42,70 +44,78 @@ Ce projet est une application web composée d'un frontend développé avec Next.
 
 ## Démarrage
 
-Pour démarrer le frontend en mode développement :
+Pour démarrer l'application en mode développement, exécutez :
 
 ```bash
 npm run dev
-# ou
-yarn dev
-# ou
-pnpm dev
-# ou
-bun dev
 ```
 
-Ouvrez [http://localhost:3000](http://localhost:3000) avec votre navigateur pour voir le résultat.
+Ensuite, ouvrez votre navigateur à l'adresse [http://localhost:3000](http://localhost:3000) pour voir le résultat.
 
 ## Structure du Projet
 
+Voici un aperçu de la structure des dossiers du projet :
+
 ```
 next-app/
-├── app/
-├── components/
-├── controller/
-├── lib/
-├── models/
-├── pages/
-├── prisma/
-├── public/
-├── types/
-├── ui/
 ├── .env
 ├── .eslintrc.json
 ├── .gitignore
 ├── .next/
-├── components.json
-├── next-env.d.ts
-├── next.config.mjs
-├── package.json
-├── postcss.config.js
-├── README.md
+├── app/
+│   ├── globals.css
+│   └── layout.tsx
+├── components/
+│   ├── animation/
+│   ├── blocks/
+│   ├── landingBlocks.tsx
+│   └── NavBar/
+├── controller/
+│   ├── pagesController/
+│   ├── slugController/
+│   └── BlocksController.ts
+├── models/
+├── pages/
+├── public/
+├── styles/
 ├── tailwind.config.js
-├── tsconfig.json
+└── README.md
 ```
+
+### Explication des principaux dossiers :
+
+- **app/** : Contient les composants globaux tels que le layout et les fichiers CSS.
+- **components/** : Stocke les composants réutilisables, organisés par catégorie.
+- **controller/** : Contient les fichiers contrôleurs qui gèrent la logique métier de l'application.
+- **models/** : Contient les modèles de données utilisés par l'application.
 
 ## Architecture MVC
 
 ### Modèles (Models)
 
-Les modèles représentent les données de l'application et la logique métier. Ils sont définis dans le dossier `models`. Par exemple, le modèle [`HeroBlockModel`](command:_github.copilot.openSymbolInFile?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2FUsers%2Fgabriellebaquie%2FMSPR-nation-sound%2Fnext-app%2Fmodels%2FHeroBlockModel.ts%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22HeroBlockModel%22%5D "/Users/gabriellebaquie/MSPR-nation-sound/next-app/models/HeroBlockModel.ts") gère les données pour le composant HeroBlock.
+Les modèles sont responsables de la gestion des données et de la logique métier. Ils sont définis dans le dossier `models`. Par exemple, le modèle `HeroBlockModel` contient les données pour le bloc Hero.
 
 ### Vues (Views)
 
-Les vues sont responsables de l'affichage des données. Elles sont principalement définies dans le dossier `components`. Par exemple, le composant [`HeroBlock`](command:_github.copilot.openSymbolInFile?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2FUsers%2Fgabriellebaquie%2FMSPR-nation-sound%2Fnext-app%2Fcomponents%2FHeroBlock.tsx%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22HeroBlock%22%5D "/Users/gabriellebaquie/MSPR-nation-sound/next-app/components/HeroBlock.tsx") affiche les données du modèle HeroBlock.
+Les vues, principalement situées dans le dossier `components`, sont responsables de l'affichage des données. Par exemple, `HeroBlock` est un composant qui affiche les informations provenant du modèle `HeroBlockModel`.
 
 ### Contrôleurs (Controllers)
 
-Les contrôleurs gèrent la logique d'application et les interactions entre les modèles et les vues. Ils sont définis dans le dossier `controller`. Par exemple, le contrôleur [`HeroBlockController`](command:_github.copilot.openSymbolInFile?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2FUsers%2Fgabriellebaquie%2FMSPR-nation-sound%2Fnext-app%2Fcontroller%2FHeroBlockController.ts%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22HeroBlockController%22%5D "/Users/gabriellebaquie/MSPR-nation-sound/next-app/controller/HeroBlockController.ts") gère la logique pour le composant HeroBlock.
+Les contrôleurs gèrent les interactions entre les modèles et les vues. Ils sont définis dans le dossier `controller`. Par exemple, `HeroBlockController` contient la logique qui relie le modèle `HeroBlockModel` à la vue `HeroBlock`.
 
 ## Déploiement
 
-Le moyen le plus simple de déployer votre application Next.js est d'utiliser la [plateforme Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
+Le déploiement de l'application peut se faire facilement sur la plateforme **Vercel** :
 
-Consultez la [documentation de déploiement de Next.js](https://nextjs.org/docs/deployment) pour plus de détails.
+1. [Créez un nouveau projet sur Vercel](https://vercel.com/new).
+2. Suivez les instructions pour connecter votre dépôt GitHub.
+3. Vercel déploiera automatiquement l'application après chaque mise à jour du code.
+
+Pour plus de détails, consultez la [documentation de Next.js sur le déploiement](https://nextjs.org/docs/deployment).
 
 ## Ressources
 
 - [Documentation Next.js](https://nextjs.org/docs)
 - [Tutoriel interactif Next.js](https://nextjs.org/learn)
 - [Dépôt GitHub Next.js](https://github.com/vercel/next.js)
+- [Dépôt GitHub Nation-Sound-Front](https://github.com/GabsBaquie/Nation-Sound-Front)

@@ -25,7 +25,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({ program, error }) => {
     <div className="container">
       <NavBar />
       {/* Affichage des jours associés */}
-      <div className="mx-auto my-12 text-center md:max-w-xl xl:max-w-2xl">
+      <div className="pt-20 mx-auto text-center md:pt-0 md:my-12 md:max-w-xl xl:max-w-2xl">
         {program.days && program.days.length > 0 ? (
           program.days.map((day: Day, index: number) => (
             <div key={index}>
@@ -37,7 +37,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({ program, error }) => {
               {day.concert && day.concert.length > 0 ? (
                 <div className="flex flex-wrap justify-around gap-4">
                   {day.concert.map((concert: Concert, concertIndex: number) => (
-                    <Card key={concertIndex} className="p-4 mb-6">
+                    <Card key={concertIndex} className="p-4 mb-6 min-w-80">
                       <h4>{concert.title}</h4>
                       <p>Heure : {concert.heure}</p>
                       <p>Lieu : {concert.lieu}</p>
