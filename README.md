@@ -155,7 +155,3 @@ Pour plus de détails, consultez la [documentation de Next.js sur le déploiemen
 - [Tutoriel interactif Next.js](https://nextjs.org/learn)
 - [Dépôt GitHub Next.js](https://github.com/vercel/next.js)
 - [Dépôt GitHub Nation-Sound-Front](https://github.com/GabsBaquie/Nation-Sound-Front)
-
-```
-
-```
