@@ -1,4 +1,3 @@
-import NavBar from "@/components/NavBar/navBar";
 import Button from "@/components/ui/button";
 import GenericCard from "@/components/ui/GenericCard";
 import { BilletterieController } from "@/controller/pagesController/BilletterieController";
@@ -30,8 +29,7 @@ const BilletteriePage: React.FC<BilletteriePageProps> = ({
   );
 
   return (
-    <div className="container">
-      <NavBar />
+    <div>
       <div className="px-12 mx-auto mb-10 text-center md:pr-8 md:ml-20 lg:px-24">
         <div className="pt-20 mb-4 md:pt-0 md:my-6">
           <h1 className="mb-2 text-xl">{billetterie.title}</h1>

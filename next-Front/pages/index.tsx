@@ -1,5 +1,4 @@
 import LandingBlocks from "@/components/landingBlocks";
-import NavBar from "@/components/NavBar/navBar";
 import { getLandingPageData } from "@/controller/pagesController/LandingPageController";
 import { LandingPageModel } from "@/models/LandingPageModel";
 import { GetStaticProps } from "next";
@@ -11,8 +10,7 @@ const Home = ({
 }: LandingPageModel & { error?: string }) => {
   console.log(blocks);
   return (
-    <div className="container">
-      <NavBar />
+    <div>
       <div>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <LandingBlocks blocks={blocks} />

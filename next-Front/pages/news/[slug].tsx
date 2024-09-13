@@ -1,5 +1,4 @@
 import "@/app/globals.css";
-import NavBar from "@/components/NavBar/navBar";
 import GenericCard from "@/components/ui/GenericCard"; // Importer GenericCard
 import { InfoSlugController } from "@/controller/slugController/InfoSlugController";
 import { Card as InfoCard } from "@/models/blocks"; // Utiliser InfoCard depuis models/blocks
@@ -20,8 +19,7 @@ const CardPage: React.FC<CardPageProps> = ({ news, error }) => {
   }
 
   return (
-    <div className="container">
-      <NavBar />
+    <div>
       <div className="pt-20 md:ml-20 md:pt-0">
         {/* Utilisation de GenericCard pour afficher les informations */}
         <GenericCard

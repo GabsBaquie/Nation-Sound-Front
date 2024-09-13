@@ -1,5 +1,4 @@
 import "@/app/globals.css";
-import NavBar from "@/components/NavBar/navBar";
 import { Card } from "@/components/ui/card";
 import { ProgramSlugController } from "@/controller/slugController/ProgramSlugController";
 import { formatTime } from "@/lib/formatTime";
@@ -23,8 +22,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({ program, error }) => {
   }
   console.log(program);
   return (
-    <div className="container">
-      <NavBar />
+    <div>
       {/* Affichage des jours associés */}
       <div className="pt-20 mx-auto text-center md:pt-0 md:my-12 md:max-w-xl xl:max-w-2xl">
         {program.days && program.days.length > 0 ? (

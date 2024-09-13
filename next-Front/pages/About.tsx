@@ -1,4 +1,3 @@
-import NavBar from "@/components/NavBar/navBar";
 import GenericCard from "@/components/ui/GenericCard";
 import { About as AboutModel } from "@/models/AboutModel";
 import { GetServerSideProps } from "next";
@@ -20,8 +19,7 @@ const AboutPage: React.FC<AboutProps> = ({ about, error }) => {
   }
 
   return (
-    <div className="container">
-      <NavBar />
+    <div>
       <div className="md:ml-20 lg:ml-auto">
         <GenericCard
           className="max-w-full p-4 pt-16 bg-transparent md:bg-primary md:pt-0 md:mx-auto"

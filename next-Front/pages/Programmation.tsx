@@ -1,5 +1,4 @@
 import "@/app/globals.css";
-import NavBar from "@/components/NavBar/navBar";
 import DaySection from "@/components/ProgramationPage/DaySection";
 import Filter from "@/components/ProgramationPage/Filter";
 import { ProgrammationController } from "@/controller/pagesController/ProgrammationController";
@@ -47,8 +46,7 @@ const Programmation: React.FC<ProgrammationProps> = ({
   };
 
   return (
-    <div className="container">
-      <NavBar />
+    <div>
       <div className="pt-20 md:pt-0">
         <h1 className="my-2 text-2xl text-center md:text-4xl md:my-6">
           {title}
