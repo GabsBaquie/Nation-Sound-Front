@@ -23,13 +23,8 @@ const Filter: React.FC<FilterProps> = ({
   onLieuChange,
 }) => {
   return (
-    <div className="flex justify-center gap-4 mb-8">
+    <div className="flex justify-center gap-4 mb-8 ">
       <div>
-        <label
-          htmlFor="day-select"
-          className="block mb-2 text-lg font-semibold">
-          Filtrer par jour :
-        </label>
         <Select
           value={selectedDay || "all"}
           onValueChange={(value) =>
@@ -52,11 +47,6 @@ const Filter: React.FC<FilterProps> = ({
       </div>
 
       <div>
-        <label
-          htmlFor="lieu-select"
-          className="block mb-2 text-lg font-semibold">
-          Filtrer par lieu :
-        </label>
         <Select
           value={selectedLieu || "all"}
           onValueChange={(value) =>

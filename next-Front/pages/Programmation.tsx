@@ -49,37 +49,43 @@ const Programmation: React.FC<ProgrammationProps> = ({
   return (
     <div className="container">
       <NavBar />
-      <h1 className="my-8 text-4xl text-center">{title}</h1>
-      <p className="mb-12 text-center">{description}</p>
+      <div className="pt-20 md:pt-0">
+        <h1 className="my-2 text-2xl text-center md:text-4xl md:my-6">
+          {title}
+        </h1>
+        <p className="mb-4 text-lg text-center md:mb-12 md:text-xl">
+          {description}
+        </p>
 
-      {/* Filtres */}
-      <Filter
-        days={days}
-        selectedDay={selectedDay}
-        selectedLieu={selectedLieu}
-        onDayChange={handleDayChange} // Envoie directement la valeur
-        onLieuChange={handleLieuChange} // Envoie directement la valeur
-      />
+        {/* Filtres */}
+        <Filter
+          days={days}
+          selectedDay={selectedDay}
+          selectedLieu={selectedLieu}
+          onDayChange={handleDayChange} // Envoie directement la valeur
+          onLieuChange={handleLieuChange} // Envoie directement la valeur
+        />
 
-      {/* Affichage des jours et concerts filtrés */}
-      <div className="my-12">
-        {days.length > 0 ? (
-          days.map((day: any, index: number) => {
-            const filteredConcerts = filterConcerts(day);
+        {/* Affichage des jours et concerts filtrés */}
+        <div className="my-6">
+          {days.length > 0 ? (
+            days.map((day: any, index: number) => {
+              const filteredConcerts = filterConcerts(day);
 
-            return (
-              filteredConcerts.length > 0 && (
-                <DaySection
-                  key={index}
-                  day={day}
-                  filteredConcerts={filteredConcerts}
-                />
-              )
-            );
-          })
-        ) : (
-          <p>Aucun jour associé.</p>
-        )}
+              return (
+                filteredConcerts.length > 0 && (
+                  <DaySection
+                    key={index}
+                    day={day}
+                    filteredConcerts={filteredConcerts}
+                  />
+                )
+              );
+            })
+          ) : (
+            <p>Aucun jour associé.</p>
+          )}
+        </div>
       </div>
     </div>
   );
