@@ -64,7 +64,7 @@ const Map: React.FC<MapProps> = ({ block }) => {
   return (
     <div className="my-16">
       <div className="mb-4">
-        <h1 className="mb-4 text-xl md:text-2xl">{title}</h1>
+        <h2 className="mb-4 text-xl md:text-2xl">{title}</h2>
         <h2>{text}</h2>
       </div>
 

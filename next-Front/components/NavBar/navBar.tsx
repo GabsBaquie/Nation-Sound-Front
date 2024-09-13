@@ -38,7 +38,7 @@ const NavBar: React.FC = () => {
               <Image src="/favicon.ico" alt="Logo" width={35} height={35} />
             </Link>
           </div>
-          <h1 className="md:hidden">Nation Sounds</h1>
+          <h2 className="md:hidden">Nation Sounds</h2>
         </div>
 
         {/* Menu principal pour les grands écrans */}

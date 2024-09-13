@@ -16,7 +16,7 @@ const FAQ: React.FC<FAQProps> = ({ block }) => {
 
   return (
     <div className="flex flex-col items-center gap-4 md:gap-10">
-      <h1 className="text-xl md:text-2xl">{title}</h1>
+      <h2 className="text-xl md:text-2xl">{title}</h2>
 
       <div>
         <Accordion className="w-full" type="single" collapsible>

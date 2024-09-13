@@ -20,13 +20,13 @@ const GaucheNav: React.FC<GaucheNavProps> = ({ className }) => {
         isHomePage ? "block md:block" : "hidden md:block"
       }`}>
       <InteractiveScroll>
-        <h1 className="flex flex-col items-center text-sm rotate-180 md:text-xl">
+        <h2 className="flex flex-col items-center text-sm rotate-180 md:text-xl">
           {text.split("").map((char, index) => (
             <span key={index} className="flex items-center rotate-90">
               {char === " " ? <>&nbsp;</> : char}
             </span>
           ))}
-        </h1>
+        </h2>
       </InteractiveScroll>
     </div>
   );

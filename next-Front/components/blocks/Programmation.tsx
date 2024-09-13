@@ -15,7 +15,7 @@ const Programmation: React.FC<ProgrammationProps> = ({ block }) => {
       className="flex flex-col items-center gap-8 mt-16"
       id="programmation">
       <div className="text-left">
-        <h1 className="mb-4 text-xl md:text-2xl">{block.title}</h1>
+        <h2 className="mb-4 text-xl md:text-2xl">{block.title}</h2>
         <p className="text-sm md:text-lg md:mb-4">{block.text}</p>
       </div>
 

@@ -24,7 +24,6 @@ const AlerteComponent: React.FC<AlerteProps> = ({ alertes }) => {
 
   return (
     <div>
-      {/* <h1 className="text-xl md:text-2xl">Alertes</h1> */}
       <Slider {...settings}>
         {alertes.map((alerte) => (
           <Card
