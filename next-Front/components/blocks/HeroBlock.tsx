@@ -25,15 +25,17 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
           {/* Boutons */}
           <div className="flex flex-row justify-center space-x-4 ">
             {BtnLink?.map((btn, index) => (
-              <Button key={index} size="sm" btnType={btn.type}>
-                <Link
-                  className="p-2 text-xs text-wrap md:text-nowrap md:text-base"
-                  href={btn.link || "#"}
-                  target={btn.isExternal ? "_blank" : "_self"}
-                  rel={btn.isExternal ? "noopener noreferrer" : ""}>
-                  {btn.title}
-                </Link>
-              </Button>
+              <Link
+                key={index}
+                href={btn.link || "#"}
+                target={btn.isExternal ? "_blank" : "_self"}
+                rel={btn.isExternal ? "noopener noreferrer" : ""}>
+                <Button size="sm" btnType={btn.type} asChild>
+                  <span className="p-2 text-xs text-wrap md:text-nowrap md:text-base">
+                    {btn.title}
+                  </span>
+                </Button>
+              </Link>
             ))}
           </div>
         </div>
@@ -82,15 +84,16 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
           </h2>
           <p className="mb-4 text-sm md:text-lg">{section?.text}</p>
           {/* Bouton de la section */}
-          <Button size="sm" btnType={section?.button?.type}>
-            <Link
-              className="text-xs md:text-base"
-              href={section?.button?.link || "/About"}
-              target={section?.button?.isExternal ? "_blank" : "_self"}
-              rel={section?.button?.isExternal ? "noopener noreferrer" : ""}>
+
+          <Link
+            className="text-xs md:text-base"
+            href={section?.button?.link || "/About"}
+            target={section?.button?.isExternal ? "_blank" : "_self"}
+            rel={section?.button?.isExternal ? "noopener noreferrer" : ""}>
+            <Button size="sm" btnType={section?.button?.type}>
               {section?.button?.title}
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
