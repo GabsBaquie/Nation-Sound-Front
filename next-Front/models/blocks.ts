@@ -48,15 +48,12 @@ export type Programmation = {
   title: string;
   text: string;
   card: ProgramCard[];
-  image?: Image | null;
-  image2?: Image | null;
 };
 
 export type ProgramCard = {
   id: number;
   title: string;
   description?: string;
-  text: string;
   image?: Image | null;
   days: Day[];
 };
@@ -70,7 +67,6 @@ export type Day = {
 export type Concert = {
   title: string;
   description: string;
-  text: string;
   heure: string;
   lieu: string;
   image?: Image | null;
@@ -150,5 +146,29 @@ export type Info = {
   carrousel: Card[]; // Utilisation du type Card
 };
 
+// Footer Block Type
+
+export type Footer = {
+  id: number;
+  __component: "blocks.footer";
+  title: string;
+  text: string;
+  Reseaux: Reseaux[];
+};
+
+export type Reseaux = {
+  id: number;
+  list: string;
+  icon: Image | null;
+  link: string;
+};
+
 // Bloc Type générique
-export type Block = HeroBlock | Programmation | Princing | Map | FAQ | Info;
+export type Block =
+  | HeroBlock
+  | Programmation
+  | Princing
+  | Map
+  | FAQ
+  | Info
+  | Footer;

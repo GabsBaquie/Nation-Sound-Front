@@ -4,6 +4,7 @@ import PrincingBlock from "../components/blocks/Princing";
 import ProgrammationBlock from "../components/blocks/Programmation";
 import { Block } from "../models/blocks";
 import FAQ from "./blocks/FAQ";
+import Footer from "./blocks/Footer";
 import Info from "./blocks/Info";
 import Map from "./blocks/Map";
 
@@ -31,6 +32,8 @@ const LandingBlocks: React.FC<LandingBlocksProps> = ({ blocks }) => {
             return <FAQ key={key} block={block} />;
           case "blocks.infos":
             return <Info key={key} block={block} />;
+          case "blocks.footer":
+            return <Footer key={key} block={block} />;
           default:
             console.log("block", block);
             return null;

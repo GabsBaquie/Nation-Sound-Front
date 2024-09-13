@@ -27,7 +27,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
             {BtnLink?.map((btn, index) => (
               <Button key={index} size="sm" btnType={btn.type}>
                 <Link
-                  className="text-xs text-wrap md:text-nowrap md:text-base"
+                  className="p-2 text-xs text-wrap md:text-nowrap md:text-base"
                   href={btn.link || "#"}
                   target={btn.isExternal ? "_blank" : "_self"}
                   rel={btn.isExternal ? "noopener noreferrer" : ""}>
@@ -80,12 +80,12 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
           <h2 className="hidden mb-4 lg:block lg:mb-4 md:text-2xl">
             {section?.title}
           </h2>
-          <p className="text-sm md:text-lg md:mb-4">{section?.text}</p>
+          <p className="mb-4 text-sm md:text-lg">{section?.text}</p>
           {/* Bouton de la section */}
           <Button size="sm" btnType={section?.button?.type}>
             <Link
               className="text-xs md:text-base"
-              href={section?.button?.link || "#"}
+              href={section?.button?.link || "/About"}
               target={section?.button?.isExternal ? "_blank" : "_self"}
               rel={section?.button?.isExternal ? "noopener noreferrer" : ""}>
               {section?.button?.title}

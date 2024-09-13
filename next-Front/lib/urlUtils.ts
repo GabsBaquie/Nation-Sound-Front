@@ -7,3 +7,4 @@ export const getFAQUrl = () => "questions";
 export const getCarrouselUrl = () => "carrousel,carrousel.image";
 export const getProgramUrl = () =>
   "card,card.image,card.days,card.days.concert,card.days.concert.image";
+export const getFooterUrl = () => "Reseaux,Reseaux.icon";

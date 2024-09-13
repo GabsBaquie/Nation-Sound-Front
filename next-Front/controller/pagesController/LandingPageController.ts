@@ -2,6 +2,7 @@ import { DataNotFoundError, DataValidationError } from "@/lib/DataError";
 import {
   getCarrouselUrl,
   getFAQUrl,
+  getFooterUrl,
   getHeroBlockUrl,
   getMapUrl,
   getPrincingUrl,
@@ -10,6 +11,7 @@ import axios from "axios";
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 import {
   FAQController,
+  FooterController,
   HeroBlockController,
   InfosController,
   MapController,
@@ -28,6 +30,7 @@ export const getLandingPageData = async (
     getMapUrl(),
     getFAQUrl(),
     getCarrouselUrl(),
+    getFooterUrl(),
   ];
 
   const fullUrl = `${apiUrl}/api/landing-pages?populate[blocks][populate]=${urlParts.join(",")}`;
@@ -59,6 +62,8 @@ export const getLandingPageData = async (
             return new FAQController(block).getModel();
           case "blocks.infos":
             return new InfosController(block).getModel();
+          case "blocks.footer":
+            return new FooterController(block).getModel();
           default:
             return null;
         }

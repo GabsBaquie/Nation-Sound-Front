@@ -1,5 +1,6 @@
 import {
   FAQ,
+  Footer,
   HeroBlock,
   Info,
   Map,
@@ -47,8 +48,6 @@ export class ProgramController extends BaseController<Programmation> {
           ? BaseController.constructImageURL(card.image) || null
           : null,
       })),
-      image: BaseController.constructImageURL(props.image) || null,
-      image2: BaseController.constructImageURL(props.image2) || null,
     });
   }
 }
@@ -87,6 +86,21 @@ export class FAQController extends BaseController<FAQ> {
     super({
       ...props,
       questions: props.questions.map((question) => ({ ...question })),
+    });
+  }
+}
+
+export class FooterController extends BaseController<Footer> {
+  constructor(props: Footer) {
+    super({
+      ...props,
+      Reseaux: props.Reseaux.map((reseau) => ({
+        ...reseau,
+        // Si l'icône existe, construire l'URL, sinon la laisser comme null
+        icon: reseau.icon
+          ? BaseController.constructImageURL(reseau.icon)
+          : null,
+      })),
     });
   }
 }

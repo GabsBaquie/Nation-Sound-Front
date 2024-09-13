@@ -69,7 +69,6 @@ export class ProgramSlugController extends BaseController<{ program: any }> {
             concert: day.concert.map((concert: any) => ({
               title: concert.title,
               description: concert.description,
-              text: concert.text,
               heure: concert.heure,
               lieu: concert.lieu,
               image: concert.image

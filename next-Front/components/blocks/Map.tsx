@@ -1,7 +1,8 @@
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Map as MapType } from "../../models/blocks";
 import { Card } from "../ui/card";
+import GoogleMapContainer from "./Map/GoogleMapContainer";
+import MapFilters from "./Map/MapFilters";
 
 interface MapProps {
   block: MapType;
@@ -22,11 +23,27 @@ const Map: React.FC<MapProps> = ({ block }) => {
     lng: 2.3522,
   };
 
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-
-  // État pour le centre de la carte et le niveau de zoom
+  // État pour gérer le centre et le zoom de la carte
   const [mapCenter, setMapCenter] = useState(defaultCenter);
-  const [mapZoom, setMapZoom] = useState(20); // Niveau de zoom par défaut
+  const [mapZoom, setMapZoom] = useState(20); // Zoom par défaut
+
+  // Détecter si l'écran est mobile ou non et ajuster le zoom en conséquence
+  useEffect(() => {
+    const updateZoom = () => {
+      if (window.innerWidth < 768) {
+        setMapZoom(19.3); // Zoom plus faible pour mobile
+      } else {
+        setMapZoom(20); // Zoom plus important pour les écrans plus larges
+      }
+    };
+
+    // Exécuter au montage et sur changement de taille de l'écran
+    window.addEventListener("resize", updateZoom);
+    updateZoom(); // Exécuter dès le premier chargement
+
+    // Nettoyage de l'event listener lors du démontage
+    return () => window.removeEventListener("resize", updateZoom);
+  }, []);
 
   // Gérer le clic sur un marqueur pour zoomer
   const handleMarkerClick = (lat: number, lng: number) => {
@@ -44,21 +61,6 @@ const Map: React.FC<MapProps> = ({ block }) => {
     );
   };
 
-  if (!apiKey) {
-    throw new Error(
-      "La clé API Google Maps n'est pas définie dans les variables d'environnement"
-    );
-  }
-
-  // Style pour désactiver les POI intégrés de Google Maps
-  const mapStyles = [
-    {
-      featureType: "poi",
-      elementType: "labels",
-      stylers: [{ visibility: "off" }],
-    },
-  ];
-
   return (
     <div className="my-16">
       <div className="mb-4">
@@ -68,55 +70,18 @@ const Map: React.FC<MapProps> = ({ block }) => {
 
       {/* Affichage de la carte */}
       <Card className="max-w-4xl mx-auto size-full">
-        {/* Interface utilisateur des filtres */}
-        <div className="absolute z-50 max-w-sm p-4 mx-6 my-16 mb-4 rounded-md shadow-md bg-secondary">
-          <div className="flex flex-col space-y-2">
-            {uniquePOITypes.map((poiType) => (
-              <label key={poiType} className="inline-flex items-center">
-                <input
-                  type="checkbox"
-                  checked={filters.includes(poiType)}
-                  onChange={() => handleFilterChange(poiType)}
-                  className="form-checkbox"
-                />
-                <span className="ml-2">{poiType}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-
-        <LoadScript
-          googleMapsApiKey={apiKey}
-          loadingElement={<p>Chargement de la carte...</p>}>
-          <GoogleMap
-            mapContainerStyle={{ height: "400px", width: "100%" }}
-            center={mapCenter}
-            zoom={mapZoom}
-            options={{
-              mapTypeControl: false,
-              styles: mapStyles, // Désactivation des POI intégrés
-            }}>
-            {/* Filtrer les POI par les filtres sélectionnés et afficher les marqueurs */}
-            {POI?.filter((point) => filters.includes(point.Type)).map(
-              (point) => {
-                const { lat, lng } = point.POI?.coordinates || {};
-                return lat && lng ? (
-                  <Marker
-                    key={point.id}
-                    position={{ lat, lng }}
-                    label={{
-                      text: point.Name,
-                      color: "black",
-                      fontWeight: "bold",
-                    }}
-                    title={point.Description || point.Name}
-                    onClick={() => handleMarkerClick(lat, lng)} // Définir le centre de la carte et zoomer sur clic
-                  />
-                ) : null;
-              }
-            )}
-          </GoogleMap>
-        </LoadScript>
+        <MapFilters
+          uniquePOITypes={uniquePOITypes}
+          filters={filters}
+          handleFilterChange={handleFilterChange}
+        />
+        <GoogleMapContainer
+          POI={POI ?? []}
+          filters={filters}
+          mapCenter={mapCenter}
+          mapZoom={mapZoom}
+          handleMarkerClick={handleMarkerClick}
+        />
       </Card>
     </div>
   );
