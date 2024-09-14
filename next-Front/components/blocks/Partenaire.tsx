@@ -1,8 +1,8 @@
+import ScrollInfinityX from "@/components/animation/scrollInfinityX";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { PartenaireBlock } from "../../models/blocks";
-import InteractiveScrollX from "../animation/ScrollInfinityX";
 
 interface PartnerProps {
   block: PartenaireBlock;
@@ -17,7 +17,7 @@ const Partenaires: React.FC<PartnerProps> = ({ block }) => {
       <h1 className="mb-4 text-2xl">Nos Partenaires</h1>
       <div className="relative">
         {/* Animation infinie */}
-        <InteractiveScrollX>
+        <ScrollInfinityX>
           <Link href="/Partenaires">
             <div className="flex items-center justify-around">
               {duplicatedPartners.map((partenaire, index) => (
@@ -35,7 +35,7 @@ const Partenaires: React.FC<PartnerProps> = ({ block }) => {
               ))}
             </div>
           </Link>
-        </InteractiveScrollX>
+        </ScrollInfinityX>
       </div>
     </div>
   );
