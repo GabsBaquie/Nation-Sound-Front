@@ -5,6 +5,7 @@ import {
   getFooterUrl,
   getHeroBlockUrl,
   getMapUrl,
+  getPartenaireUrl,
   getPrincingUrl,
 } from "@/lib/urlUtils";
 import axios from "axios";
@@ -15,6 +16,7 @@ import {
   HeroBlockController,
   InfosController,
   MapController,
+  PartenaireController,
   PrincingController,
   ProgramController,
 } from "../BlocksController";
@@ -31,6 +33,7 @@ export const getLandingPageData = async (
     getFAQUrl(),
     getCarrouselUrl(),
     getFooterUrl(),
+    getPartenaireUrl(),
   ];
 
   const fullUrl = `${apiUrl}/api/landing-pages?populate[blocks][populate]=${urlParts.join(",")}`;
@@ -62,6 +65,8 @@ export const getLandingPageData = async (
             return new FAQController(block).getModel();
           case "blocks.infos":
             return new InfosController(block).getModel();
+          case "blocks.partenaire":
+            return new PartenaireController(block).getModel();
           case "blocks.footer":
             return new FooterController(block).getModel();
           default:

@@ -1,7 +1,7 @@
 import Button from "@/components/ui/button";
 import GenericCard from "@/components/ui/GenericCard";
 import { BilletterieController } from "@/controller/pagesController/BilletterieController";
-import { Billetterie } from "@/models/BilletterieModel";
+import { Billetterie } from "@/models/BilletteriePageModel";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import "../app/globals.css";

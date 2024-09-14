@@ -1,4 +1,4 @@
-import { Billetterie } from "@/models/BilletterieModel"; // On importe le type Billetterie
+import { Billetterie } from "@/models/BilletteriePageModel"; // On importe le type Billetterie
 import axios from "axios";
 import { GetServerSideProps } from "next";
 import { BaseController } from "../BaseController";

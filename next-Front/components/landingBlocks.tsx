@@ -7,6 +7,7 @@ import FAQ from "./blocks/FAQ";
 import Footer from "./blocks/Footer";
 import Info from "./blocks/Info";
 import Map from "./blocks/Map";
+import Partenaires from "./blocks/Partenaire";
 
 interface LandingBlocksProps {
   blocks: Block[];
@@ -32,6 +33,8 @@ const LandingBlocks: React.FC<LandingBlocksProps> = ({ blocks }) => {
             return <FAQ key={key} block={block} />;
           case "blocks.infos":
             return <Info key={key} block={block} />;
+          case "blocks.partenaire":
+            return <Partenaires key={key} block={block} />;
           case "blocks.footer":
             return <Footer key={key} block={block} />;
           default:

@@ -4,6 +4,7 @@ import {
   HeroBlock,
   Info,
   Map,
+  PartenaireBlock,
   POI,
   Princing,
   Programmation,
@@ -86,6 +87,22 @@ export class FAQController extends BaseController<FAQ> {
     super({
       ...props,
       questions: props.questions.map((question) => ({ ...question })),
+    });
+  }
+}
+
+export class PartenaireController extends BaseController<PartenaireBlock> {
+  constructor(props: PartenaireBlock) {
+    super({
+      ...props,
+      partenaires: props.partenaires
+        ? props.partenaires.map((partenaire) => ({
+            ...partenaire,
+            logo: partenaire.logo
+              ? BaseController.constructImageURL(partenaire.logo)
+              : null,
+          }))
+        : [],
     });
   }
 }

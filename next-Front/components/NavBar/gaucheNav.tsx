@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
-import InteractiveScroll from "../animation/scrollInfinity";
+import InteractiveScroll from "../animation/scrollInfinityY";
 
 interface GaucheNavProps {
   className?: string;
