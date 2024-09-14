@@ -9,7 +9,7 @@ import {
   getPrincingUrl,
 } from "@/lib/urlUtils";
 import axios from "axios";
-import { GetStaticPropsContext, GetStaticPropsResult } from "next";
+import { GetServerSideProps } from "next";
 import {
   FAQController,
   FooterController,
@@ -21,9 +21,8 @@ import {
   ProgramController,
 } from "../BlocksController";
 
-export const getLandingPageData = async (
-  context: GetStaticPropsContext
-): Promise<GetStaticPropsResult<{ [key: string]: any }>> => {
+// Fonction getLandingPageData
+export const getLandingPageData = async () => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const urlParts = [
@@ -75,6 +74,7 @@ export const getLandingPageData = async (
       })
       .filter(Boolean);
 
+    // Retourne un objet compatible avec GetServerSideProps
     return {
       props: { blocks },
     };
@@ -91,4 +91,10 @@ export const getLandingPageData = async (
       },
     };
   }
+};
+
+// Utilisation dans getServerSideProps
+export const getServerSideProps: GetServerSideProps = async () => {
+  const landingPageData = await getLandingPageData();
+  return landingPageData; // Retourne le résultat de la fonction
 };

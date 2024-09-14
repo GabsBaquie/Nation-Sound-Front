@@ -1,7 +1,7 @@
 import LandingBlocks from "@/components/landingBlocks";
 import { getLandingPageData } from "@/controller/pagesController/LandingPageController";
 import { LandingPageModel } from "@/models/LandingPageModel";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next"; // Changement ici pour utiliser GetServerSideProps
 import "../app/globals.css";
 
 const Home = ({
@@ -20,6 +20,6 @@ const Home = ({
 };
 
 // Récupération des données côté serveur
-export const getStaticProps: GetStaticProps = getLandingPageData;
+export const getServerSideProps: GetServerSideProps = getLandingPageData;
 
 export default Home;
