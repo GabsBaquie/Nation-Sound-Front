@@ -21,7 +21,7 @@ const MyApp = ({
 
 MyApp.getInitialProps = async () => {
   const { alertes } = await AlerteController.getInitialProps();
-  return { pageProps: {}, alertes: alertes ?? [] }; // Provide a default value if alertes is null
+  return { pageProps: {}, alertes: alertes ?? [] }; // Fournir une valeur par défaut si alertes est null
 };
 
 export default MyApp;
