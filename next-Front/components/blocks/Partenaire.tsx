@@ -9,9 +9,6 @@ interface PartnerProps {
 }
 
 const Partenaires: React.FC<PartnerProps> = ({ block }) => {
-  // Duplique la liste des partenaires pour assurer le défilement continu
-  const duplicatedPartners = [...block.partenaires, ...block.partenaires];
-
   return (
     <div className="my-6 overflow-hidden md:my-12">
       <h1 className="mb-4 text-2xl">Nos Partenaires</h1>
@@ -20,7 +17,7 @@ const Partenaires: React.FC<PartnerProps> = ({ block }) => {
         <ScrollInfinityX>
           <Link href="/Partenaires">
             <div className="flex items-center justify-around">
-              {duplicatedPartners.map((partenaire, index) => (
+              {block.partenaires.map((partenaire, index) => (
                 <div key={index}>
                   {partenaire.logo && (
                     <Image
@@ -28,7 +25,7 @@ const Partenaires: React.FC<PartnerProps> = ({ block }) => {
                       alt={partenaire.name}
                       width={95}
                       height={95}
-                      className="max-w-md mx-7"
+                      className="max-w-[60px] mx-2 md:max-w-md md:mx-7 "
                     />
                   )}
                 </div>

@@ -22,7 +22,7 @@ const AboutPage: React.FC<AboutProps> = ({ about, error }) => {
     <div>
       <div className="md:ml-20 lg:ml-auto">
         <GenericCard
-          className="max-w-full p-4 pt-16 bg-transparent md:bg-primary md:pt-0 md:mx-auto"
+          className="max-w-full p-4 pt-16 bg-transparent border-none md:border-solid md:bg-primary md:pt-0 md:mx-auto"
           title={about.title}
           description={about.description}
           text={about.text}

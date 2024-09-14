@@ -1,16 +1,17 @@
 import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 const ScrollInfinityX: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const itemRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
 
   useEffect(() => {
     const loopAnimation = async () => {
       await controls.start({
         x: ["0%", "-100%"], // Défile de droite à gauche
-        transition: { duration: 15, ease: "linear", repeat: Infinity }, // Transition linéaire infinie
+        transition: { duration: 20, ease: "linear", repeat: Infinity }, // Transition linéaire infinie
       });
     };
 
@@ -18,10 +19,21 @@ const ScrollInfinityX: React.FC<{ children: React.ReactNode }> = ({
   }, [controls]);
 
   return (
-    <motion.div className="flex space-x-4" animate={controls}>
+    <motion.div className="flex marquee-item" ref={itemRef} animate={controls}>
       {children}
     </motion.div>
   );
 };
 
-export default ScrollInfinityX;
+const InteractiveScrollX: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  return (
+    <div className="flex marquee">
+      <ScrollInfinityX>{children}</ScrollInfinityX>
+      <ScrollInfinityX>{children}</ScrollInfinityX>
+    </div>
+  );
+};
+
+export default InteractiveScrollX;

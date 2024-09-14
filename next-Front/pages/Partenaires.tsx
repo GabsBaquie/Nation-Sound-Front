@@ -26,12 +26,14 @@ const Partenaire = ({ partenaires }: PartenaireProps) => {
   }, {});
 
   return (
-    <div className="px-12 mx-auto mb-10 text-center md:pr-8 md:ml-20 lg:px-24">
-      <h1 className="mb-6 text-3xl font-bold">Partenaires</h1>
+    <div className="px-12 pt-20 mx-auto mb-10 text-center md:pt-0 md:pr-8 md:ml-20 lg:px-24">
+      <h1 className="mb-6 text-2xl font-bold md:text-3xl">Partenaires</h1>
 
       {Object.keys(groupedPartenaires).map((type) => (
         <div key={type}>
-          <h2 className="mt-8 mb-4 text-2xl font-semibold">{type}</h2>
+          <h2 className="mt-8 mb-4 text-lg font-semibold md:text-2xl">
+            {type}
+          </h2>
           <Card className="max-w-full py-6 bg-primary">
             <ul className="flex items-center justify-around">
               {groupedPartenaires[type].map((partenaire: PartenairePage) => (
@@ -41,6 +43,7 @@ const Partenaire = ({ partenaires }: PartenaireProps) => {
                     height={100}
                     src={partenaire.logo?.url || ""}
                     alt={partenaire.logo?.alternativeText || ""}
+                    className="w-20 h-auto md:w-28 "
                   />
                 </li>
               ))}
