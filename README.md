@@ -78,7 +78,6 @@ next-app/
 ├── models/
 ├── pages/
 ├── public/
-├── styles/
 ├── tailwind.config.js
 └── README.md
 ```
@@ -137,7 +136,7 @@ Les contrôleurs gèrent les interactions entre les modèles et les vues. Ils so
 6. **Base de données / API backend** :
    - Les modèles récupèrent les données à partir de la base de données ou d’une API backend (par exemple, via une API REST).
 
-![Diagramme du Projet](next-Front/public/Front-UML.png)
+![Diagramme du Projet](next-Front/public/UML-Front.png)
 
 ## Déploiement
 
