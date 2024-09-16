@@ -32,8 +32,8 @@ const BilletteriePage: React.FC<BilletteriePageProps> = ({
     <div>
       <div className="px-12 mx-auto mb-10 text-center md:pr-8 md:ml-20 lg:px-24">
         <div className="pt-20 mb-4 md:pt-0 md:my-6">
-          <h1 className="mb-2 text-xl">{billetterie.title}</h1>
-          <p className="md:text-lg">{billetterie.description}</p>
+          <h1 className="mb-2 text-2xl md:text-4xl">{billetterie.title}</h1>
+          <p className="text-lg md:text-xl">{billetterie.description}</p>
         </div>
 
         {princingBlock && (

@@ -12,11 +12,13 @@ export class AlerteController extends BaseController<Alerte> {
   }
 
   async getAlertesData(): Promise<Alerte[] | null> {
-    const fullUrl = `${this.apiUrl}/api/alertes`;
+    const fullUrl = `${this.apiUrl}/api/alertes/actives`;
+
+    console.log("fullUrl", fullUrl);
 
     try {
       const response = await axios.get(fullUrl);
-      const alertes = response.data.data;
+      const alertes = response.data;
 
       if (!alertes) {
         throw new Error("No alertes found");

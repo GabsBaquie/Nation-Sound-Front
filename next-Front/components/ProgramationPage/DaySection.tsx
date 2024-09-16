@@ -14,7 +14,11 @@ const DaySection: React.FC<DaySectionProps> = ({ day, filteredConcerts }) => {
       </h3>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {filteredConcerts.map((concert, concertIndex) => (
-          <ConcertCard key={concertIndex} concert={concert} />
+          <ConcertCard
+            key={concertIndex}
+            concert={concert}
+            isPrimary={concertIndex % 2 === 0}
+          />
         ))}
       </div>
     </div>
