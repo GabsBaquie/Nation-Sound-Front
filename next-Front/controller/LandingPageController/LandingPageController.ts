@@ -51,35 +51,47 @@ export const getLandingPageData = async () => {
 
     const blocks = landingPage.blocks
       .map((block: any) => {
-        switch (block.__component) {
-          case "blocks.hero":
-            return new HeroBlockController(block).getModel();
-          case "blocks.programmation":
-            return new ProgramController(block).getModel();
-          case "blocks.princing":
-            return new PrincingController(block).getModel();
-          case "blocks.map":
-            return new MapController(block).getModel();
-          case "blocks.faq":
-            return new FAQController(block).getModel();
-          case "blocks.infos":
-            return new InfosController(block).getModel();
-          case "blocks.partenaire":
-            return new PartenaireController(block).getModel();
-          case "blocks.footer":
-            return new FooterController(block).getModel();
-          default:
-            return null;
+        try {
+          switch (block.__component) {
+            case "blocks.hero":
+              return new HeroBlockController(block).getModel();
+            case "blocks.programmation":
+              return new ProgramController(block).getModel();
+            case "blocks.princing":
+              return new PrincingController(block).getModel();
+            case "blocks.map":
+              return new MapController(block).getModel();
+            case "blocks.faq":
+              return new FAQController(block).getModel();
+            case "blocks.infos":
+              return new InfosController(block).getModel();
+            case "blocks.partenaire":
+              return new PartenaireController(block).getModel();
+            case "blocks.footer":
+              return new FooterController(block).getModel();
+            default:
+              console.warn(`Composant non reconnu: ${block.__component}`);
+              return null;
+          }
+        } catch (error) {
+          console.error(
+            `Erreur lors du traitement du bloc ${block.__component}:`,
+            error
+          );
+          return null; // On ignore ce bloc si une erreur survient
         }
       })
-      .filter(Boolean);
+      .filter(Boolean); // Filtrer les valeurs nulles
 
     // Retourne un objet compatible avec GetServerSideProps
     return {
       props: { blocks },
     };
   } catch (error) {
-    console.error("Error fetching landing page data:", error);
+    console.error(
+      "Erreur lors de la récupération des données de la landing page:",
+      error
+    );
     return {
       props: {
         blocks: [],
@@ -87,7 +99,7 @@ export const getLandingPageData = async () => {
           error instanceof DataNotFoundError ||
           error instanceof DataValidationError
             ? error.message
-            : "An unexpected error occurred",
+            : "Une erreur inattendue s'est produite",
       },
     };
   }

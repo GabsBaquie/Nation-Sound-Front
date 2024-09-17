@@ -21,12 +21,7 @@ const CardPage: React.FC<CardPageProps> = ({ news, error }) => {
   return (
     <div>
       <div className="pt-20 md:ml-20 md:pt-0">
-        <GenericCard
-          title={news.title}
-          description={news.description}
-          text={news.text}
-          image={news.image}
-        />
+        <GenericCard title={news.title} text={news.text} image={news.image} />
       </div>
     </div>
   );
