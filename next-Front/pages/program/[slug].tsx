@@ -1,7 +1,11 @@
 import "@/app/globals.css";
 import ConcertCard from "@/components/ProgramationPage/ConcertCard"; // Importer ConcertCard
 import { ProgramSlugController } from "@/controller/slugController/ProgramSlugController";
-import { Concert, Day, ProgramCard } from "@/models/blocks"; // Utilisation des types importés
+import {
+  Concert,
+  Day,
+  ProgramCard,
+} from "@/models/programmationModel/programmationModel"; // Utilisation des types importés
 import { GetServerSideProps } from "next";
 import React from "react";
 
