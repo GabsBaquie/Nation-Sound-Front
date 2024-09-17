@@ -1,5 +1,5 @@
 import { slugify } from "@/lib/slugify";
-import { Image } from "@/models/blocks"; // Assure-toi que le type Image est bien importé
+import { Image } from "@/models/imageModel/imageModel"; // Assure-toi que le type Image est bien importé
 import axios from "axios";
 import { GetServerSideProps } from "next";
 import { BaseController } from "../BaseController";
