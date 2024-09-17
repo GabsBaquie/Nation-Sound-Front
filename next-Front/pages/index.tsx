@@ -1,4 +1,4 @@
-import LandingBlocks from "@/components/landingBlocks";
+import LandingPage from "@/components/landingPage";
 import { getLandingPageData } from "@/controller/LandingPageController/LandingPageController";
 import { LandingPageModel } from "@/models/LandingPageModel";
 import { GetServerSideProps } from "next"; // Changement ici pour utiliser GetServerSideProps
@@ -13,7 +13,7 @@ const Home = ({
     <div>
       <div>
         {error && <p style={{ color: "red" }}>{error}</p>}
-        <LandingBlocks blocks={blocks} />
+        <LandingPage blocks={blocks} />
       </div>
     </div>
   );

@@ -1,19 +1,19 @@
 import React from "react";
-import HeroBlock from "../components/blocks/HeroBlock";
-import PrincingBlock from "../components/blocks/Princing";
-import ProgrammationBlock from "../components/blocks/Programmation";
 import { Block } from "../models/blocks";
 import FAQ from "./blocks/FAQ";
 import Footer from "./blocks/Footer";
+import HeroBlock from "./blocks/HeroBlock";
 import Info from "./blocks/Info";
 import Map from "./blocks/Map";
 import Partenaires from "./blocks/Partenaire";
+import PrincingBlock from "./blocks/Princing";
+import ProgrammationBlock from "./blocks/Programmation";
 
 interface LandingBlocksProps {
   blocks: Block[];
 }
 
-const LandingBlocks: React.FC<LandingBlocksProps> = ({ blocks }) => {
+const LandingPage: React.FC<LandingBlocksProps> = ({ blocks }) => {
   return (
     <div className="px-16 pr-[2rem] mb-10 text-center md:ml-14 md:px-24 md:pr-[5rem]">
       {blocks.map((block, index) => {
@@ -54,4 +54,4 @@ const LandingBlocks: React.FC<LandingBlocksProps> = ({ blocks }) => {
   );
 };
 
-export default LandingBlocks;
+export default LandingPage;
