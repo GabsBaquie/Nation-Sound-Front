@@ -21,7 +21,6 @@ const CardPage: React.FC<CardPageProps> = ({ news, error }) => {
   return (
     <div>
       <div className="pt-20 md:ml-20 md:pt-0">
-        {/* Utilisation de GenericCard pour afficher les informations */}
         <GenericCard
           title={news.title}
           description={news.description}

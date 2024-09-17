@@ -1,4 +1,4 @@
-import { POI as POIType } from "@/models/blocks"; // Assurez-vous d'importer le type POI
+import { POI as POIType } from "@/models/mapModel/mapModel"; // Assurez-vous d'importer le type POI
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import React from "react";
 

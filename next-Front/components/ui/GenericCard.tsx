@@ -1,5 +1,5 @@
 import "@/app/globals.css";
-import { Image as ImageProps } from "@/models/blocks";
+import { Image as ImageProps } from "@/models/imageModel/imageModel";
 import Image from "next/image";
 import React from "react";
 import Markdown from "react-markdown";
@@ -46,7 +46,7 @@ const GenericCard: React.FC<GenericCardProps> = ({
         <CardTitle className="pt-4">{title}</CardTitle>
         {description && <CardDescription>{description}</CardDescription>}
       </CardHeader>
-      <CardContent className="text-center markdown-content">
+      <CardContent className="p-0 text-center markdown-content">
         {typeof text === "string" ? (
           <Markdown>{text}</Markdown> // Utilisation de Markdown pour afficher du texte formaté
         ) : (
