@@ -1,14 +1,4 @@
-export type Image = {
-  url: string;
-  alternativeText: string;
-} | null;
-
-export type Button = {
-  link: string;
-  title: string;
-  isExternal: boolean;
-  type?: string;
-};
+import { Button } from "../buttonModel/buttonModel";
 
 export type Plan = {
   planType: string;

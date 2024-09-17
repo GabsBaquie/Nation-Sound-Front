@@ -1,14 +1,11 @@
-import {
-  FAQ,
-  Footer,
-  HeroBlock,
-  Info,
-  Map,
-  PartenaireBlock,
-  POI,
-  Princing,
-  Programmation,
-} from "@/models/blocks";
+import { FAQ } from "@/models/faqModel/faqModel";
+import { Footer } from "@/models/footerModel/footerModel";
+import { HeroBlock } from "@/models/heroModel/heroModel";
+import { Info } from "@/models/infoModel/infoModel";
+import { Map, POI } from "@/models/mapModel/mapModel";
+import { PartenaireBlock } from "@/models/partenaireModel/partenaireModel";
+import { Princing } from "@/models/princingModel/princingModel";
+import { Programmation } from "@/models/programmationModel/programmationModel";
 import { BaseController } from "./BaseController";
 
 export class HeroBlockController extends BaseController<HeroBlock> {

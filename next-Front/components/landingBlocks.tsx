@@ -20,26 +20,34 @@ const LandingBlocks: React.FC<LandingBlocksProps> = ({ blocks }) => {
         // Créez une clé unique en combinant le type de bloc, l'id du bloc et l'index
         const key = `${block.__component}-${block.id}-${index}`;
 
-        switch (block.__component) {
-          case "blocks.hero":
-            return <HeroBlock key={key} block={block} />;
-          case "blocks.programmation":
-            return <ProgrammationBlock key={key} block={block} />;
-          case "blocks.princing":
-            return <PrincingBlock key={key} block={block} />;
-          case "blocks.map":
-            return <Map key={key} block={block} />;
-          case "blocks.faq":
-            return <FAQ key={key} block={block} />;
-          case "blocks.infos":
-            return <Info key={key} block={block} />;
-          case "blocks.partenaire":
-            return <Partenaires key={key} block={block} />;
-          case "blocks.footer":
-            return <Footer key={key} block={block} />;
-          default:
-            console.log("block", block);
-            return null;
+        try {
+          switch (block.__component) {
+            case "blocks.hero":
+              return <HeroBlock key={key} block={block} />;
+            case "blocks.programmation":
+              return <ProgrammationBlock key={key} block={block} />;
+            case "blocks.princing":
+              return <PrincingBlock key={key} block={block} />;
+            case "blocks.map":
+              return <Map key={key} block={block} />;
+            case "blocks.faq":
+              return <FAQ key={key} block={block} />;
+            case "blocks.infos":
+              return <Info key={key} block={block} />;
+            case "blocks.partenaire":
+              return <Partenaires key={key} block={block} />;
+            case "blocks.footer":
+              return <Footer key={key} block={block} />;
+            default:
+              console.log("Bloc non reconnu:", block);
+              return null;
+          }
+        } catch (error) {
+          console.error(
+            `Erreur lors du rendu du bloc ${block.__component}:`,
+            error
+          );
+          return null;
         }
       })}
     </div>

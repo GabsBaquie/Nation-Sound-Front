@@ -1,8 +1,8 @@
 import GenericCard from "@/components/ui/GenericCard";
-import { About as AboutModel } from "@/models/AboutModel";
+import { About as AboutModel } from "@/models/aboutModel/aboutModel";
 import { GetServerSideProps } from "next";
 import React from "react";
-import { AboutController } from "../controller/pagesController/AboutController";
+import { AboutController } from "../controller/AboutController/AboutController";
 
 export interface AboutProps {
   about: AboutModel | null;

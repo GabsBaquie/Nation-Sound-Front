@@ -1,7 +1,7 @@
+import { Footer as FooterType } from "@/models/footerModel/footerModel";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Footer as FooterType } from "../../models/blocks";
 import { Card } from "../ui/card";
 
 interface FooterProps {

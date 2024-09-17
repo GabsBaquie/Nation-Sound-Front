@@ -2,7 +2,7 @@ import { slugify } from "@/lib/slugify";
 import Image from "next/image";
 import Link from "next/link";
 import Slider from "react-slick";
-import { Info as InfoType } from "../../models/blocks";
+import { Info as InfoType } from "@/models/infoModel/infoModel";
 import Button from "../ui/button";
 import { Card, CardDescription, CardFooter, CardHeader } from "../ui/card";
 

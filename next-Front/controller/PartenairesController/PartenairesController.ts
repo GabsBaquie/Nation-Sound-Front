@@ -1,4 +1,4 @@
-import { Partenaire } from "@/models/PartenairePageModel"; // On importe le type Partenaire
+import { Partenaire } from "@/models/partenaireModel/partenaireModel"; // On importe le model Partenaire
 import axios from "axios";
 import { GetServerSideProps } from "next";
 import { BaseController } from "../BaseController";

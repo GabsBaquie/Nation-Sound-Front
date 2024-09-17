@@ -6,12 +6,17 @@ import React from "react";
 interface ConcertCardProps {
   concert: any;
   isPrimary: boolean;
+  className?: string;
 }
 
-const ConcertCard: React.FC<ConcertCardProps> = ({ concert, isPrimary }) => {
+const ConcertCard: React.FC<ConcertCardProps> = ({
+  concert,
+  isPrimary,
+  className,
+}) => {
   return (
     <Card
-      className={`p-4 shadow-md ${isPrimary ? "bg-primary" : "bg-secondary"}`}>
+      className={`p-4 shadow-md ${className} ${isPrimary ? "bg-primary" : "bg-secondary"}`}>
       {concert.image && (
         <Image
           className="object-cover w-full h-48"

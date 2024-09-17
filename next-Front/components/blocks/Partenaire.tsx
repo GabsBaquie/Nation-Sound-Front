@@ -2,7 +2,7 @@ import ScrollInfinityX from "@/components/animation/scrollInfinityX";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { PartenaireBlock } from "../../models/blocks";
+import { PartenaireBlock } from "@/models/partenaireModel/partenaireModel";
 
 interface PartnerProps {
   block: PartenaireBlock;

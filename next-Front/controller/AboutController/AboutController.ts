@@ -1,4 +1,4 @@
-import { About as AboutModel } from "@/models/AboutModel";
+import { About as AboutModel } from "@/models/aboutModel/aboutModel";
 import axios from "axios";
 import { GetServerSideProps } from "next";
 import { BaseController } from "../BaseController";

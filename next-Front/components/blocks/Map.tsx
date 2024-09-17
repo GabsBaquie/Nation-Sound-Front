@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Map as MapType } from "../../models/blocks";
+import { Map as MapType } from "@/models/mapModel/mapModel";
 import { Card } from "../ui/card";
 import GoogleMapContainer from "./Map/GoogleMapContainer";
 import MapFilters from "./Map/MapFilters";

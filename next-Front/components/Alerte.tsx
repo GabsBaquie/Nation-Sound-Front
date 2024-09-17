@@ -1,4 +1,4 @@
-import { Alerte } from "@/models/AlerteModel";
+import { Alerte } from "@/models/alertesModel/alerteModel";
 import { useRouter } from "next/router";
 import React from "react";
 import Slider from "react-slick";

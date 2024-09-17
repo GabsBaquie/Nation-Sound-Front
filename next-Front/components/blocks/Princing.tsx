@@ -1,6 +1,6 @@
+import { Princing as PrincingType } from "@/models/princingModel/princingModel";
 import Link from "next/link";
 import React from "react";
-import { Princing as PrincingType } from "../../models/blocks";
 import Button from "../ui/button";
 import {
   Card,

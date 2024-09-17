@@ -1,5 +1,5 @@
 import LandingBlocks from "@/components/landingBlocks";
-import { getLandingPageData } from "@/controller/pagesController/LandingPageController";
+import { getLandingPageData } from "@/controller/LandingPageController/LandingPageController";
 import { LandingPageModel } from "@/models/LandingPageModel";
 import { GetServerSideProps } from "next"; // Changement ici pour utiliser GetServerSideProps
 import "../app/globals.css";

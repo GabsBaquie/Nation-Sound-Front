@@ -4,8 +4,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { FAQ as FAQType } from "@/models/faqModel/faqModel";
 import React from "react";
-import { FAQ as FAQType } from "../../models/blocks";
 
 interface FAQProps {
   block: FAQType;

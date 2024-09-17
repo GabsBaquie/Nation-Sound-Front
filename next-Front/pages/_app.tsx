@@ -1,7 +1,7 @@
 import AlerteComponent from "@/components/Alerte";
 import NavBar from "@/components/NavBar/navBar";
-import { AlerteController } from "@/controller/AlerteController";
-import { Alerte } from "@/models/AlerteModel";
+import { AlerteController } from "@/controller/AlerteController/AlerteController";
+import { Alerte } from "@/models/alertesModel/alerteModel";
 import { AppProps } from "next/app";
 import "../app/globals.css";
 

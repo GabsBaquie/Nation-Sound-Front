@@ -1,7 +1,7 @@
 import "@/app/globals.css";
 import DaySection from "@/components/ProgramationPage/DaySection";
 import Filter from "@/components/ProgramationPage/Filter";
-import { ProgrammationController } from "@/controller/pagesController/ProgrammationController";
+import { ProgrammationController } from "@/controller/ProgrammationController/ProgrammationController";
 import { GetServerSideProps } from "next";
 import { useState } from "react";
 

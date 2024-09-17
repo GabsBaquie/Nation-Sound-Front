@@ -1,10 +1,8 @@
 import "@/app/globals.css";
-import { Card } from "@/components/ui/card";
+import ConcertCard from "@/components/ProgramationPage/ConcertCard"; // Importer ConcertCard
 import { ProgramSlugController } from "@/controller/slugController/ProgramSlugController";
-import { formatTime } from "@/lib/formatTime";
 import { Concert, Day, ProgramCard } from "@/models/blocks"; // Utilisation des types importés
 import { GetServerSideProps } from "next";
-import Image from "next/image";
 import React from "react";
 
 interface ProgramPageProps {
@@ -36,21 +34,12 @@ const ProgramPage: React.FC<ProgramPageProps> = ({ program, error }) => {
               {day.concert && day.concert.length > 0 ? (
                 <div className="flex flex-wrap justify-around gap-4">
                   {day.concert.map((concert: Concert, concertIndex: number) => (
-                    <Card key={concertIndex} className="p-4 mb-6 min-w-80">
-                      <h4>{concert.title}</h4>
-                      <p>Heure : {formatTime(concert.heure)}</p>
-                      <p>Lieu : {concert.lieu}</p>
-                      {concert.image && (
-                        <Image
-                          className="mx-auto"
-                          width={200}
-                          height={200}
-                          src={concert.image.url}
-                          alt={concert.image.alternativeText || concert.title}
-                        />
-                      )}
-                      <p>{concert.description}</p>
-                    </Card>
+                    <ConcertCard
+                      className="w-[20rem]"
+                      key={concertIndex}
+                      concert={concert}
+                      isPrimary={concertIndex % 2 === 0}
+                    />
                   ))}
                 </div>
               ) : (

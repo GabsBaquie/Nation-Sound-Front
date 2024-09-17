@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
-import { PartenaireController } from "@/controller/pagesController/PartenairesController";
-import { Partenaire as PartenairePage } from "@/models/PartenairePageModel";
+import { PartenaireController } from "@/controller/PartenairesController/PartenairesController";
+import { Partenaire as PartenairePage } from "@/models/partenaireModel/partenaireModel";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 

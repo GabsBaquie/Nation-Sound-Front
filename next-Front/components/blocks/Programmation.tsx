@@ -1,8 +1,8 @@
 import { slugify } from "@/lib/slugify";
+import { Programmation as ProgrammationType } from "@/models/programmationModel/programmationModel";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Programmation as ProgrammationType } from "../../models/blocks";
 import { Card, CardContent, CardHeader } from "../ui/card";
 
 interface ProgrammationProps {

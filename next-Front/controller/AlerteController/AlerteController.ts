@@ -1,7 +1,7 @@
-import { Alerte } from "@/models/AlerteModel";
+import { Alerte } from "@/models/alertesModel/alerteModel";
 import axios from "axios";
 import { GetServerSideProps } from "next";
-import { BaseController } from "./BaseController";
+import { BaseController } from "../BaseController";
 
 export class AlerteController extends BaseController<Alerte> {
   private apiUrl: string;
