@@ -36,9 +36,7 @@ export class AboutController extends BaseController<AboutModel> {
 
     if (!about) {
       return {
-        props: {
-          error: "Failed to load About content",
-        },
+        notFound: true, // Redirige vers la page 404
       };
     }
 

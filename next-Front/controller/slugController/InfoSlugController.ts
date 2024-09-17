@@ -81,6 +81,13 @@ export class InfoSlugController extends BaseController<{
     const controller = new InfoSlugController();
     const data = await controller.getCardData(params?.slug as string);
 
+    // Si aucune carte n'est trouvée, renvoyer une 404
+    if (!data.card) {
+      return {
+        notFound: true, // Afficher la page 404 si aucune carte n'est trouvée
+      };
+    }
+
     return {
       props: {
         news: data.card, // Renommer "card" en "news" pour correspondre au composant

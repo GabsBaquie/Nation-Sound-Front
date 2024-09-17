@@ -59,9 +59,7 @@ export class ProgrammationController extends BaseController<any> {
 
     if (!programmation) {
       return {
-        props: {
-          error: "Failed to fetch programmation data",
-        },
+        notFound: true, // Retourne une page 404
       };
     }
 

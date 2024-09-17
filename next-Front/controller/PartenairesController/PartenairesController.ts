@@ -44,9 +44,7 @@ export class PartenaireController extends BaseController<Partenaire> {
 
     if (!partenaires) {
       return {
-        props: {
-          error: "Failed to fetch partenaires data",
-        },
+        notFound: true, // Retourne une page 404
       };
     }
 

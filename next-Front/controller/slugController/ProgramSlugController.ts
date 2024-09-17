@@ -31,7 +31,7 @@ export class ProgramSlugController extends BaseController<{ program: any }> {
     }
   }
 
-  // récupération des chemins
+  // Récupération des chemins
   async getPaths() {
     try {
       const programmation = await this.fetchLandingPageData();
@@ -94,16 +94,15 @@ export class ProgramSlugController extends BaseController<{ program: any }> {
     const controller = new ProgramSlugController();
     const data = await controller.getProgramData(params?.slug as string);
 
+    // Si aucune donnée de programme n'est trouvée, renvoyer une 404
     if (!data.program) {
       return {
-        props: {
-          error: "Failed to fetch program data",
-        },
+        notFound: true, // Afficher la page 404 si les données ne sont pas trouvées
       };
     }
 
     return {
-      props: data,
+      props: data, // Renvoie les données du programme comme props si elles existent
     };
   };
 }

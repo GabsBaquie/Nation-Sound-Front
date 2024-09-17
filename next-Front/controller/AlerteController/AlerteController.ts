@@ -14,8 +14,6 @@ export class AlerteController extends BaseController<Alerte> {
   async getAlertesData(): Promise<Alerte[] | null> {
     const fullUrl = `${this.apiUrl}/api/alertes/actives`;
 
-    console.log("fullUrl", fullUrl);
-
     try {
       const response = await axios.get(fullUrl);
       const alertes = response.data;
@@ -38,9 +36,7 @@ export class AlerteController extends BaseController<Alerte> {
 
     if (!alertes) {
       return {
-        props: {
-          error: "Failed to load alertes content",
-        },
+        notFound: true, // Redirige vers la page 404
       };
     }
 

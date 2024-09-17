@@ -36,9 +36,7 @@ export class BilletterieController extends BaseController<Billetterie> {
 
     if (!billetterie) {
       return {
-        props: {
-          error: "Failed to fetch billetterie data",
-        },
+        notFound: true, // Redirige vers la page 404
       };
     }
 

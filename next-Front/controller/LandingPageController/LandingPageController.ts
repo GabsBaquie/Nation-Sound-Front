@@ -108,5 +108,12 @@ export const getLandingPageData = async () => {
 // Utilisation dans getServerSideProps
 export const getServerSideProps: GetServerSideProps = async () => {
   const landingPageData = await getLandingPageData();
+
+  if (landingPageData.props.error) {
+    return {
+      notFound: true, // Redirige vers la page 404
+    };
+  }
+
   return landingPageData; // Retourne le résultat de la fonction
 };
