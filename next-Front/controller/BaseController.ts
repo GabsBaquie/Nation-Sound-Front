@@ -1,4 +1,4 @@
-import { Image } from "../models/blocks";
+import { Image } from "@/models/imageModel/imageModel";
 export class BaseController<T> {
   protected model: T | null = null;
   protected error: string | null = null;
