@@ -1,7 +1,7 @@
-import Button from "@/components/ui/button";
-import { HeroBlock as HeroBlockType } from "@/models/heroModel/heroModel";
-import Image from "next/image";
-import Link from "next/link";
+import Button from '@/components/ui/button';
+import { HeroBlock as HeroBlockType } from '@/models/heroModel/heroModel';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface HeroBlockProps {
   block: HeroBlockType;
@@ -27,9 +27,9 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
             {BtnLink?.map((btn, index) => (
               <Link
                 key={index}
-                href={btn.link || "#"}
-                target={btn.isExternal ? "_blank" : "_self"}
-                rel={btn.isExternal ? "noopener noreferrer" : ""}>
+                href={btn.link || '#'}
+                target={btn.isExternal ? '_blank' : '_self'}
+                rel={btn.isExternal ? 'noopener noreferrer' : ''}>
                 <Button size="sm" btnType={btn.type} asChild>
                   <span className="p-2 text-xs text-wrap md:text-nowrap md:text-base">
                     {btn.title}
@@ -50,7 +50,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
               width={550}
               height={650}
               priority
-              style={{ width: "100%", height: "auto", objectFit: "cover" }}
+              style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
             />
           </div>
         )}
@@ -65,7 +65,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
           <div
             className="float-left w-1/3 mr-12 lg:float-none md:w-[20%] lg:mx-12"
             style={{
-              shapeOutside: "circle()",
+              shapeOutside: 'circle()',
             }}>
             <Image
               src={section?.image.url}
@@ -73,7 +73,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
               width={200}
               height={200}
               priority
-              style={{ width: "100%", height: "auto" }}
+              style={{ width: '100%', height: 'auto' }}
             />
           </div>
         )}
@@ -87,9 +87,9 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
 
           <Link
             className="text-xs md:text-base"
-            href={section?.button?.link || "/About"}
-            target={section?.button?.isExternal ? "_blank" : "_self"}
-            rel={section?.button?.isExternal ? "noopener noreferrer" : ""}>
+            href={section?.button?.link || '/About'}
+            target={section?.button?.isExternal ? '_blank' : '_self'}
+            rel={section?.button?.isExternal ? 'noopener noreferrer' : ''}>
             <Button size="sm" btnType={section?.button?.type}>
               {section?.button?.title}
             </Button>

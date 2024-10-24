@@ -1,10 +1,10 @@
-import AlerteComponent from "@/components/Alerte"; // Assurez-vous que ce chemin est correct
-import NavBar from "@/components/NavBar/navBar";
-import { AlerteController } from "@/controller/AlerteController/AlerteController";
-import { Alerte } from "@/models/alertesModel/alerteModel";
-import { AppProps } from "next/app";
-import { useRouter } from "next/router";
-import "../app/globals.css";
+import AlerteComponent from '@/components/blocks/Alerte'; // Assurez-vous que ce chemin est correct
+import NavBar from '@/components/NavBar/navBar';
+import { AlerteController } from '@/controller/AlerteController/AlerteController';
+import { Alerte } from '@/models/alertesModel/alerteModel';
+import { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
+import '../app/globals.css';
 
 const MyApp = ({
   Component,
@@ -12,7 +12,7 @@ const MyApp = ({
   alertes,
 }: AppProps & { alertes: Alerte[] }) => {
   const router = useRouter();
-  const is404Page = router.pathname === "/404";
+  const is404Page = router.pathname === '/404';
 
   return (
     <div className="container">

@@ -4,8 +4,8 @@
   box-sizing: border-box;
 }
 
-@import "~slick-carousel/slick/slick.css";
-@import "~slick-carousel/slick/slick-theme.css";
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
 
 .slick-slide {
   padding: 5px 15px;
@@ -53,8 +53,8 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "monument-extended";
-  src: url("/fonts/MonumentExtended-Regular.otf") format("opentype");
+  font-family: 'monument-extended';
+  src: url('/fonts/MonumentExtended-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -86,7 +86,7 @@
 html,
 body {
   @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))];
-  font-family: "monument-extended", sans-serif;
+  font-family: 'monument-extended', sans-serif;
   scroll-behavior: smooth;
 }
 

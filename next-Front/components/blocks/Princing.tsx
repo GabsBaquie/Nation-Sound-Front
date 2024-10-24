@@ -1,14 +1,14 @@
-import { Princing as PrincingType } from "@/models/princingModel/princingModel";
-import Link from "next/link";
-import React from "react";
-import Button from "../ui/button";
+import { Princing as PrincingType } from '@/models/princingModel/princingModel';
+import Link from 'next/link';
+import React from 'react';
+import Button from '../ui/button';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../ui/card";
+} from '../ui/card';
 
 interface PrincingProps {
   block: PrincingType;
@@ -33,15 +33,15 @@ const PrincingBlock: React.FC<PrincingProps> = ({ block }) => {
             </CardHeader>
             <CardContent>
               <ul>
-                {card.services.map((service) => (
+                {card.services.map(service => (
                   <li key={service.id}>{service.description}</li>
                 ))}
               </ul>
             </CardContent>
             <CardFooter>
               {card.button && (
-                <Link href={card.button?.link || "/Programmation"} passHref>
-                  <Button btnType={card.button?.type} size={"sm"}>
+                <Link href={card.button?.link || '/Billetterie'} passHref>
+                  <Button btnType={card.button?.type} size={'sm'}>
                     {card.button?.title}
                   </Button>
                 </Link>

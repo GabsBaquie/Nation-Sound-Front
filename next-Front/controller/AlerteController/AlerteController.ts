@@ -1,14 +1,14 @@
-import { Alerte } from "@/models/alertesModel/alerteModel";
-import axios from "axios";
-import { GetServerSideProps } from "next";
-import { BaseController } from "../BaseController";
+import { Alerte } from '@/models/alertesModel/alerteModel';
+import axios from 'axios';
+import { GetServerSideProps } from 'next';
+import { BaseController } from '../BaseController';
 
 export class AlerteController extends BaseController<Alerte> {
   private apiUrl: string;
 
   constructor() {
     super(null as unknown as Alerte);
-    this.apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337";
+    this.apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337';
   }
 
   async getAlertesData(): Promise<Alerte[] | null> {
@@ -19,12 +19,12 @@ export class AlerteController extends BaseController<Alerte> {
       const alertes = response.data;
 
       if (!alertes) {
-        throw new Error("No alertes found");
+        throw new Error('No alertes found');
       }
 
       return alertes;
     } catch (error) {
-      console.error("Failed to fetch alertes data:", error);
+      console.error('Failed to fetch alertes data:', error);
       return null;
     }
   }
