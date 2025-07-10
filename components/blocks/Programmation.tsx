@@ -59,7 +59,7 @@ const Programmation: React.FC = () => {
               <CardContent className="p-0 h-40 sm:h-52">
                 <Image
                   src={`/image/Jour ${day.id}.png`}
-                  alt={day.title || day.name || `Jour ${day.id}`}
+                  alt={day.name || `Jour ${day.id}`}
                   width={300}
                   height={300}
                 />
