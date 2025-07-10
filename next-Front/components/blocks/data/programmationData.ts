@@ -1,10 +1,10 @@
-import { Programmation } from "@/models/programmationModel/programmationModel";
+/* import { Programmation } from "@/models/programmationModel/programmationModel";
 
 export const programmationData: Programmation = {
   id: 1,
   __component: "blocks.programmation",
-  title: "Programmation 2024",
-  text: "Découvrez la programmation de cette édition avec des artistes variés et des concerts inoubliables !",
+  title: "Programmation de cette année",
+  text: "Découvrez la programmation incroyable des artistes qui se produiront au Festival Music cette année.",
   card: [
     {
       id: 1,
@@ -61,4 +61,4 @@ export const programmationData: Programmation = {
       ],
     },
   ],
-};
+}; */
