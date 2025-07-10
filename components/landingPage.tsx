@@ -25,11 +25,11 @@ const LandingPage: React.FC<LandingBlocksProps> = ({ blocks }) => {
             case "blocks.hero":
               return <HeroBlock key={key} block={block} />;
             case "blocks.programmation":
-              return <ProgrammationBlock key={key} block={block} />;
+              return <ProgrammationBlock key={key} />;
             case "blocks.princing":
               return <PrincingBlock key={key} block={block} />;
             case "blocks.map":
-              return <Map key={key} block={block} />;
+              return <Map key={key} />;
             case "blocks.faq":
               return <FAQ key={key} block={block} />;
             case "blocks.infos":
