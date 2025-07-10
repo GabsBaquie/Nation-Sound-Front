@@ -5,12 +5,7 @@ dotenv.config();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "strapi-sound.up.railway.app",
-      },
-    ],
+    domains: ["nation-sounds.fr"],
   },
 };
 

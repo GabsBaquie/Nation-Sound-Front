@@ -1,7 +1,7 @@
 import "@/app/globals.css";
 import DaySection from "@/components/ProgramationPage/DaySection";
 import Filter from "@/components/ProgramationPage/Filter";
-import { DayAPI, fetchDays } from "@/lib/controllers/programmationController";
+import { DayAPI, fetchDays } from "@/controllers/programmationController";
 import { useEffect, useState } from "react";
 
 const Programmation: React.FC = () => {

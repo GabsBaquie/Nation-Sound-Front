@@ -1,4 +1,4 @@
-import { API_URL } from "@/lib/controllers/apiConfig";
+import { API_URL } from "./apiConfig";
 
 export type DayAPI = {
   id: number;

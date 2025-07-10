@@ -1,5 +1,5 @@
-import { API_URL } from "@/lib/controllers/apiConfig";
 import { useEffect, useState } from "react";
+import { API_URL } from "./apiConfig";
 
 // Type API POI (brut)
 export type APIPOI = {

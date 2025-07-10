@@ -1,6 +1,6 @@
 import "@/app/globals.css";
 import ConcertCard from "@/components/ProgramationPage/ConcertCard";
-import { fetchDayById } from "@/lib/controllers/programmationController";
+import { fetchDayById } from "@/controllers/programmationController";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 

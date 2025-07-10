@@ -1,6 +1,6 @@
 import AlerteComponent from "@/components/blocks/Alerte";
 import NavBar from "@/components/NavBar/navBar";
-import { useAlertes } from "@/lib/controllers/alertesController";
+import { useAlertes } from "@/controllers/alertesController";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import "../app/globals.css";

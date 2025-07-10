@@ -8,10 +8,8 @@ import Programmation from "@/components/blocks/Programmation";
 import { faqData } from "@/components/blocks/data/faqData";
 import { heroBlockData } from "@/components/blocks/data/heroBlockData";
 import { infoData } from "@/components/blocks/data/infoData";
-import { mapData } from "@/components/blocks/data/mapData";
 import { partenaireData } from "@/components/blocks/data/partenaireData";
 import { princingData } from "@/components/blocks/data/princingData";
-import { programmationData } from "@/components/blocks/data/programmationData";
 import LandingPage from "@/components/landingPage";
 import { LandingPageModel } from "@/models/LandingPageModel";
 import "../app/globals.css";
@@ -25,10 +23,10 @@ const Home = ({
     <>
       <HeroBlock block={heroBlockData} />
       <FAQ block={faqData} />
-      <Programmation block={programmationData} />
+      <Programmation />
       <PrincingBlock block={princingData} />
       <Info block={infoData} />
-      <Map block={mapData} />
+      <Map />
       <Partenaires block={partenaireData} />
       <div>
         {error && <p style={{ color: "red" }}>{error}</p>}

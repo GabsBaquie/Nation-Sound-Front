@@ -1,4 +1,4 @@
-/* import { Programmation } from "@/models/programmationModel/programmationModel";
+import { Programmation } from "@/models/programmationModel/programmationModel";
 
 export const programmationData: Programmation = {
   id: 1,
@@ -61,4 +61,4 @@ export const programmationData: Programmation = {
       ],
     },
   ],
-}; */
+};

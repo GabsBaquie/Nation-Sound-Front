@@ -1,4 +1,4 @@
-import { API_URL } from "@/lib/controllers/apiConfig";
+import { API_URL } from "@/controllers/apiConfig";
 import { Alerte } from "@/models/alertesModel/alerteModel";
 import { useEffect, useState } from "react";
 
