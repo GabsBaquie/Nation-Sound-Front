@@ -1,31 +1,14 @@
 import "@/app/globals.css";
 import DaySection from "@/components/ProgramationPage/DaySection";
 import Filter from "@/components/ProgramationPage/Filter";
-import { ProgrammationController } from "@/controller/ProgrammationController/ProgrammationController";
-import { GetServerSideProps } from "next";
+import { programmationPageData } from "@/components/blocks/data/programmationPageData";
 import { useState } from "react";
 
-interface ProgrammationProps {
-  programmation: any;
-  error?: string;
-}
-
-const Programmation: React.FC<ProgrammationProps> = ({
-  programmation,
-  error,
-}) => {
+const Programmation: React.FC = () => {
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const [selectedLieu, setSelectedLieu] = useState<string | null>(null);
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  if (!programmation) {
-    return <div>Programmation non trouvée</div>;
-  }
-
-  const { title, description, days } = programmation;
+  const { title, description, days } = programmationPageData;
 
   // Fonction pour filtrer les concerts par jour et lieu
   const filterConcerts = (day: any) => {
@@ -60,8 +43,8 @@ const Programmation: React.FC<ProgrammationProps> = ({
           days={days}
           selectedDay={selectedDay}
           selectedLieu={selectedLieu}
-          onDayChange={handleDayChange} // Envoie directement la valeur
-          onLieuChange={handleLieuChange} // Envoie directement la valeur
+          onDayChange={handleDayChange}
+          onLieuChange={handleLieuChange}
         />
 
         {/* Affichage des jours et concerts filtrés */}
@@ -88,9 +71,5 @@ const Programmation: React.FC<ProgrammationProps> = ({
     </div>
   );
 };
-
-// Récupération des données côté serveur
-export const getServerSideProps: GetServerSideProps =
-  ProgrammationController.getServerSideProps;
 
 export default Programmation;

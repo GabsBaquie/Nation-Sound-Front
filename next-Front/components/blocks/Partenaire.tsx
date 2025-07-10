@@ -10,13 +10,13 @@ interface PartnerProps {
 
 const Partenaires: React.FC<PartnerProps> = ({ block }) => {
   return (
-    <div className="my-6 overflow-hidden md:my-12">
+    <div className="overflow-hidden my-6 md:my-12">
       <h1 className="mb-4 text-2xl">Nos Partenaires</h1>
       <div className="relative">
         {/* Animation infinie */}
         <ScrollInfinityX>
           <Link href="/Partenaires">
-            <div className="flex items-center justify-around">
+            <div className="flex justify-around items-center">
               {block.partenaires.map((partenaire, index) => (
                 <div key={index}>
                   {partenaire.logo && (

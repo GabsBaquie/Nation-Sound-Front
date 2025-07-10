@@ -1,12 +1,10 @@
 import "@/app/globals.css";
 import ConcertCard from "@/components/ProgramationPage/ConcertCard"; // Importer ConcertCard
-import { ProgramSlugController } from "@/controller/slugController/ProgramSlugController";
 import {
   Concert,
   Day,
   ProgramCard,
 } from "@/models/programmationModel/programmationModel"; // Utilisation des types importés
-import { GetServerSideProps } from "next";
 import React from "react";
 
 interface ProgramPageProps {
@@ -36,7 +34,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({ program, error }) => {
 
               {/* Affichage des concerts associés pour chaque jour */}
               {day.concert && day.concert.length > 0 ? (
-                <div className="flex flex-wrap justify-around gap-4">
+                <div className="flex flex-wrap gap-4 justify-around">
                   {day.concert.map((concert: Concert, concertIndex: number) => (
                     <ConcertCard
                       className="w-[20rem]"
@@ -58,9 +56,5 @@ const ProgramPage: React.FC<ProgramPageProps> = ({ program, error }) => {
     </div>
   );
 };
-
-// Récupération des données côté serveur
-export const getServerSideProps: GetServerSideProps =
-  ProgramSlugController.getServerSideProps;
 
 export default ProgramPage;

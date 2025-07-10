@@ -1,14 +1,14 @@
-import { Princing as PrincingType } from '@/models/princingModel/princingModel';
-import Link from 'next/link';
-import React from 'react';
-import Button from '../ui/button';
+import { Princing as PrincingType } from "@/models/princingModel/princingModel";
+import Link from "next/link";
+import React from "react";
+import Button from "../ui/button";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '../ui/card';
+} from "../ui/card";
 
 interface PrincingProps {
   block: PrincingType;
@@ -24,7 +24,7 @@ const PrincingBlock: React.FC<PrincingProps> = ({ block }) => {
         <p className="text-sm md:text-lg">{text}</p>
       </div>
 
-      <div className="flex flex-col justify-center gap-8 md:flex-row">
+      <div className="flex flex-col gap-8 justify-center md:flex-row">
         {plan.map((card, index) => (
           <Card key={index} className="md:min-w-72 bg-primary">
             <CardHeader>
@@ -33,15 +33,15 @@ const PrincingBlock: React.FC<PrincingProps> = ({ block }) => {
             </CardHeader>
             <CardContent>
               <ul>
-                {card.services.map(service => (
+                {card.services.map((service) => (
                   <li key={service.id}>{service.description}</li>
                 ))}
               </ul>
             </CardContent>
             <CardFooter>
               {card.button && (
-                <Link href={card.button?.link || '/Billetterie'} passHref>
-                  <Button btnType={card.button?.type} size={'sm'}>
+                <Link href={card.button?.link || "/Billetterie"} passHref>
+                  <Button btnType={card.button?.type} size={"sm"}>
                     {card.button?.title}
                   </Button>
                 </Link>

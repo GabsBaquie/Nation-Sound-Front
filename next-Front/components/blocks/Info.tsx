@@ -1,8 +1,7 @@
-import { slugify } from "@/lib/slugify";
+import { Info as InfoType } from "@/models/infoModel/infoModel";
 import Image from "next/image";
 import Link from "next/link";
 import Slider from "react-slick";
-import { Info as InfoType } from "@/models/infoModel/infoModel";
 import Button from "../ui/button";
 import { Card, CardDescription, CardFooter, CardHeader } from "../ui/card";
 
@@ -22,7 +21,7 @@ const Info: React.FC<InfoProps> = ({ block }) => {
     arrows: false,
     responsive: [
       {
-        breakpoint: 1024, // Taille d'écran maximale pour ce paramètre
+        breakpoint: 1024,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -31,7 +30,7 @@ const Info: React.FC<InfoProps> = ({ block }) => {
         },
       },
       {
-        breakpoint: 600, // Taille d'écran maximale pour ce paramètre
+        breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -40,7 +39,7 @@ const Info: React.FC<InfoProps> = ({ block }) => {
         },
       },
       {
-        breakpoint: 480, // Taille d'écran maximale pour ce paramètre
+        breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -84,7 +83,7 @@ const Info: React.FC<InfoProps> = ({ block }) => {
               </CardHeader>
 
               <CardFooter>
-                <Link href={`/news/${slugify(card.title)}`} passHref>
+                <Link href={`/news/${card.id}`} passHref>
                   <Button>Voir plus</Button>
                 </Link>
               </CardFooter>

@@ -1,7 +1,7 @@
-import Button from '@/components/ui/button';
-import { HeroBlock as HeroBlockType } from '@/models/heroModel/heroModel';
-import Image from 'next/image';
-import Link from 'next/link';
+import Button from "@/components/ui/button";
+import { HeroBlock as HeroBlockType } from "@/models/heroModel/heroModel";
+import Image from "next/image";
+import Link from "next/link";
 
 interface HeroBlockProps {
   block: HeroBlockType;
@@ -11,10 +11,10 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
   // Accédez directement aux propriétés du modèle
   const { title, text, image, BtnLink, section } = block;
   return (
-    <section className="flex flex-col w-full h-full ml-2">
-      <div className="flex flex-wrap lg:flex-nowrap ">
+    <section className="flex flex-col ml-2 w-full h-full">
+      <div className="flex flex-wrap lg:flex-nowrap">
         {/* Contenu principal */}
-        <div className="flex flex-col w-screen max-w-md gap-4 mx-auto mt-16 text-center md:mt-12 align-center">
+        <div className="flex flex-col gap-4 mx-auto mt-16 w-screen max-w-md text-center md:mt-12 align-center">
           <div>
             <h1 className="p-2 text-lg font-bold lg:mb-4 md:text-4xl">
               {title}
@@ -23,13 +23,14 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
           </div>
 
           {/* Boutons */}
-          <div className="flex flex-row justify-center space-x-4 ">
+          <div className="flex flex-row justify-center space-x-4">
             {BtnLink?.map((btn, index) => (
               <Link
                 key={index}
-                href={btn.link || '#'}
-                target={btn.isExternal ? '_blank' : '_self'}
-                rel={btn.isExternal ? 'noopener noreferrer' : ''}>
+                href={btn.link || "#"}
+                target={btn.isExternal ? "_blank" : "_self"}
+                rel={btn.isExternal ? "noopener noreferrer" : ""}
+              >
                 <Button size="sm" btnType={btn.type} asChild>
                   <span className="p-2 text-xs text-wrap md:text-nowrap md:text-base">
                     {btn.title}
@@ -42,7 +43,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
 
         {/* Image hero */}
         {image && (
-          <div className="relative items-center max-w-xl mx-auto my-10 lg:m-0 md:w-full min-w-sm">
+          <div className="relative items-center mx-auto my-10 max-w-xl lg:m-0 md:w-full min-w-sm">
             <Image
               className="lg:absolute top-8 lg:top-[-50px] z-10 "
               src={image.url}
@@ -50,7 +51,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
               width={550}
               height={650}
               priority
-              style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+              style={{ width: "100%", height: "auto", objectFit: "cover" }}
             />
           </div>
         )}
@@ -65,15 +66,16 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
           <div
             className="float-left w-1/3 mr-12 lg:float-none md:w-[20%] lg:mx-12"
             style={{
-              shapeOutside: 'circle()',
-            }}>
+              shapeOutside: "circle()",
+            }}
+          >
             <Image
               src={section?.image.url}
               alt={section.image.alternativeText}
               width={200}
               height={200}
               priority
-              style={{ width: '100%', height: 'auto' }}
+              style={{ width: "100%", height: "auto" }}
             />
           </div>
         )}
@@ -87,9 +89,10 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
 
           <Link
             className="text-xs md:text-base"
-            href={section?.button?.link || '/About'}
-            target={section?.button?.isExternal ? '_blank' : '_self'}
-            rel={section?.button?.isExternal ? 'noopener noreferrer' : ''}>
+            href={section?.button?.link || "/About"}
+            target={section?.button?.isExternal ? "_blank" : "_self"}
+            rel={section?.button?.isExternal ? "noopener noreferrer" : ""}
+          >
             <Button size="sm" btnType={section?.button?.type}>
               {section?.button?.title}
             </Button>

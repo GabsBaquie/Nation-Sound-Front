@@ -1,28 +1,11 @@
+import { billetteriePageData } from "@/components/blocks/data/billetteriePageData";
 import Button from "@/components/ui/button";
 import GenericCard from "@/components/ui/GenericCard";
-import { BilletterieController } from "@/controller/BilletterieController/BilletterieController";
-import { Billetterie } from "@/models/BilletterieModel/BilletterieModel";
-import { GetServerSideProps } from "next";
 import Link from "next/link";
 import "../app/globals.css";
 
-interface BilletteriePageProps {
-  billetterie: Billetterie | null;
-  error?: string;
-}
-
-const BilletteriePage: React.FC<BilletteriePageProps> = ({
-  billetterie,
-  error,
-}) => {
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  if (!billetterie) {
-    return <div>Billetterie not found</div>;
-  }
-
+const BilletteriePage: React.FC = () => {
+  const billetterie = billetteriePageData;
   // Récupérer le bloc Princing
   const princingBlock = billetterie.landing_page.blocks.find(
     (block: any) => block.__component === "blocks.princing"
@@ -59,7 +42,8 @@ const BilletteriePage: React.FC<BilletteriePageProps> = ({
                       <Link href={plan.button?.link || "#"} passHref>
                         <Button
                           btnType={plan.button?.type || "primary"}
-                          size={"sm"}>
+                          size={"sm"}
+                        >
                           {plan.button?.title || "Buy Now"}
                         </Button>
                       </Link>
@@ -74,9 +58,5 @@ const BilletteriePage: React.FC<BilletteriePageProps> = ({
     </div>
   );
 };
-
-// Récupération des données côté serveur
-export const getServerSideProps: GetServerSideProps =
-  BilletterieController.getServerSideProps;
 
 export default BilletteriePage;

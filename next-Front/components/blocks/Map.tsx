@@ -1,82 +1,110 @@
-import React, { useEffect, useState } from "react";
-import { Map as MapType } from "@/models/mapModel/mapModel";
+import { MapPOI, usePOIs } from "@/lib/controllers/mapController";
+import { useEffect, useMemo, useState } from "react";
 import { Card } from "../ui/card";
 import GoogleMapContainer from "./Map/GoogleMapContainer";
 import MapFilters from "./Map/MapFilters";
 
-interface MapProps {
-  block: MapType;
-}
+const getCenterOfPOIs = (pois: MapPOI[]): { lat: number; lng: number } => {
+  if (!pois.length) return { lat: 48.8566, lng: 2.3522 };
+  const sum = pois.reduce<{
+    lat: number;
+    lng: number;
+  }>(
+    (acc, poi) => {
+      acc.lat += poi.POI.coordinates.lat;
+      acc.lng += poi.POI.coordinates.lng;
+      return acc;
+    },
+    { lat: 0, lng: 0 }
+  );
+  return {
+    lat: sum.lat / pois.length,
+    lng: sum.lng / pois.length,
+  };
+};
 
-const Map: React.FC<MapProps> = ({ block }) => {
-  const { title, text, POI } = block;
+const Map = () => {
+  const { pois, isLoading, hasError } = usePOIs();
 
   // Extraire les types de POI uniques du tableau POI de manière dynamique
-  const uniquePOITypes = [...new Set(POI?.map((poi) => poi.Type))];
+  const uniquePOITypes = useMemo(
+    () =>
+      [
+        ...new Set((pois as MapPOI[]).map((poi: MapPOI) => poi.Type)),
+      ] as string[],
+    [pois]
+  );
 
   // État initial pour les filtres : tous les types de POI sont cochés par défaut
   const [filters, setFilters] = useState<string[]>(uniquePOITypes);
 
-  // Centre initial de la carte basé sur le premier POI
-  const defaultCenter = POI?.[0]?.POI?.coordinates || {
-    lat: 48.8566,
-    lng: 2.3522,
-  };
+  // POIs filtrés selon les filtres actifs
+  const filteredPOIs = useMemo(
+    () =>
+      (pois as MapPOI[]).filter((poi: MapPOI) => filters.includes(poi.Type)),
+    [pois, filters]
+  );
 
-  // État pour gérer le centre et le zoom de la carte
-  const [mapCenter, setMapCenter] = useState(defaultCenter);
-  const [mapZoom, setMapZoom] = useState(20); // Zoom par défaut
+  // Centre dynamique basé sur les POIs filtrés
+  const center = useMemo(() => getCenterOfPOIs(filteredPOIs), [filteredPOIs]);
+  const [mapCenter, setMapCenter] = useState(center);
+  const [mapZoom, setMapZoom] = useState(20);
+
+  // Met à jour les filtres si les types changent (quand les POIs arrivent)
+  useEffect(() => {
+    setFilters(uniquePOITypes);
+  }, [uniquePOITypes.length]);
+
+  // Recentrer la carte quand les POIs filtrés changent
+  useEffect(() => {
+    setMapCenter(center);
+  }, [center.lat, center.lng]);
 
   // Détecter si l'écran est mobile ou non et ajuster le zoom en conséquence
   useEffect(() => {
     const updateZoom = () => {
-      if (window.innerWidth < 768) {
-        setMapZoom(19.3); // Zoom plus faible pour mobile
-      } else {
-        setMapZoom(20); // Zoom plus important pour les écrans plus larges
-      }
+      setMapZoom(window.innerWidth < 768 ? 18.3 : 18);
     };
-
-    // Exécuter au montage et sur changement de taille de l'écran
     window.addEventListener("resize", updateZoom);
-    updateZoom(); // Exécuter dès le premier chargement
-
-    // Nettoyage de l'event listener lors du démontage
+    updateZoom();
     return () => window.removeEventListener("resize", updateZoom);
   }, []);
 
-  // Gérer le clic sur un marqueur pour zoomer
   const handleMarkerClick = (lat: number, lng: number) => {
     setMapCenter({ lat, lng });
-    setMapZoom(21); // Zoomer sur le marqueur cliqué
+    setMapZoom(21);
   };
 
-  // Gérer les changements de filtre
   const handleFilterChange = (type: string) => {
-    setFilters(
-      (prevFilters) =>
-        prevFilters.includes(type)
-          ? prevFilters.filter((filter) => filter !== type) // Décocher : retirer des filtres
-          : [...prevFilters, type] // Cocher : ajouter aux filtres
+    setFilters((prevFilters) =>
+      prevFilters.includes(type)
+        ? prevFilters.filter((filter) => filter !== type)
+        : [...prevFilters, type]
     );
   };
+
+  if (isLoading)
+    return <div className="text-center">Chargement de la carte...</div>;
+  if (hasError)
+    return (
+      <div className="text-center text-red-500">
+        Erreur lors du chargement des POIs
+      </div>
+    );
 
   return (
     <div className="my-16">
       <div className="mb-4">
-        <h2 className="mb-4 text-xl md:text-2xl">{title}</h2>
-        <h2>{text}</h2>
+        <h2 className="mb-4 text-xl md:text-2xl">Plan du festival</h2>
       </div>
-
-      {/* Affichage de la carte */}
-      <Card className="max-w-4xl mx-auto size-full">
+      <Card className="mx-auto max-w-4xl size-full">
         <MapFilters
           uniquePOITypes={uniquePOITypes}
           filters={filters}
           handleFilterChange={handleFilterChange}
         />
         <GoogleMapContainer
-          POI={POI ?? []}
+          POI={pois}
           filters={filters}
           mapCenter={mapCenter}
           mapZoom={mapZoom}
