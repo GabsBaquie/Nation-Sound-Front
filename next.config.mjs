@@ -11,12 +11,6 @@ const nextConfig = {
     return [
       {
         source: "/(.*)", // Appliquer à toutes les routes
-        headers: [
-          {
-            key: "Referrer-Policy",
-            value: "origin", // ou "no-referrer", "strict-origin", etc.
-          },
-        ],
       },
     ];
   },
