@@ -7,13 +7,5 @@ const nextConfig = {
   images: {
     domains: ["nation-sounds.fr"],
   },
-  async headers() {
-    return [
-      {
-        source: "/(.*)", // Appliquer à toutes les routes
-      },
-    ];
-  },
 };
-
 export default nextConfig;
