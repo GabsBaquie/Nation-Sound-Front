@@ -1,20 +1,28 @@
 import "@/app/globals.css";
 import DaySection from "@/components/ProgramationPage/DaySection";
 import Filter from "@/components/ProgramationPage/Filter";
-import { programmationPageData } from "@/components/blocks/data/programmationPageData";
-import { useState } from "react";
+import { DayAPI, fetchDays } from "@/lib/controllers/programmationController";
+import { useEffect, useState } from "react";
 
 const Programmation: React.FC = () => {
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const [selectedLieu, setSelectedLieu] = useState<string | null>(null);
+  const [days, setDays] = useState<DayAPI[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const { title, description, days } = programmationPageData;
+  useEffect(() => {
+    fetchDays().then((data) => {
+      setDays(data);
+      setIsLoading(false);
+    });
+  }, []);
 
   // Fonction pour filtrer les concerts par jour et lieu
   const filterConcerts = (day: any) => {
-    return day.concert.filter((concert: any) => {
-      const dayMatch = selectedDay ? day.title === selectedDay : true;
-      const lieuMatch = selectedLieu ? concert.lieu === selectedLieu : true;
+    if (!Array.isArray(day.concerts)) return [];
+    return day.concerts.filter((concert: any) => {
+      const dayMatch = selectedDay ? day.name === selectedDay : true;
+      const lieuMatch = selectedLieu ? concert.location === selectedLieu : true;
       return dayMatch && lieuMatch;
     });
   };
@@ -28,14 +36,16 @@ const Programmation: React.FC = () => {
     setSelectedLieu(value);
   };
 
+  if (isLoading) return <div>Chargement...</div>;
+
   return (
     <div>
       <div className="pt-20 md:pt-0">
         <h1 className="my-2 text-2xl text-center md:text-4xl md:my-6">
-          {title}
+          Programmation
         </h1>
         <p className="mb-4 text-lg text-center md:mb-12 md:text-xl">
-          {description}
+          Découvrez la programmation du festival jour par jour.
         </p>
 
         {/* Filtres */}

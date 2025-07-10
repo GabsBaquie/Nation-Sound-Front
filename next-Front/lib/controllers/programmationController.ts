@@ -1,13 +1,10 @@
 import { API_URL } from "@/lib/controllers/apiConfig";
-import { Image } from "@/models/imageModel/imageModel";
 
 export type DayAPI = {
   id: number;
-  name?: string;
-  title?: string;
+  name: string;
   date: string;
   description?: string;
-  image?: Image;
   concerts?: any[];
 };
 
@@ -17,10 +14,9 @@ export const fetchDays = async (): Promise<DayAPI[]> => {
   const data = await res.json();
   return data.map((day: any) => ({
     id: day.id,
-    name: day.name || day.title,
+    name: day.title,
     date: day.date,
     description: day.description,
-    image: day.image,
     concerts: day.concerts,
   }));
 };

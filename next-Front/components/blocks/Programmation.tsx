@@ -16,6 +16,7 @@ const Programmation: React.FC = () => {
       setHasError(false);
       try {
         const data = await fetchDays();
+        console.log("DAYS API:", data); // ← Ajoute ce log
         setDays(data);
       } catch {
         setHasError(true);
@@ -56,27 +57,14 @@ const Programmation: React.FC = () => {
               onClick={() => router.push(`/program/${day.id}`)}
             >
               <CardContent className="p-0 h-40 sm:h-52">
-                {day.image && day.image.url && (
-                  <Image
-                    src={day.image.url}
-                    alt={day.image.alternativeText || day.name}
-                    width={350}
-                    height={350}
-                  />
-                )}
+                <Image
+                  src={`/image/Jour ${day.id}.png`}
+                  alt={day.title || day.name || `Jour ${day.id}`}
+                  width={300}
+                  height={300}
+                />
               </CardContent>
-              <CardHeader className="bg-primary min-h-20">
-                <div className="text-center text-white">
-                  <div className="text-lg font-bold">{day.name}</div>
-                  <div className="text-md">
-                    {new Date((day.date || "").toString()).toLocaleDateString(
-                      "fr-FR",
-                      { year: "numeric", month: "long", day: "numeric" }
-                    )}
-                  </div>
-                  <div className="mt-2 text-xs">{day.description}</div>
-                </div>
-              </CardHeader>
+              <CardHeader className="bg-primary min-h-20"></CardHeader>
             </Card>
           ))
         ) : (
