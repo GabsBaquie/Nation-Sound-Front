@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { ASSETS_URL } from "@/controllers/apiConfig";
 import React from "react";
 
 interface ConcertCardProps {
@@ -6,8 +7,6 @@ interface ConcertCardProps {
   isPrimary: boolean;
   className?: string;
 }
-
-const ASSETS_URL = process.env.NEXT_PUBLIC_ASSETS_URL || "";
 
 const ConcertCard: React.FC<ConcertCardProps> = ({
   concert,
