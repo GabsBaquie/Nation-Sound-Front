@@ -27,7 +27,7 @@ export type MapPOI = {
 
 export class MapController {
   static async fetchPOIs(): Promise<MapPOI[]> {
-    const res = await fetch(`${API_URL}/api/pois`);
+    const res = await fetch(`${API_URL}/pois`);
     if (!res.ok) throw new Error("Erreur API POIs");
     const data: APIPOI[] = await res.json();
     // Mapping vers le format attendu par la carte

@@ -9,7 +9,7 @@ export type DayAPI = {
 };
 
 export const fetchDays = async (): Promise<DayAPI[]> => {
-  const res = await fetch(`${API_URL}/api/days`);
+  const res = await fetch(`${API_URL}/days`);
   if (!res.ok) throw new Error("Erreur API Days");
   const data = await res.json();
   return data.map((day: any) => ({
@@ -22,7 +22,7 @@ export const fetchDays = async (): Promise<DayAPI[]> => {
 };
 
 export const fetchDayById = async (id: string | number): Promise<DayAPI> => {
-  const res = await fetch(`${API_URL}/api/days/${id}`);
+  const res = await fetch(`${API_URL}/days/${id}`);
   if (!res.ok) throw new Error("Erreur API Day");
   return await res.json();
 };

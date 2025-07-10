@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export class AlertesController {
   static async fetchAlertes(): Promise<Alerte[]> {
-    const res = await fetch(`${API_URL}/api/securityInfos`);
+    const res = await fetch(`${API_URL}/securityInfos`);
     if (!res.ok) throw new Error("Erreur API alertes");
     return res.json();
   }
