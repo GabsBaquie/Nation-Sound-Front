@@ -11,7 +11,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
   // Accédez directement aux propriétés du modèle
   const { title, text, image, BtnLink, section } = block;
   return (
-    <section className="flex flex-col ml-2 w-full h-full">
+    <section className="flex flex-col mb-12 ml-2 w-full h-full">
       <div className="flex flex-wrap lg:flex-nowrap">
         {/* Contenu principal */}
         <div className="flex flex-col gap-4 mx-auto mt-16 w-screen max-w-md text-center md:mt-12 align-center">

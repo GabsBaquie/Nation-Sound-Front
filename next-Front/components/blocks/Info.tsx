@@ -63,7 +63,7 @@ const Info: React.FC<InfoProps> = ({ block }) => {
   );
 
   return (
-    <div className="mt-12 md:mt-24 lg:mt-16">
+    <div className="justify-center mx-auto mt-12 max-w-4xl md:mt-24 lg:mt-16">
       <h2 className="mb-4 text-xl md:text-2xl">{block.title}</h2>
       <p className="mb-4 text-sm md:text-lg">{block.text}</p>
       <div>

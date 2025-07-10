@@ -3,8 +3,8 @@ import { Info } from "@/models/infoModel/infoModel";
 export const infoData: Info = {
   id: 1,
   __component: "blocks.infos",
-  title: "Infos pratiques",
-  text: "Retrouvez ici toutes les informations essentielles pour profiter pleinement du festival.",
+  title: "Actualités",
+  text: "Suivez les dernières nouvelles du festival",
   carrousel: [
     {
       id: 1,

@@ -93,7 +93,7 @@ const Map = () => {
     );
 
   return (
-    <div className="my-16">
+    <div className="mx-auto my-16 max-w-4xl">
       <div className="mb-4">
         <h2 className="mb-4 text-xl md:text-2xl">Plan du festival</h2>
       </div>
