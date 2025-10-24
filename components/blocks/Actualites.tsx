@@ -1,17 +1,21 @@
-import { useAlertes } from "@/controllers/alertesController";
-import { Info as InfoType } from "@/models/infoModel/infoModel";
+import { useActualites } from "@/controllers/actualitesController";
+import { Actualite } from "@/models/actualitesModel/actualiteModel";
 import Image from "next/image";
 import Link from "next/link";
 import Slider from "react-slick";
 import Button from "../ui/button";
 import { Card, CardDescription, CardFooter, CardHeader } from "../ui/card";
 
-interface InfoProps {
-  block: InfoType;
+interface ActualitesProps {
+  title?: string;
+  text?: string;
 }
 
-const Info: React.FC<InfoProps> = ({ block }) => {
-  const { alertes, isLoading, hasError } = useAlertes();
+const Actualites: React.FC<ActualitesProps> = ({
+  title = "Actualités",
+  text = "Découvrez les dernières actualités du festival",
+}) => {
+  const { actualites, isLoading, hasError } = useActualites();
 
   const settings = {
     dots: true,
@@ -58,21 +62,18 @@ const Info: React.FC<InfoProps> = ({ block }) => {
     "Peu important",
   ];
 
-  // Utiliser les données de l'API si disponibles, sinon les données statiques
-  const carrouselData =
-    alertes.length > 0
-      ? alertes.map((alerte) => ({
-          id: alerte.id,
-          title: alerte.title,
-          description: alerte.description,
-          text: alerte.description,
-          image: {
-            url: "/images/alert-icon.webp",
-            alternativeText: "Alerte de sécurité",
-          },
-          importance: alerte.urgence ? "Très important" : "Important",
-        }))
-      : block.carrousel;
+  // Utiliser les données de l'API
+  const carrouselData = actualites.map((actualite: Actualite) => ({
+    id: actualite.id,
+    title: actualite.title,
+    description: actualite.description,
+    text: actualite.description,
+    image: actualite.image || {
+      url: "/images/news-icon.webp",
+      alternativeText: "Actualité",
+    },
+    importance: actualite.importance || "Modéré",
+  }));
 
   // Trier les éléments du carrousel par importance
   const sortedCarrousel = [...carrouselData].sort(
@@ -86,7 +87,7 @@ const Info: React.FC<InfoProps> = ({ block }) => {
       <div className="justify-center mx-auto mt-12 max-w-4xl md:mt-24 lg:mt-16">
         <div className="py-8 text-center">
           <div className="inline-block w-8 h-8 rounded-full border-b-2 animate-spin border-primary"></div>
-          <p className="mt-2">Chargement des informations...</p>
+          <p className="mt-2">Chargement des actualités...</p>
         </div>
       </div>
     );
@@ -96,8 +97,8 @@ const Info: React.FC<InfoProps> = ({ block }) => {
     return (
       <div className="justify-center mx-auto mt-12 max-w-4xl md:mt-24 lg:mt-16">
         <div className="py-8 text-center text-red-500">
-          <p>Erreur lors du chargement des informations</p>
-          <p className="mt-2 text-sm">Affichage des informations par défaut</p>
+          <p>Erreur lors du chargement des actualités</p>
+          <p className="mt-2 text-sm">Affichage des actualités par défaut</p>
         </div>
       </div>
     );
@@ -105,8 +106,8 @@ const Info: React.FC<InfoProps> = ({ block }) => {
 
   return (
     <div className="justify-center mx-auto mt-12 max-w-4xl md:mt-24 lg:mt-16">
-      <h2 className="mb-4 text-xl md:text-2xl">{block.title}</h2>
-      <p className="mb-4 text-sm md:text-lg">{block.text}</p>
+      <h2 className="mb-4 text-xl md:text-2xl">{title}</h2>
+      <p className="mb-4 text-sm md:text-lg">{text}</p>
       <div>
         <Slider {...settings}>
           {sortedCarrousel.map((card) => (
@@ -136,4 +137,4 @@ const Info: React.FC<InfoProps> = ({ block }) => {
   );
 };
 
-export default Info;
+export default Actualites;

@@ -1,9 +1,9 @@
 import React from "react";
 import { Block } from "../models/blocks";
+import Actualites from "./blocks/Actualites";
 import FAQ from "./blocks/FAQ";
 import Footer from "./blocks/Footer";
 import HeroBlock from "./blocks/HeroBlock";
-import Info from "./blocks/Info";
 import MapBlock from "./blocks/MapBlock";
 import Partenaires from "./blocks/Partenaire";
 import PrincingBlock from "./blocks/Princing";
@@ -33,7 +33,9 @@ const LandingPage: React.FC<LandingBlocksProps> = ({ blocks }) => {
             case "blocks.faq":
               return <FAQ key={key} block={block} />;
             case "blocks.infos":
-              return <Info key={key} block={block} />;
+              return (
+                <Actualites key={key} title={block.title} text={block.text} />
+              );
             case "blocks.partenaire":
               return <Partenaires key={key} block={block} />;
             case "blocks.footer":

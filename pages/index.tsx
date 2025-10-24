@@ -1,6 +1,6 @@
+import Info from "@/components/blocks/Actualites";
 import FAQ from "@/components/blocks/FAQ";
 import HeroBlock from "@/components/blocks/HeroBlock";
-import Info from "@/components/blocks/Info";
 import Map from "@/components/blocks/Map";
 import Partenaires from "@/components/blocks/Partenaire";
 import PrincingBlock from "@/components/blocks/Princing";
