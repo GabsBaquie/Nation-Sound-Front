@@ -1,4 +1,4 @@
-import Info from "@/components/blocks/Actualites";
+import Actualites from "@/components/blocks/Actualites";
 import FAQ from "@/components/blocks/FAQ";
 import HeroBlock from "@/components/blocks/HeroBlock";
 import Map from "@/components/blocks/Map";
@@ -7,7 +7,6 @@ import PrincingBlock from "@/components/blocks/Princing";
 import Programmation from "@/components/blocks/Programmation";
 import { faqData } from "@/components/blocks/data/faqData";
 import { heroBlockData } from "@/components/blocks/data/heroBlockData";
-import { infoData } from "@/components/blocks/data/infoData";
 import { partenaireData } from "@/components/blocks/data/partenaireData";
 import { princingData } from "@/components/blocks/data/princingData";
 import LandingPage from "@/components/landingPage";
@@ -25,7 +24,7 @@ const Home = ({
       <FAQ block={faqData} />
       <Programmation />
       <PrincingBlock block={princingData} />
-      <Info block={infoData} />
+      <Actualites />
       <Map />
       <Partenaires block={partenaireData} />
       <div>

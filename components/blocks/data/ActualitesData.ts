@@ -1,4 +1,4 @@
-import { Info } from "@/models/infoModel/infoModel";
+/* import { Info } from "@/models/infoModel/infoModel";
 
 export const infoData: Info = {
   id: 1,
@@ -41,3 +41,4 @@ export const infoData: Info = {
     },
   ],
 };
+ */

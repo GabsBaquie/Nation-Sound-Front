@@ -55,32 +55,16 @@ const Actualites: React.FC<ActualitesProps> = ({
     ],
   };
 
-  const importanceOrder = [
-    "Très important",
-    "Important",
-    "Modéré",
-    "Peu important",
-  ];
-
   // Utiliser les données de l'API
   const carrouselData = actualites.map((actualite: Actualite) => ({
     id: actualite.id,
     title: actualite.title,
     description: actualite.description,
-    text: actualite.description,
     image: actualite.image || {
       url: "/images/news-icon.webp",
       alternativeText: "Actualité",
     },
-    importance: actualite.importance || "Modéré",
   }));
-
-  // Trier les éléments du carrousel par importance
-  const sortedCarrousel = [...carrouselData].sort(
-    (a, b) =>
-      importanceOrder.indexOf(a.importance ?? "Peu important") -
-      importanceOrder.indexOf(b.importance ?? "Peu important")
-  );
 
   if (isLoading) {
     return (
@@ -110,7 +94,7 @@ const Actualites: React.FC<ActualitesProps> = ({
       <p className="mb-4 text-sm md:text-lg">{text}</p>
       <div>
         <Slider {...settings}>
-          {sortedCarrousel.map((card) => (
+          {carrouselData.map((card) => (
             <Card key={card.id}>
               <CardHeader>
                 <Image
