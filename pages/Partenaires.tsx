@@ -4,7 +4,7 @@ import { usePartenaires } from "@/controllers/partenairesController";
 import Image from "next/image";
 
 // Composant qui affiche les partenaires triés par type
-const Partenaire = () => {
+const Partenaires = () => {
   const { partenaires, isLoading, hasError } = usePartenaires();
   const renderPartenaires = (partenaires: any[]) => {
     // Si partenaires est indéfini ou vide, renvoyer une section vide ou un message
@@ -76,4 +76,4 @@ const Partenaire = () => {
   );
 };
 
-export default Partenaire;
+export default Partenaires;
