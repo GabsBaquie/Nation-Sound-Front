@@ -1,8 +1,13 @@
 import { MapPOI, usePOIs } from "@/controllers/mapController";
+import { Map } from "@/models/mapModel/mapModel";
 import { useEffect, useMemo, useState } from "react";
 import { Card } from "../ui/card";
 import GoogleMapContainer from "./Map/GoogleMapContainer";
 import MapFilters from "./Map/MapFilters";
+
+interface MapBlockProps {
+  block?: Map;
+}
 
 const getCenterOfPOIs = (pois: MapPOI[]): { lat: number; lng: number } => {
   if (!pois.length) return { lat: 48.8566, lng: 2.3522 };
@@ -23,7 +28,7 @@ const getCenterOfPOIs = (pois: MapPOI[]): { lat: number; lng: number } => {
   };
 };
 
-const Map = () => {
+const MapBlock: React.FC<MapBlockProps> = ({ block }) => {
   const { pois, isLoading, hasError } = usePOIs();
 
   // Extraire les types de POI uniques du tableau POI de manière dynamique
@@ -53,12 +58,12 @@ const Map = () => {
   // Met à jour les filtres si les types changent (quand les POIs arrivent)
   useEffect(() => {
     setFilters(uniquePOITypes);
-  }, [uniquePOITypes.length]);
+  }, [uniquePOITypes]);
 
   // Recentrer la carte quand les POIs filtrés changent
   useEffect(() => {
     setMapCenter(center);
-  }, [center.lat, center.lng]);
+  }, [center]);
 
   // Détecter si l'écran est mobile ou non et ajuster le zoom en conséquence
   useEffect(() => {
@@ -84,18 +89,30 @@ const Map = () => {
   };
 
   if (isLoading)
-    return <div className="text-center">Chargement de la carte...</div>;
+    return (
+      <div className="py-8 text-center">
+        <div className="inline-block w-8 h-8 rounded-full border-b-2 animate-spin border-primary"></div>
+        <p className="mt-2">Chargement de la carte...</p>
+      </div>
+    );
+
   if (hasError)
     return (
-      <div className="text-center text-red-500">
-        Erreur lors du chargement des POIs
+      <div className="py-8 text-center text-red-500">
+        <p>Erreur lors du chargement des POIs</p>
+        <p className="mt-2 text-sm">Veuillez réessayer plus tard</p>
       </div>
     );
 
   return (
     <div className="mx-auto my-16 max-w-4xl">
       <div className="mb-4">
-        <h2 className="mb-4 text-xl md:text-2xl">Plan du festival</h2>
+        <h2 className="mb-4 text-xl md:text-2xl">
+          {block?.title || "Plan du festival"}
+        </h2>
+        {block?.text && (
+          <p className="text-sm text-gray-600 md:text-base">{block.text}</p>
+        )}
       </div>
       <Card className="mx-auto max-w-4xl size-full">
         <MapFilters
@@ -115,4 +132,4 @@ const Map = () => {
   );
 };
 
-export default Map;
+export default MapBlock;

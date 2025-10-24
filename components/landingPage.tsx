@@ -4,10 +4,10 @@ import Actualites from "./blocks/Actualites";
 import FAQ from "./blocks/FAQ";
 import Footer from "./blocks/Footer";
 import HeroBlock from "./blocks/HeroBlock";
-import MapBlock from "./blocks/MapBlock";
+import Map from "./blocks/Map";
 import Partenaires from "./blocks/Partenaire";
 import PrincingBlock from "./blocks/Princing";
-import ProgrammationBlock from "./blocks/ProgrammationBlock";
+import Programmation from "./blocks/Programmation";
 
 interface LandingBlocksProps {
   blocks: Block[];
@@ -25,11 +25,11 @@ const LandingPage: React.FC<LandingBlocksProps> = ({ blocks }) => {
             case "blocks.hero":
               return <HeroBlock key={key} block={block} />;
             case "blocks.programmation":
-              return <ProgrammationBlock key={key} block={block} />;
+              return <Programmation key={key} />;
             case "blocks.princing":
               return <PrincingBlock key={key} block={block} />;
             case "blocks.map":
-              return <MapBlock key={key} block={block} />;
+              return <Map key={key} />;
             case "blocks.faq":
               return <FAQ key={key} block={block} />;
             case "blocks.infos":
@@ -37,11 +37,10 @@ const LandingPage: React.FC<LandingBlocksProps> = ({ blocks }) => {
                 <Actualites key={key} title={block.title} text={block.text} />
               );
             case "blocks.partenaire":
-              return <Partenaires key={key} block={block} />;
+              return <Partenaires key={key} />;
             case "blocks.footer":
               return <Footer key={key} block={block} />;
             default:
-              console.log("Bloc non reconnu:", block);
               return null;
           }
         } catch (error) {

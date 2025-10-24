@@ -84,7 +84,7 @@ const Programmation: React.FC = () => {
                 <div key={day.id} className="px-2">
                   <Card
                     className="cursor-pointer cardhover"
-                    onClick={() => router.push(`/program/${day.id}`)}
+                    onClick={() => router.push(`/Programmation/${day.id}`)}
                   >
                     <CardContent className="p-0 h-40 sm:h-52">
                       <Image
@@ -106,7 +106,7 @@ const Programmation: React.FC = () => {
               <Card
                 key={day.id}
                 className="cursor-pointer cardhover"
-                onClick={() => router.push(`/program/${day.id}`)}
+                onClick={() => router.push(`/Programmation/${day.id}`)}
               >
                 <CardContent className="p-0 h-40 sm:h-52">
                   <Image

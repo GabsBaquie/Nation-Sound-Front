@@ -8,6 +8,12 @@ export class ActualitesController {
     if (!res.ok) throw new Error("Erreur API actualités");
     return res.json();
   }
+
+  static async fetchActualiteById(id: string): Promise<Actualite> {
+    const res = await fetch(`${API_URL}/actualites/${id}`);
+    if (!res.ok) throw new Error("Erreur API actualité");
+    return res.json();
+  }
 }
 
 export const useActualites = () => {

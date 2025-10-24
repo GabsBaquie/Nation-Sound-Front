@@ -61,7 +61,7 @@ const Actualites: React.FC<ActualitesProps> = ({
     title: actualite.title,
     description: actualite.description,
     image: actualite.image || {
-      url: "/images/news-icon.webp",
+      url: "/image/placeholder.jpg",
       alternativeText: "Actualité",
     },
   }));
@@ -109,7 +109,7 @@ const Actualites: React.FC<ActualitesProps> = ({
               </CardHeader>
 
               <CardFooter>
-                <Link href={`/news/${card.id}`} passHref>
+                <Link href={`/Actualites/${card.id}`} passHref>
                   <Button>Voir plus</Button>
                 </Link>
               </CardFooter>
