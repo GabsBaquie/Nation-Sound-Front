@@ -1,11 +1,12 @@
 import { MapPOI, usePOIs } from "@/controllers/mapController";
+import { Map } from "@/models/mapModel/mapModel";
 import { useEffect, useMemo, useState } from "react";
 import { Card } from "../ui/card";
 import GoogleMapContainer from "./Map/GoogleMapContainer";
 import MapFilters from "./Map/MapFilters";
 
 interface MapBlockProps {
-  block?: any; // Props du bloc si nécessaire
+  block?: Map;
 }
 
 const getCenterOfPOIs = (pois: MapPOI[]): { lat: number; lng: number } => {

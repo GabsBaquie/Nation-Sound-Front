@@ -5,12 +5,12 @@ import Map from "@/components/blocks/Map";
 import Partenaires from "@/components/blocks/Partenaire";
 import PrincingBlock from "@/components/blocks/Princing";
 import Programmation from "@/components/blocks/Programmation";
-import { faqData } from "@/components/blocks/data/faqData";
-import { heroBlockData } from "@/components/blocks/data/heroBlockData";
-import { partenaireData } from "@/components/blocks/data/partenaireData";
-import { princingData } from "@/components/blocks/data/princingData";
 import LandingPage from "@/components/landingPage";
 import { LandingPageModel } from "@/models/LandingPageModel";
+
+import { faqData } from "@/components/blocks/data/faqData";
+import { heroBlockData } from "@/components/blocks/data/heroBlockData";
+import { princingData } from "@/components/blocks/data/princingData";
 import "../app/globals.css";
 
 const Home = ({
@@ -26,7 +26,7 @@ const Home = ({
       <PrincingBlock block={princingData} />
       <Actualites />
       <Map />
-      <Partenaires block={partenaireData} />
+      <Partenaires />
       <div>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <LandingPage blocks={blocks} />
