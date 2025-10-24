@@ -1,3 +1,4 @@
+import { useAlertes } from "@/controllers/alertesController";
 import { Info as InfoType } from "@/models/infoModel/infoModel";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,6 +11,8 @@ interface InfoProps {
 }
 
 const Info: React.FC<InfoProps> = ({ block }) => {
+  const { alertes, isLoading, hasError } = useAlertes();
+
   const settings = {
     dots: true,
     infinite: true,
@@ -55,12 +58,50 @@ const Info: React.FC<InfoProps> = ({ block }) => {
     "Peu important",
   ];
 
+  // Utiliser les données de l'API si disponibles, sinon les données statiques
+  const carrouselData =
+    alertes.length > 0
+      ? alertes.map((alerte) => ({
+          id: alerte.id,
+          title: alerte.title,
+          description: alerte.description,
+          text: alerte.description,
+          image: {
+            url: "/images/alert-icon.webp",
+            alternativeText: "Alerte de sécurité",
+          },
+          importance: alerte.urgence ? "Très important" : "Important",
+        }))
+      : block.carrousel;
+
   // Trier les éléments du carrousel par importance
-  const sortedCarrousel = [...block.carrousel].sort(
+  const sortedCarrousel = [...carrouselData].sort(
     (a, b) =>
       importanceOrder.indexOf(a.importance ?? "Peu important") -
       importanceOrder.indexOf(b.importance ?? "Peu important")
   );
+
+  if (isLoading) {
+    return (
+      <div className="justify-center mx-auto mt-12 max-w-4xl md:mt-24 lg:mt-16">
+        <div className="py-8 text-center">
+          <div className="inline-block w-8 h-8 rounded-full border-b-2 animate-spin border-primary"></div>
+          <p className="mt-2">Chargement des informations...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (hasError) {
+    return (
+      <div className="justify-center mx-auto mt-12 max-w-4xl md:mt-24 lg:mt-16">
+        <div className="py-8 text-center text-red-500">
+          <p>Erreur lors du chargement des informations</p>
+          <p className="mt-2 text-sm">Affichage des informations par défaut</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="justify-center mx-auto mt-12 max-w-4xl md:mt-24 lg:mt-16">

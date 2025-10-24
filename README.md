@@ -1,8 +1,10 @@
 # Nation-Sound-Front
 
-## Mon Projet Web - Frontend
+## Présentation
 
-Ce projet est une application web basée sur **Next.js**, développée selon l'architecture **MVC (Model-View-Controller)**. Il permet la gestion de différents blocs de contenu et l'interaction avec des API backend.
+Application web Next.js pour la gestion d’un site événementiel, basée sur l’architecture MVC, avec intégration API backend et gestion dynamique des contenus.
+
+---
 
 ## Table des matières
 
@@ -12,141 +14,185 @@ Ce projet est une application web basée sur **Next.js**, développée selon l'a
 - [Structure du Projet](#structure-du-projet)
 - [Architecture MVC](#architecture-mvc)
 - [Explication du Code](#explication-du-code)
+- [CORS et Sécurité (Backend)](#cors-et-sécurité-backend)
+- [HTTPS et Mixed Content](#https-et-mixed-content)
 - [Déploiement](#déploiement)
 - [Ressources](#ressources)
+
+---
 
 ## Prérequis
 
 - **Node.js** : version >= 18.0.0 <= 20.x.x
 - **npm** : version >= 6.0.0
 
+---
+
 ## Installation
 
-1. Clonez le dépôt du frontend :
-
+1. Clonez le dépôt :
    ```bash
    git clone https://github.com/GabsBaquie/Nation-Sound-Front next-app
    cd next-app
    ```
-
 2. Installez les dépendances :
-
    ```bash
    npm install
    ```
-
-3. Configurez les variables d'environnement :
-
-   Créez un fichier `.env` à la racine du projet et ajoutez les valeurs suivantes (ou celles qui conviennent à votre environnement) :
-
+3. Configurez les variables d'environnement dans `.env.local` :
    ```env
-   NEXT_PUBLIC_API_URL=http://localhost:1337
+   API_URL=https://nation-sounds.fr/api
+   NEXT_PUBLIC_ASSETS_URL=https://nation-sounds.fr
    ```
+   ⚠️ **En production, l'API doit être accessible en HTTPS pour éviter les erreurs Mixed Content.**
+
+---
 
 ## Démarrage
 
-Pour démarrer l'application en mode développement, exécutez :
+Pour lancer l’application en développement :
 
 ```bash
 npm run dev
 ```
 
-Ensuite, ouvrez votre navigateur à l'adresse [http://localhost:3000](http://localhost:3000) pour voir le résultat.
+Accédez à [http://localhost:3000](http://localhost:3000)
+
+---
 
 ## Structure du Projet
 
-Voici un aperçu de la structure des dossiers du projet :
-
 ```
-next-app/
-├── .env
-├── .eslintrc.json
-├── .gitignore
-├── .next/
+Nation-Sound-Front/
+├── .env.local
 ├── app/
 │   ├── globals.css
 │   └── layout.tsx
 ├── components/
 │   ├── animation/
 │   ├── blocks/
-│   ├── landingBlocks.tsx
-│   └── NavBar/
-├── controller/
-│   ├── pagesController/
-│   ├── slugController/
-│   └── BlocksController.ts
+│   │   ├── data/
+│   │   ├── Map/
+│   │   ├── FAQ.tsx
+│   │   ├── Programmation.tsx
+│   │   └── ...
+│   ├── ui/
+│   │   ├── accordion.tsx
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   └── ...
+├── controllers/
+│   ├── apiConfig.ts
+│   └── ...
+├── lib/
+│   ├── DataError.ts
+│   ├── formatTime.ts
+│   └── utils.ts
 ├── models/
+│   ├── blocks.ts
+│   ├── LandingPageModel.ts
+│   ├── programmationModel/
+│   ├── ... (autres modèles)
 ├── pages/
+│   ├── index.tsx
+│   ├── 404.tsx
+│   ├── About.tsx
+│   ├── _app.tsx
+│   └── ...
 ├── public/
+│   └── ...
 ├── tailwind.config.js
+├── next.config.mjs
+├── package.json
 └── README.md
 ```
 
-### Explication des principaux dossiers :
+### Explication des principaux dossiers
 
-- **app/** : Contient les composants globaux tels que le layout et les fichiers CSS.
-- **components/** : Stocke les composants réutilisables, organisés par catégorie.
-- **controller/** : Contient les fichiers contrôleurs qui gèrent la logique métier de l'application.
-- **models/** : Contient les modèles de données utilisés par l'application.
+- **app/** : Fichiers globaux (CSS, layout)
+- **components/** : Composants réutilisables, organisés par fonctionnalité
+  - **blocks/** : Blocs principaux de la page (FAQ, HeroBlock, Map, etc.)
+  - **ProgramationPage/** : Sous-composants pour la programmation (carte concert, filtre, etc.)
+  - **ui/** : Composants UI génériques (button, card, select...)
+  - **NavBar/** : Barre de navigation
+- **controllers/** : Logique métier, accès API, configuration
+- **lib/** : Fonctions utilitaires et helpers
+- **models/** : Modèles de données (un dossier par type de modèle)
+- **pages/** : Pages Next.js (accueil, about, programmation, etc.)
+- **public/** : Assets statiques (images, polices, favicon, diagrammes)
+
+---
 
 ## Architecture MVC
 
-### Modèles (Models)
+- **Modèles (models/)** : Gestion des données et logique métier
+- **Vues (components/)** : Affichage des données (UI)
+- **Contrôleurs (controller/)** : Interaction entre modèles et vues, accès API
 
-Les modèles sont responsables de la gestion des données et de la logique métier. Ils sont définis dans le dossier `models`. Par exemple, le modèle `HeroBlockModel` contient les données pour le bloc Hero.
-
-### Vues (Views)
-
-Les vues, principalement situées dans le dossier `components`, sont responsables de l'affichage des données. Par exemple, `HeroBlock` est un composant qui affiche les informations provenant du modèle `HeroBlockModel`.
-
-### Contrôleurs (Controllers)
-
-Les contrôleurs gèrent les interactions entre les modèles et les vues. Ils sont définis dans le dossier `controller`. Par exemple, `HeroBlockController` contient la logique qui relie le modèle `HeroBlockModel` à la vue `HeroBlock`.
+---
 
 ## Explication du Code
 
-1. **Entrée Utilisateur** : L’utilisateur interagit avec l’application via le navigateur en naviguant et en cliquant sur des éléments.
+1. **Entrée utilisateur** : Navigation, clics, formulaires
+2. **Composants Vue** : Affichage dynamique via les modèles
+3. **Pages** : Utilisent les composants pour chaque section
+4. **Contrôleurs** : Récupèrent les données, orchestrent l’affichage
+5. **Modèles** : Définissent la structure des données
+6. **API backend** : Source des données (REST)
 
-2. **Composants Vue (components/)** :
+---
 
-   - Les composants situés dans le dossier `components/` affichent les données et gèrent l’interface utilisateur. Ils comprennent :
-     - **NavBar** : Barre de navigation.
-     - **LandingBlocks** : Composant principal pour afficher différents blocs de contenu.
-     - **Map** : Composant pour afficher une carte.
-     - **GenericCard** : Composant pour afficher des cartes génériques.
+## CORS et Sécurité (Backend)
 
-3. **Pages (pages/)** :
+Configurer CORS côté backend pour autoriser le domaine front (Vercel) :
 
-   - Les pages de l’application, situées dans le dossier `pages/`, utilisent les composants de vue pour afficher les différentes sections de l’application (ex. Billetterie, About, Programmation).
+**Express** :
 
-4. **Contrôleurs (controller/)** :
+```js
+import cors from "cors";
+const allowedOrigins = ["https://nation-sound-front.vercel.app"];
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
+```
 
-   - Les contrôleurs situés dans le dossier `controller/` gèrent les interactions entre les modèles et les vues. Ils récupèrent les données des modèles et les envoient aux composants pour l’affichage :
-     - **BilletterieController** : Gère les données de billetterie.
-     - **AboutController** : Gère les données de la page “About”.
-     - **ProgrammationController** : Gère les données de la programmation.
+**NestJS** :
 
-5. **Modèles (models/)** :
+```ts
+app.enableCors({
+  origin: ["https://nation-sound-front.vercel.app"],
+  credentials: true,
+});
+```
 
-   - Les modèles situés dans le dossier `models/` définissent la structure des données de l’application :
-     - **BilletterieModel** : Modèle pour les données de billetterie.
-     - **AboutModel** : Modèle pour les données de la page “About”.
-     - **ProgrammationModel** : Modèle pour les données de la programmation.
+Vérifiez la réponse OPTIONS :
 
-6. **Base de données / API backend** :
-   - Les modèles récupèrent les données à partir de la base de données ou d’une API backend (par exemple, via une API REST).
+- `Access-Control-Allow-Origin: https://nation-sound-front.vercel.app`
+- `Access-Control-Allow-Methods: GET, POST, OPTIONS, ...`
+- `Access-Control-Allow-Headers: Content-Type, Authorization, ...`
 
-![Diagramme du Projet](next-Front/public/UML-Front.png)
+Redémarrez le backend après modification.
+
+---
+
+## HTTPS et Mixed Content
+
+- **L’API doit être accessible en HTTPS** si le front est servi en HTTPS (Vercel, etc.)
+- Sinon, configurez un proxy HTTPS ou utilisez un tunnel (ex: ngrok) pour le développement
+- Les navigateurs bloquent les requêtes HTTP depuis une page HTTPS
+
+---
 
 ## Déploiement
 
-Le déploiement de l'application peut se faire facilement sur la plateforme **Vercel** :
+1. Créez un projet sur [Vercel](https://vercel.com/new)
+2. Connectez votre dépôt GitHub
+3. Vercel déploie automatiquement à chaque push
 
-1. [Créez un nouveau projet sur Vercel](https://vercel.com/new).
-2. Suivez les instructions pour connecter votre dépôt GitHub.
-3. Vercel déploiera automatiquement l'application après chaque mise à jour du code.
-
-Pour plus de détails, consultez la [documentation de Next.js sur le déploiement](https://nextjs.org/docs/deployment).
+---
 
 ## Ressources
 

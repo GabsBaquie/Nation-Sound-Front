@@ -4,10 +4,10 @@ import FAQ from "./blocks/FAQ";
 import Footer from "./blocks/Footer";
 import HeroBlock from "./blocks/HeroBlock";
 import Info from "./blocks/Info";
-import Map from "./blocks/Map";
+import MapBlock from "./blocks/MapBlock";
 import Partenaires from "./blocks/Partenaire";
 import PrincingBlock from "./blocks/Princing";
-import ProgrammationBlock from "./blocks/Programmation";
+import ProgrammationBlock from "./blocks/ProgrammationBlock";
 
 interface LandingBlocksProps {
   blocks: Block[];
@@ -25,11 +25,11 @@ const LandingPage: React.FC<LandingBlocksProps> = ({ blocks }) => {
             case "blocks.hero":
               return <HeroBlock key={key} block={block} />;
             case "blocks.programmation":
-              return <ProgrammationBlock key={key} />;
+              return <ProgrammationBlock key={key} block={block} />;
             case "blocks.princing":
               return <PrincingBlock key={key} block={block} />;
             case "blocks.map":
-              return <Map key={key} />;
+              return <MapBlock key={key} block={block} />;
             case "blocks.faq":
               return <FAQ key={key} block={block} />;
             case "blocks.infos":
