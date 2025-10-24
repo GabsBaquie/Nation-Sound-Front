@@ -1,4 +1,4 @@
-import { FAQ as FAQType } from "@/models/faqModel/faqModel";
+import { FAQ as FAQType } from "@/models/types";
 
 export const faqData: FAQType = {
   id: 1,

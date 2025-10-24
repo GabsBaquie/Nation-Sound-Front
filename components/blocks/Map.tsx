@@ -1,5 +1,5 @@
 import { MapPOI, usePOIs } from "@/controllers/mapController";
-import { Map } from "@/models/mapModel/mapModel";
+import { Map } from "@/models/types";
 import { useEffect, useMemo, useState } from "react";
 import { Card } from "../ui/card";
 import GoogleMapContainer from "./Map/GoogleMapContainer";

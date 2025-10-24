@@ -1,5 +1,5 @@
 import { API_URL } from "@/controllers/apiConfig";
-import { Actualite } from "@/models/actualitesModel/actualiteModel";
+import { Actualite } from "@/models/types";
 import { useEffect, useState } from "react";
 
 export class ActualitesController {

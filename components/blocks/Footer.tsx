@@ -1,4 +1,4 @@
-import { Footer as FooterType } from "@/models/footerModel/footerModel";
+import { Footer as FooterType } from "@/models/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -21,11 +21,13 @@ const Footer: React.FC<FooterProps> = ({ block }) => {
             <Card
               className={`flex items-center justify-center p-2 cardhover min-w-28 md:min-w-32 md:min-h-24 ${
                 index % 2 === 0 ? "bg-primary" : "bg-secondary"
-              }`}>
+              }`}
+            >
               <Link
                 href={reseau.link}
                 target="_blank"
-                rel="noopener noreferrer">
+                rel="noopener noreferrer"
+              >
                 {reseau.icon && (
                   <Image
                     className="mx-auto mb-2"

@@ -1,4 +1,4 @@
-import { Princing } from "@/models/princingModel/princingModel";
+import { Princing } from "@/models/types";
 
 export const princingData: Princing = {
   id: 1,

@@ -1,5 +1,5 @@
 import { API_URL } from "@/controllers/apiConfig";
-import { Partenaire } from "@/models/partenaireModel/partenaireModel";
+import { Partenaire } from "@/models/types";
 import { useEffect, useState } from "react";
 
 export class PartenairesController {

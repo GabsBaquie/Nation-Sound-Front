@@ -1,4 +1,4 @@
-import { Princing as PrincingType } from "@/models/princingModel/princingModel";
+import { Princing as PrincingType } from "@/models/types";
 import Link from "next/link";
 import React from "react";
 import Button from "../ui/button";

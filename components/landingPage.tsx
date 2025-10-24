@@ -1,5 +1,5 @@
 import React from "react";
-import { Block } from "../models/blocks";
+import { Block } from "../models/types";
 import Actualites from "./blocks/Actualites";
 import FAQ from "./blocks/FAQ";
 import Footer from "./blocks/Footer";

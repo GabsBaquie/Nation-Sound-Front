@@ -6,7 +6,7 @@ import Partenaires from "@/components/blocks/Partenaire";
 import Pricing from "@/components/blocks/Pricing";
 import Programmation from "@/components/blocks/Programmation";
 import LandingPage from "@/components/landingPage";
-import { LandingPageModel } from "@/models/LandingPageModel";
+import { LandingPageModel } from "@/models/types";
 
 import { faqData } from "@/components/blocks/data/faqData";
 import { heroBlockData } from "@/components/blocks/data/heroBlockData";

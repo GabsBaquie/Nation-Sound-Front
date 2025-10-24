@@ -1,7 +1,7 @@
 import ScrollInfinityX from "@/components/animation/scrollInfinityX";
 import { LoadingError } from "@/components/common/LoadingError";
 import { usePartenaires } from "@/controllers/partenairesController";
-import { Partenaire } from "@/models/partenaireModel/partenaireModel";
+import { Partenaire } from "@/models/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";

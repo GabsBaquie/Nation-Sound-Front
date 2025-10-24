@@ -1,5 +1,5 @@
 import Button from "@/components/ui/button";
-import { HeroBlock as HeroBlockType } from "@/models/heroModel/heroModel";
+import { HeroBlock as HeroBlockType } from "@/models/types";
 import Image from "next/image";
 import Link from "next/link";
 

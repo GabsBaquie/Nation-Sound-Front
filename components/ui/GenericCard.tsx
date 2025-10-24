@@ -1,5 +1,5 @@
 import "@/app/globals.css";
-import { Image as ImageProps } from "@/models/imageModel/imageModel";
+import { Image as ImageProps } from "@/models/types";
 import Image from "next/image";
 import React from "react";
 import Markdown from "react-markdown";
@@ -32,7 +32,8 @@ const GenericCard: React.FC<GenericCardProps> = ({
 }) => {
   return (
     <Card
-      className={`mx-auto text-center max-w-80 md:my-10 md:max-w-2xl lg:max-w-4xl " ${className}`}>
+      className={`mx-auto text-center max-w-80 md:my-10 md:max-w-2xl lg:max-w-4xl " ${className}`}
+    >
       <CardHeader>
         {image && (
           <Image

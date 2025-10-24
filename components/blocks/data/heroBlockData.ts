@@ -1,4 +1,4 @@
-import { HeroBlock as HeroBlockType } from "@/models/heroModel/heroModel";
+import { HeroBlock as HeroBlockType } from "@/models/types";
 
 export const heroBlockData: HeroBlockType = {
   id: 1,

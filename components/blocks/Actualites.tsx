@@ -1,5 +1,5 @@
 import { useActualites } from "@/controllers/actualitesController";
-import { Actualite } from "@/models/actualitesModel/actualiteModel";
+import { Actualite } from "@/models/types";
 import Image from "next/image";
 import Link from "next/link";
 import Slider from "react-slick";

@@ -1,7 +1,7 @@
 import "@/app/globals.css";
 import GenericCard from "@/components/ui/GenericCard";
 import { ActualitesController } from "@/controllers/actualitesController";
-import { Actualite } from "@/models/actualitesModel/actualiteModel";
+import { Actualite } from "@/models/types";
 import { GetServerSideProps } from "next";
 
 interface CardPageProps {
