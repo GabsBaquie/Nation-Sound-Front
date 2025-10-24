@@ -14,7 +14,7 @@ interface PrincingProps {
   block: PrincingType;
 }
 
-const PrincingBlock: React.FC<PrincingProps> = ({ block }) => {
+const Pricing: React.FC<PrincingProps> = ({ block }) => {
   const { title, text, plan } = block;
 
   return (
@@ -54,4 +54,4 @@ const PrincingBlock: React.FC<PrincingProps> = ({ block }) => {
   );
 };
 
-export default PrincingBlock;
+export default Pricing;

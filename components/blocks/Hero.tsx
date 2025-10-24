@@ -3,11 +3,11 @@ import { HeroBlock as HeroBlockType } from "@/models/heroModel/heroModel";
 import Image from "next/image";
 import Link from "next/link";
 
-interface HeroBlockProps {
+interface HeroProps {
   block: HeroBlockType;
 }
 
-const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
+const Hero: React.FC<HeroProps> = ({ block }) => {
   // Accédez directement aux propriétés du modèle
   const { title, text, image, BtnLink, section } = block;
   return (
@@ -24,7 +24,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
 
           {/* Boutons */}
           <div className="flex flex-row justify-center space-x-4">
-            {BtnLink?.map((btn, index) => (
+            {BtnLink?.map((btn: any, index: number) => (
               <Link
                 key={index}
                 href={btn.link || "#"}
@@ -103,4 +103,4 @@ const HeroBlock: React.FC<HeroBlockProps> = ({ block }) => {
   );
 };
 
-export default HeroBlock;
+export default Hero;

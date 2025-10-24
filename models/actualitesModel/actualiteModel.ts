@@ -11,3 +11,10 @@ export interface Actualite {
   importance?: string;
   actif: boolean;
 }
+
+export interface ActualitesBlock {
+  id: number;
+  __component: "blocks.actualites";
+  title: string;
+  text: string;
+}

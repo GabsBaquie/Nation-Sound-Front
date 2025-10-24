@@ -1,8 +1,8 @@
+import { ActualitesBlock } from "./actualitesModel/actualiteModel";
 import { FAQ } from "./faqModel/faqModel";
 import { Footer } from "./footerModel/footerModel";
 import { HeroBlock } from "./heroModel/heroModel";
 import { Image } from "./imageModel/imageModel";
-import { Info } from "./infoModel/infoModel";
 import { Map } from "./mapModel/mapModel";
 import { PartenaireBlock } from "./partenaireModel/partenaireModel";
 import { Princing } from "./princingModel/princingModel";
@@ -25,6 +25,6 @@ export type Block =
   | Princing
   | Map
   | FAQ
-  | Info
+  | ActualitesBlock
   | PartenaireBlock
   | Footer;

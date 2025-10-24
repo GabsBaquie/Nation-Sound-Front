@@ -15,7 +15,7 @@ const Footer: React.FC<FooterProps> = ({ block }) => {
     <footer className="mx-auto my-6">
       <h2 className="mb-2 text-xl md:text-2xl">{title}</h2>
       <p className="mb-8 text-sm md:text-lg">{text}</p>
-      <ul className="flex flex-wrap justify-center gap-4 ">
+      <ul className="flex flex-wrap gap-4 justify-center">
         {Reseaux.map((reseau, index) => (
           <li key={index}>
             <Card
