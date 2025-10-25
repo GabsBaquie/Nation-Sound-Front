@@ -51,12 +51,24 @@ const Programmation: React.FC = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
+          slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          dots: false,
         },
       },
     ],
@@ -84,94 +96,51 @@ const Programmation: React.FC = () => {
         </p>
       </div>
       {days.length > 0 ? (
-        days.length > 3 ? (
-          <div className="w-full max-w-4xl">
-            <Slider {...settings}>
-              {days.map((day) => (
-                <div key={day.id} className="px-2">
-                  <Card
-                    className="cursor-pointer cardhover"
-                    onClick={() => router.push(`/Programmation/${day.id}`)}
-                  >
-                    <CardContent className="p-0 h-40 sm:h-52">
-                      {getImageSrc(day) && (
-                        <Image
-                          src={getImageSrc(day)!}
-                          alt={day.name || `Jour ${day.id}`}
-                          width={300}
-                          height={300}
-                          onError={(e) => {
-                            console.warn(
-                              `Failed to load image for day ${day.id}`
-                            );
-                            e.currentTarget.style.display = "none";
-                          }}
-                        />
-                      )}
-                    </CardContent>
-                    <CardHeader className="flex flex-col justify-center items-center p-4 text-center bg-primary min-h-20">
-                      {!getImageSrc(day) && (
-                        <>
-                          <h3 className="mb-2 text-lg font-bold text-white">
-                            {day.name || `Jour ${day.id}`}
-                          </h3>
-                          <p className="text-sm text-white/80">
-                            {day.concerts && day.concerts.length > 0
-                              ? `${day.concerts.length} concert${
-                                  day.concerts.length > 1 ? "s" : ""
-                                }`
-                              : "Aucun concert programmé"}
-                          </p>
-                        </>
-                      )}
-                    </CardHeader>
-                  </Card>
-                </div>
-              ))}
-            </Slider>
-          </div>
-        ) : (
-          <div className="flex flex-col gap-12 max-w-60 md:gap-20 md:max-w-none lg:flex-row lg:gap-12">
+        <div className="w-full max-w-4xl">
+          <Slider {...settings}>
             {days.map((day) => (
-              <Card
-                key={day.id}
-                className="cursor-pointer cardhover"
-                onClick={() => router.push(`/Programmation/${day.id}`)}
-              >
-                <CardContent className="p-0 h-40 sm:h-52">
-                  {getImageSrc(day) && (
-                    <Image
-                      src={getImageSrc(day)!}
-                      alt={day.name || `Jour ${day.id}`}
-                      width={300}
-                      height={300}
-                      onError={(e) => {
-                        console.warn(`Failed to load image for day ${day.id}`);
-                        e.currentTarget.style.display = "none";
-                      }}
-                    />
-                  )}
-                </CardContent>
-                <CardHeader className="flex flex-col justify-center items-center p-4 text-center bg-primary min-h-20">
-                  {!getImageSrc(day) && (
-                    <>
-                      <h3 className="mb-2 text-lg font-bold text-white">
-                        {day.name || `Jour ${day.id}`}
-                      </h3>
-                      <p className="text-sm text-white/80">
-                        {day.concerts && day.concerts.length > 0
-                          ? `${day.concerts.length} concert${
-                              day.concerts.length > 1 ? "s" : ""
-                            }`
-                          : "Aucun concert programmé"}
-                      </p>
-                    </>
-                  )}
-                </CardHeader>
-              </Card>
+              <div key={day.id} className="px-2">
+                <Card
+                  className="cursor-pointer cardhover"
+                  onClick={() => router.push(`/Programmation/${day.id}`)}
+                >
+                  <CardContent className="p-0 h-40 sm:h-52">
+                    {getImageSrc(day) && (
+                      <Image
+                        src={getImageSrc(day)!}
+                        alt={day.name || `Jour ${day.id}`}
+                        width={300}
+                        height={300}
+                        onError={(e) => {
+                          console.warn(
+                            `Failed to load image for day ${day.id}`
+                          );
+                          e.currentTarget.style.display = "none";
+                        }}
+                      />
+                    )}
+                  </CardContent>
+                  <CardHeader className="flex flex-col justify-center items-center p-4 text-center bg-primary min-h-20">
+                    {!getImageSrc(day) && (
+                      <>
+                        <h3 className="mb-2 text-lg font-bold text-white">
+                          {day.name || `Jour ${day.id}`}
+                        </h3>
+                        <p className="text-sm text-white/80">
+                          {day.concerts && day.concerts.length > 0
+                            ? `${day.concerts.length} concert${
+                                day.concerts.length > 1 ? "s" : ""
+                              }`
+                            : "Aucun concert programmé"}
+                        </p>
+                      </>
+                    )}
+                  </CardHeader>
+                </Card>
+              </div>
             ))}
-          </div>
-        )
+          </Slider>
+        </div>
       ) : (
         <p>Aucune journée disponible</p>
       )}
