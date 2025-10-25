@@ -39,7 +39,10 @@ const CardPage: React.FC<CardPageProps> = ({ actualite, error }) => {
           image={
             actualite.image
               ? {
-                  url: actualite.image.url,
+                  url:
+                    typeof actualite.image === "string"
+                      ? actualite.image
+                      : actualite.image.url,
                   alternativeText:
                     actualite.image.alternativeText || actualite.title,
                 }

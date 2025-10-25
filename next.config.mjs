@@ -12,6 +12,7 @@ const nextConfig = {
       "localhost:8080",
       "localhost:3000",
       "localhost:3003",
+      "dtvryosgiqnwcfceazcj.supabase.co",
     ],
     remotePatterns: [
       {
@@ -24,6 +25,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "nation-sounds.fr",
         pathname: "/uploads/**",
+      },
+      {
+        protocol: "https",
+        hostname: "dtvryosgiqnwcfceazcj.supabase.co",
+        pathname: "/storage/v1/object/public/**",
       },
     ],
   },

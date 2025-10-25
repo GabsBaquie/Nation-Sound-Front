@@ -3,6 +3,14 @@ import { HeroBlock as HeroBlockType } from "@/models/types";
 import Image from "next/image";
 import Link from "next/link";
 
+// Helper function to get image source
+const getImageSrc = (image: any): string | null => {
+  if (image?.url && typeof image.url === "string" && image.url.trim() !== "") {
+    return image.url;
+  }
+  return null;
+};
+
 interface HeroProps {
   block: HeroBlockType;
 }
@@ -42,12 +50,12 @@ const Hero: React.FC<HeroProps> = ({ block }) => {
         </div>
 
         {/* Image hero */}
-        {image && (
+        {getImageSrc(image) && (
           <div className="relative items-center mx-auto my-10 max-w-xl lg:m-0 md:w-full min-w-sm">
             <Image
               className="lg:absolute top-8 lg:top-[-50px] z-10 "
-              src={image.url}
-              alt={image.alternativeText}
+              src={getImageSrc(image)!}
+              alt={image?.alternativeText || "Hero image"}
               width={550}
               height={650}
               priority
@@ -62,7 +70,7 @@ const Hero: React.FC<HeroProps> = ({ block }) => {
         {/* Titre de la section en mobile */}
         <h2 className="mb-6 text-xl font-bold md:hidden">{section?.title}</h2>
         {/* Image de la section Hero */}
-        {section?.image && (
+        {getImageSrc(section?.image) && (
           <div
             className="float-left w-1/3 mr-12 lg:float-none md:w-[20%] lg:mx-12"
             style={{
@@ -70,8 +78,8 @@ const Hero: React.FC<HeroProps> = ({ block }) => {
             }}
           >
             <Image
-              src={section?.image.url}
-              alt={section.image.alternativeText}
+              src={getImageSrc(section?.image)!}
+              alt={section?.image?.alternativeText || "Section image"}
               width={200}
               height={200}
               priority

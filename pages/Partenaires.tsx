@@ -2,6 +2,7 @@ import { LoadingError } from "@/components/common/LoadingError";
 import { Card } from "@/components/ui/card";
 import { usePartenaires } from "@/controllers/partenairesController";
 import Image from "next/image";
+import Link from "next/link";
 
 // Composant qui affiche les partenaires triés par type
 const Partenaires = () => {
@@ -41,20 +42,68 @@ const Partenaires = () => {
               <ul className="flex justify-around items-center">
                 {groupedPartenaires[type].map((partenaire: any) => (
                   <li key={partenaire.id}>
-                    <Image
-                      width={100}
-                      height={100}
-                      src={
-                        partenaire.logo?.url ||
-                        "/images/partner-placeholder.png"
-                      }
-                      alt={
-                        partenaire.logo?.alternativeText ||
-                        partenaire.name ||
-                        "Partenaire"
-                      }
-                      className="w-20 h-auto md:w-28"
-                    />
+                    {partenaire.link ? (
+                      <Link
+                        href={partenaire.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Image
+                          width={100}
+                          height={100}
+                          src={
+                            partenaire.image ||
+                            "/images/partner-placeholder.png"
+                          }
+                          alt={
+                            partenaire.logo_alt ||
+                            partenaire.name ||
+                            "Partenaire"
+                          }
+                          className="w-20 h-auto transition-opacity cursor-pointer md:w-28 hover:opacity-80"
+                          onError={(e) => {
+                            console.warn(
+                              `Failed to load image for partner ${partenaire.id}`
+                            );
+                            if (
+                              e.currentTarget.src !==
+                              "/images/partner-placeholder.png"
+                            ) {
+                              e.currentTarget.src =
+                                "/images/partner-placeholder.png";
+                            } else {
+                              e.currentTarget.style.display = "none";
+                            }
+                          }}
+                        />
+                      </Link>
+                    ) : (
+                      <Image
+                        width={100}
+                        height={100}
+                        src={
+                          partenaire.image || "/images/partner-placeholder.png"
+                        }
+                        alt={
+                          partenaire.logo_alt || partenaire.name || "Partenaire"
+                        }
+                        className="w-20 h-auto md:w-28"
+                        onError={(e) => {
+                          console.warn(
+                            `Failed to load image for partner ${partenaire.id}`
+                          );
+                          if (
+                            e.currentTarget.src !==
+                            "/images/partner-placeholder.png"
+                          ) {
+                            e.currentTarget.src =
+                              "/images/partner-placeholder.png";
+                          } else {
+                            e.currentTarget.style.display = "none";
+                          }
+                        }}
+                      />
+                    )}
                   </li>
                 ))}
               </ul>

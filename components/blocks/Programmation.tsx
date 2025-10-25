@@ -7,6 +7,14 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { Card, CardContent, CardHeader } from "../ui/card";
 
+// Helper function to get image source from API only
+const getImageSrc = (day: DayAPI): string | null => {
+  if (day.image && typeof day.image === "string" && day.image.trim() !== "") {
+    return day.image;
+  }
+  return null;
+};
+
 const Programmation: React.FC = () => {
   const router = useRouter();
   const [days, setDays] = useState<DayAPI[]>([]);
@@ -19,7 +27,6 @@ const Programmation: React.FC = () => {
       setHasError(false);
       try {
         const data = await fetchDays();
-        console.log("DAYS API:", data);
         setDays(data);
       } catch {
         setHasError(true);
@@ -87,14 +94,37 @@ const Programmation: React.FC = () => {
                     onClick={() => router.push(`/Programmation/${day.id}`)}
                   >
                     <CardContent className="p-0 h-40 sm:h-52">
-                      <Image
-                        src={`/image/Jour ${day.id}.png`}
-                        alt={day.name || `Jour ${day.id}`}
-                        width={300}
-                        height={300}
-                      />
+                      {getImageSrc(day) && (
+                        <Image
+                          src={getImageSrc(day)!}
+                          alt={day.name || `Jour ${day.id}`}
+                          width={300}
+                          height={300}
+                          onError={(e) => {
+                            console.warn(
+                              `Failed to load image for day ${day.id}`
+                            );
+                            e.currentTarget.style.display = "none";
+                          }}
+                        />
+                      )}
                     </CardContent>
-                    <CardHeader className="bg-primary min-h-20"></CardHeader>
+                    <CardHeader className="flex flex-col justify-center items-center p-4 text-center bg-primary min-h-20">
+                      {!getImageSrc(day) && (
+                        <>
+                          <h3 className="mb-2 text-lg font-bold text-white">
+                            {day.name || `Jour ${day.id}`}
+                          </h3>
+                          <p className="text-sm text-white/80">
+                            {day.concerts && day.concerts.length > 0
+                              ? `${day.concerts.length} concert${
+                                  day.concerts.length > 1 ? "s" : ""
+                                }`
+                              : "Aucun concert programmé"}
+                          </p>
+                        </>
+                      )}
+                    </CardHeader>
                   </Card>
                 </div>
               ))}
@@ -109,14 +139,35 @@ const Programmation: React.FC = () => {
                 onClick={() => router.push(`/Programmation/${day.id}`)}
               >
                 <CardContent className="p-0 h-40 sm:h-52">
-                  <Image
-                    src={`/image/Jour ${day.id}.png`}
-                    alt={day.name || `Jour ${day.id}`}
-                    width={300}
-                    height={300}
-                  />
+                  {getImageSrc(day) && (
+                    <Image
+                      src={getImageSrc(day)!}
+                      alt={day.name || `Jour ${day.id}`}
+                      width={300}
+                      height={300}
+                      onError={(e) => {
+                        console.warn(`Failed to load image for day ${day.id}`);
+                        e.currentTarget.style.display = "none";
+                      }}
+                    />
+                  )}
                 </CardContent>
-                <CardHeader className="bg-primary min-h-20"></CardHeader>
+                <CardHeader className="flex flex-col justify-center items-center p-4 text-center bg-primary min-h-20">
+                  {!getImageSrc(day) && (
+                    <>
+                      <h3 className="mb-2 text-lg font-bold text-white">
+                        {day.name || `Jour ${day.id}`}
+                      </h3>
+                      <p className="text-sm text-white/80">
+                        {day.concerts && day.concerts.length > 0
+                          ? `${day.concerts.length} concert${
+                              day.concerts.length > 1 ? "s" : ""
+                            }`
+                          : "Aucun concert programmé"}
+                      </p>
+                    </>
+                  )}
+                </CardHeader>
               </Card>
             ))}
           </div>

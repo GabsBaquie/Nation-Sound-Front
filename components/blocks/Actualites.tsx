@@ -6,6 +6,21 @@ import Slider from "react-slick";
 import Button from "../ui/button";
 import { Card, CardDescription, CardFooter, CardHeader } from "../ui/card";
 
+// Helper function to get image source
+const getImageSrc = (image: any): string | null => {
+  // Handle different image formats - return any valid URL
+  if (image?.url && typeof image.url === "string" && image.url.trim() !== "") {
+    return image.url;
+  }
+
+  // Handle case where image might be a string directly
+  if (typeof image === "string" && image.trim() !== "") {
+    return image;
+  }
+
+  return null;
+};
+
 interface ActualitesProps {
   title?: string;
   text?: string;
@@ -60,10 +75,7 @@ const Actualites: React.FC<ActualitesProps> = ({
     id: actualite.id,
     title: actualite.title,
     description: actualite.description,
-    image: actualite.image || {
-      url: "/image/placeholder.jpg",
-      alternativeText: "Actualité",
-    },
+    image: actualite.image,
   }));
 
   if (isLoading) {
@@ -97,13 +109,15 @@ const Actualites: React.FC<ActualitesProps> = ({
           {carrouselData.map((card) => (
             <Card key={card.id}>
               <CardHeader>
-                <Image
-                  width={150}
-                  height={150}
-                  src={card.image?.url || ""}
-                  alt={card.image?.alternativeText || ""}
-                  className="mx-auto"
-                />
+                {getImageSrc(card.image) && (
+                  <Image
+                    width={300}
+                    height={200}
+                    src={getImageSrc(card.image)!}
+                    alt={card.image?.alternativeText || card.title}
+                    className="object-cover mx-auto"
+                  />
+                )}
                 <h2>{card.title}</h2>
                 <CardDescription>{card.description}</CardDescription>
               </CardHeader>

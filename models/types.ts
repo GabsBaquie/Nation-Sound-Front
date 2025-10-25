@@ -145,7 +145,11 @@ export type Partenaire = {
   name: string;
   type: string;
   link: string;
-  logo: Image;
+  logo_alt: string;
+  actif: boolean;
+  created_at: string;
+  updated_at: string;
+  image: string;
 };
 
 // Footer Block

@@ -20,13 +20,28 @@ const Partenaires: React.FC = () => {
                   <div key={partenaire.id || index}>
                     <Image
                       src={
-                        partenaire.logo?.url ||
-                        "/images/partner-placeholder.png"
+                        partenaire.image || "/images/partner-placeholder.png"
                       }
-                      alt={partenaire.name || "Partenaire"}
+                      alt={
+                        partenaire.logo_alt || partenaire.name || "Partenaire"
+                      }
                       width={95}
                       height={95}
                       className="max-w-[60px] mx-2 md:max-w-md md:mx-7"
+                      onError={(e) => {
+                        console.warn(
+                          `Failed to load image for partner ${partenaire.id}`
+                        );
+                        if (
+                          e.currentTarget.src !==
+                          "/images/partner-placeholder.png"
+                        ) {
+                          e.currentTarget.src =
+                            "/images/partner-placeholder.png";
+                        } else {
+                          e.currentTarget.style.display = "none";
+                        }
+                      }}
                     />
                   </div>
                 ))}

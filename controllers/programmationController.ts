@@ -6,6 +6,7 @@ export type DayAPI = {
   date: string;
   description?: string;
   concerts?: any[];
+  image?: string;
 };
 
 export const fetchDays = async (): Promise<DayAPI[]> => {
@@ -18,6 +19,7 @@ export const fetchDays = async (): Promise<DayAPI[]> => {
     date: day.date,
     description: day.description,
     concerts: day.concerts,
+    image: day.image,
   }));
 };
 

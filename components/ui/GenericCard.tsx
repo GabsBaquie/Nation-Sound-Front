@@ -32,18 +32,23 @@ const GenericCard: React.FC<GenericCardProps> = ({
 }) => {
   return (
     <Card
-      className={`mx-auto text-center max-w-80 md:my-10 md:max-w-2xl lg:max-w-4xl " ${className}`}
+      className={`mx-auto text-center max-w-80 md:my-10 md:max-w-2xl lg:max-w-4xl" ${className}`}
     >
-      <CardHeader>
-        {image && (
+      {image && (
+        <div className="overflow-hidden relative w-full h-48 rounded-t-lg md:h-64">
           <Image
-            className="mx-auto"
+            className="object-cover w-full h-full"
             src={image.url}
             alt={image.alternativeText || "Image"}
-            width={150}
-            height={150}
+            fill
+            onError={(e) => {
+              console.warn("Failed to load image in GenericCard");
+              e.currentTarget.style.display = "none";
+            }}
           />
-        )}
+        </div>
+      )}
+      <CardHeader>
         <CardTitle className="pt-4">{title}</CardTitle>
         {description && <CardDescription>{description}</CardDescription>}
       </CardHeader>

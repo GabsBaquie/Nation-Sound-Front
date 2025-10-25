@@ -2,6 +2,14 @@ import { Card } from "@/components/ui/card";
 import { ASSETS_URL } from "@/controllers/apiConfig";
 import React from "react";
 
+// Helper function to get image source
+const getImageSrc = (image: string | undefined): string | null => {
+  if (image && typeof image === "string" && image.trim() !== "") {
+    return `${ASSETS_URL}${image}`;
+  }
+  return null;
+};
+
 interface ConcertCardProps {
   concert: any;
   isPrimary: boolean;
@@ -13,20 +21,18 @@ const ConcertCard: React.FC<ConcertCardProps> = ({
   isPrimary,
   className,
 }) => {
-  // L'API fournit concert.image comme string (ex: /uploads/images/xxx.jpg)
-  const imgSrc = concert.image ? `${ASSETS_URL}${concert.image}` : undefined;
   return (
     <Card
       className={`p-4 shadow-md ${className} ${
         isPrimary ? "bg-primary" : "bg-secondary"
       }`}
     >
-      {imgSrc ? (
+      {getImageSrc(concert.image) ? (
         <img
           className="object-cover w-full h-48"
           width={200}
           height={200}
-          src={imgSrc}
+          src={getImageSrc(concert.image)!}
           alt={concert.title}
           loading="lazy"
         />
