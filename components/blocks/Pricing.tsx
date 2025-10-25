@@ -1,4 +1,5 @@
 import { Princing as PrincingType } from "@/models/types";
+import { DotIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import Button from "../ui/button";
@@ -34,7 +35,13 @@ const Pricing: React.FC<PrincingProps> = ({ block }) => {
             <CardContent className="mt-2 text-sm">
               <ul>
                 {card.services.map((service) => (
-                  <li key={service.id}>{service.description}</li>
+                  <li
+                    key={service.id}
+                    className="flex gap-2 justify-center items-center mb-2"
+                  >
+                    <DotIcon className="w-12 h-12" />
+                    <p>{service.description}</p>
+                  </li>
                 ))}
               </ul>
             </CardContent>
