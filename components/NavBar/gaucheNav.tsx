@@ -11,12 +11,11 @@ const GaucheNav: React.FC<GaucheNavProps> = ({ className }) => {
   const text =
     "keep coming • keep coming • keep coming • keep coming • keep coming ";
 
-  // Condition : Visible uniquement sur mobile (md:hidden) si on est sur la page d'accueil
   const isHomePage = router.pathname === "/";
 
   return (
     <div
-      className={`flex overflow-hidden fixed flex-col gap-10 w-12 border-r-2 md:w-auto md:px-8 border-border ${"hidden md:block"}`}
+      className={`flex overflow-hidden fixed flex-col gap-10 w-12 border-r-2 md:w-auto md:px-8 border-border ${"hidden xl:block"}`}
     >
       <InteractiveScroll>
         <h2 className="flex flex-col items-center text-sm rotate-180 md:text-xl">

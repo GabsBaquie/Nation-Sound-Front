@@ -24,21 +24,21 @@ const Pricing: React.FC<PrincingProps> = ({ block }) => {
         <p className="text-sm md:text-lg">{text}</p>
       </div>
 
-      <div className="flex flex-col gap-8 justify-center md:flex-row">
+      <div className="flex flex-col gap-8 justify-center items-center md:flex-row">
         {plan.map((card, index) => (
-          <Card key={index} className="md:min-w-72 bg-primary">
+          <Card key={index} className="md:p-4 md:min-w-72 bg-primary">
             <CardHeader>
               <CardTitle>{card.planType}</CardTitle>
               <p>{card.planPrice}</p>
             </CardHeader>
-            <CardContent>
+            <CardContent className="mt-2 text-sm">
               <ul>
                 {card.services.map((service) => (
                   <li key={service.id}>{service.description}</li>
                 ))}
               </ul>
             </CardContent>
-            <CardFooter>
+            <CardFooter className="mt-4">
               {card.button && (
                 <Link href={card.button?.link || "/Billetterie"} passHref>
                   <Button btnType={card.button?.type} size={"sm"}>
