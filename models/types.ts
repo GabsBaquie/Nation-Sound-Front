@@ -175,7 +175,7 @@ export interface Actualite {
   id: string;
   title: string;
   description: string;
-  content?: string;
+  text?: string;
   image?: {
     url: string;
     alternativeText?: string;

@@ -35,7 +35,22 @@ const CardPage: React.FC<CardPageProps> = ({ actualite, error }) => {
       <div className="pt-20 md:ml-20 md:pt-0">
         <GenericCard
           title={actualite.title}
-          text={actualite.description}
+          text={
+            <div>
+              {actualite.description && (
+                <div className="mb-6">
+                  <p>{actualite.description}</p>
+                </div>
+              )}
+              {actualite.text && (
+                <div className="max-w-none prose prose-lg">
+                  <div className="leading-relaxed whitespace-pre-wrap">
+                    {actualite.text}
+                  </div>
+                </div>
+              )}
+            </div>
+          }
           image={
             actualite.image
               ? {
@@ -49,13 +64,6 @@ const CardPage: React.FC<CardPageProps> = ({ actualite, error }) => {
               : undefined
           }
         />
-        {actualite.content && (
-          <div className="mt-6">
-            <div className="max-w-none prose">
-              <p className="whitespace-pre-wrap">{actualite.content}</p>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
