@@ -9,7 +9,7 @@ import React from "react";
 const Partenaires: React.FC = () => {
   const { partenaires, isLoading, hasError } = usePartenaires();
   const renderPartenaires = (partenaires: Partenaire[]) => (
-    <div className="overflow-hidden mx-24 my-6 md:my-12">
+    <div className="overflow-hidden mx-auto my-6 text-center md:max-w-4xl xl:max-w-6xl">
       <h1 className="mb-4 text-2xl">Nos Partenaires</h1>
       <div className="relative">
         {partenaires.length > 0 ? (
