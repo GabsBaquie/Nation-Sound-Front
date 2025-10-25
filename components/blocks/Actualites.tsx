@@ -107,7 +107,7 @@ const Actualites: React.FC<ActualitesProps> = ({
       <div>
         <Slider {...settings}>
           {carrouselData.map((card) => (
-            <Card key={card.id}>
+            <Card key={card.id} className="p-4">
               <CardHeader>
                 {getImageSrc(card.image) && (
                   <Image

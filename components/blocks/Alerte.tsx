@@ -32,7 +32,7 @@ const AlerteComponent: React.FC = () => {
   };
 
   return (
-    <div className="text-center pr-[1rem] md:ml-14 md:px-24 md:pr-[5rem] md:mb-12">
+    <div className="text-center pr-[1rem] xl:ml-14 md:px-24 xl:pr-[5rem] xl:mb-12">
       <Slider {...settings} className="pt-16 -mb-10 md:pt-0 md:mb-6">
         {alertes.map((alerte) => (
           <Card

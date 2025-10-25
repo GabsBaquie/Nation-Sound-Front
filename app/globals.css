@@ -127,8 +127,9 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 950px) {
   .container {
-    border-top: 0;
+    border: none;
+    padding-inline: 15px;
   }
 }

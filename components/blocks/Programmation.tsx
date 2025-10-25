@@ -55,20 +55,19 @@ const Programmation: React.FC = () => {
         },
       },
       {
-        breakpoint: 768,
+        breakpoint: 950,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
           arrows: false,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          dots: false,
         },
       },
     ],
@@ -88,7 +87,7 @@ const Programmation: React.FC = () => {
       className="flex flex-col gap-8 items-center mt-16"
       id="programmation"
     >
-      <div className="text-left">
+      <div className="text-center">
         <h2 className="mb-4 text-xl md:text-2xl">Programmation</h2>
         <p className="text-sm md:text-lg md:mb-4">
           Découvrez les artistes et les temps forts de chaque journée du
@@ -96,12 +95,12 @@ const Programmation: React.FC = () => {
         </p>
       </div>
       {days.length > 0 ? (
-        <div className="w-full max-w-4xl">
+        <div className="mx-auto w-full max-w-4xl">
           <Slider {...settings}>
             {days.map((day) => (
               <div key={day.id} className="px-2">
                 <Card
-                  className="cursor-pointer cardhover"
+                  className="mx-auto cursor-pointer cardhover"
                   onClick={() => router.push(`/Programmation/${day.id}`)}
                 >
                   <CardContent className="p-0 h-40 sm:h-52">
