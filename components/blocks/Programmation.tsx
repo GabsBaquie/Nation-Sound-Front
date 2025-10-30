@@ -1,4 +1,5 @@
 import { DayAPI, fetchDays } from "@/controllers/programmationController";
+import { ASSETS_URL } from "@/controllers/apiConfig";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -7,11 +8,24 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { Card, CardContent, CardHeader } from "../ui/card";
 
-// Helper function to get image source from API only
+// Helper function to get image for a day or fallback to first concert image
 const getImageSrc = (day: DayAPI): string | null => {
+  // Day-level image (absolute URL expected)
   if (day.image && typeof day.image === "string" && day.image.trim() !== "") {
     return day.image;
   }
+
+  // Fallback: first concert image
+  const firstWithImage = day.concerts?.find((c: any) => !!c?.image);
+  const concertImage: unknown = firstWithImage?.image;
+
+  if (typeof concertImage === "string" && concertImage.trim() !== "") {
+    // If absolute URL, return as is, else prefix with ASSETS_URL
+    return concertImage.startsWith("http")
+      ? concertImage
+      : `${ASSETS_URL}${concertImage.replace(/^\/+/, "")}`;
+  }
+
   return null;
 };
 

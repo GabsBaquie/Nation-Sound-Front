@@ -2,12 +2,15 @@ import { Card } from "@/components/ui/card";
 import { ASSETS_URL } from "@/controllers/apiConfig";
 import React from "react";
 
-// Helper function to get image source
+// Helper function to get image source (supports absolute or relative URLs)
 const getImageSrc = (image: string | undefined): string | null => {
-  if (image && typeof image === "string" && image.trim() !== "") {
-    return `${ASSETS_URL}${image}`;
-  }
-  return null;
+  if (!image || typeof image !== "string") return null;
+  const trimmed = image.trim();
+  if (trimmed === "") return null;
+  // If already absolute (http/https), use as-is
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  // Otherwise, prefix with ASSETS_URL, ensuring single slash
+  return `${ASSETS_URL}${trimmed.replace(/^\/+/, "")}`;
 };
 
 interface ConcertCardProps {
