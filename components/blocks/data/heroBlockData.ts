@@ -32,7 +32,7 @@ export const heroBlockData: HeroBlockType = {
     },
     button: {
       title: "En savoir plus",
-      link: "/about",
+      link: "/About",
       isExternal: false,
       type: "primary",
     },
